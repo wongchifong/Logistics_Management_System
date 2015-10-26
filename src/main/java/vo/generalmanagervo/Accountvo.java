@@ -1,5 +1,5 @@
 package vo.generalmanagervo;
 
-public class AccountQueryvo {
+public class Accountvo {
 
 }
