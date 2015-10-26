@@ -6,7 +6,7 @@ import vo.bushallsalmanvo.ReceiveSendvo;
 
 public interface ReceiveSendService {
 
-	public ReceiveOrderpo inputreceive(ReceiveSendvo information);
+	public ReceiveOrderpo inputreceive(ReceiveSendvo receiveInformation);
 	
-	public SendOrderpo inputsend(SendOrderpo information);
+	public SendOrderpo inputsend(ReceiveSendvo sendInformation);
 }
