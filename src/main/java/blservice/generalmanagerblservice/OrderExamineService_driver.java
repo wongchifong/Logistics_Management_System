@@ -3,8 +3,6 @@ package blservice.generalmanagerblservice;
 public class OrderExamineService_driver {
 	public void drive(OrderExamineService stub){
 		stub.showOrders();
-		stub.showDeliverOrder();
-		stub.deleteOrder();
 	}
 
 	public static void main(String[] args) {

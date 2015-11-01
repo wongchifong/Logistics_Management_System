@@ -11,4 +11,8 @@ public class ConstantFormulateService_Stub implements ConstantFormulateService {
 
 	}
 
-}
+	public void modifyConstancy(String constancy, double amount) {
+		// TODO Auto-generated method stub
+		System.out.println("修改常量");
+
+}}

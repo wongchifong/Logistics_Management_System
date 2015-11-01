@@ -1,13 +1,14 @@
 package blservice.generalmanagerblservice;
 
+import po.generalmanagepo.StaffRole;
 import vo.generalmanagervo.SalaryFormulatevo;
 
 public interface SalaryFormulateService {
 	
 	public SalaryFormulatevo showSalary();
 	
-	public SalaryFormulatevo modifyAmount();
+	public void modifyAmount(StaffRole role,int amount);
 	
-    public SalaryFormulatevo modifystrategy();
+    public void modifystrategy(StaffRole role,String strategy);
     
 }
