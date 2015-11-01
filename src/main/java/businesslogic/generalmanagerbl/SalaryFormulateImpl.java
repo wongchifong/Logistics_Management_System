@@ -1,5 +1,6 @@
 package businesslogic.generalmanagerbl;
 
+import po.generalmanagepo.StaffRole;
 import vo.generalmanagervo.SalaryFormulatevo;
 import blservice.generalmanagerblservice.SalaryFormulateService;
 
@@ -10,14 +11,12 @@ public class SalaryFormulateImpl implements SalaryFormulateService {
 		return null;
 	}
 
-	public SalaryFormulatevo modifyAmount() {
+	public void modifyAmount(StaffRole role,int amount) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
-	public SalaryFormulatevo modifystrategy() {
+	public void modifystrategy(StaffRole role,String strategy) {
 		// TODO Auto-generated method stub
-		return null;
 	}
     
 }

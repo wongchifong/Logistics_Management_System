@@ -1,5 +1,6 @@
 package blservice.generalmanagerblservice;
 
+import po.generalmanagepo.StaffRole;
 import vo.generalmanagervo.SalaryFormulatevo;
 
 public class SalaryFormulateService_Stub implements SalaryFormulateService {
@@ -10,16 +11,14 @@ public class SalaryFormulateService_Stub implements SalaryFormulateService {
 		return new SalaryFormulatevo();
 	}
 
-	public SalaryFormulatevo modifyAmount() {
+	public void modifyAmount(StaffRole role,int amount) {
 		System.out.println("修改了数额");
 		// TODO Auto-generated method stub
-		return new SalaryFormulatevo();
 	}
 
-	public SalaryFormulatevo modifystrategy() {
+	public void modifystrategy(StaffRole role,String strategy) {
 		// TODO Auto-generated method stub
 		System.out.println("修改了策略");
-		return new SalaryFormulatevo();
 	}
 
 }

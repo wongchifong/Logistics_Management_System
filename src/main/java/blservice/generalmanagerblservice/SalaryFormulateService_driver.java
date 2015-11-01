@@ -4,8 +4,6 @@ public class SalaryFormulateService_driver {
 	
 	public void drive(SalaryFormulateService stub){
 		stub.showSalary();
-		stub.modifyAmount();
-		stub.modifystrategy();
 	}
 	public static void main(String[] args) {
 		

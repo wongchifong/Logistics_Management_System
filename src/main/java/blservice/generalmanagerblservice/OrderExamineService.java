@@ -1,18 +1,12 @@
 package blservice.generalmanagerblservice;
 
-import po.generalmanagepo.Staffpo;
 import vo.generalmanagervo.OrderExaminevo;
-import vo.generalmanagervo.deliverOrder;
+import vo.generalmanagervo.Staffvo;
 
 public interface OrderExamineService {
 
 	public OrderExaminevo showOrders();
+	
+	public void approve(String type,String identifier,Staffvo operator);
 
-	public deliverOrder showDeliverOrder();
-	
-	public OrderExaminevo addOrder(String identifier,Staffpo operator);
-	
-	public boolean deleteOrder();
-	
-	public OrderExaminevo modifyOrder(String identifier,Staffpo operator);
 }
