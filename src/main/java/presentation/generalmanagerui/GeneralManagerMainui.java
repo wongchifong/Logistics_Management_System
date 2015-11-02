@@ -12,7 +12,7 @@ package presentation.generalmanagerui;
 public class GeneralManagerMainui extends javax.swing.JFrame {
 
     /**
-     * Creates new form GeneralManagerMainui
+     * Creates new form FinancialMainui
      */
     public GeneralManagerMainui() {
         initComponents();
@@ -68,6 +68,7 @@ public class GeneralManagerMainui extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(GeneralManagerMainui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
