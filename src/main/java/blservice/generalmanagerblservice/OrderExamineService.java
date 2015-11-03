@@ -1,9 +1,11 @@
 package blservice.generalmanagerblservice;
 
+import java.rmi.Remote;
+
 import vo.generalmanagervo.OrderExaminevo;
 import vo.generalmanagervo.Staffvo;
 
-public interface OrderExamineService {
+public interface OrderExamineService extends Remote {
 
 	public OrderExaminevo showOrders();
 	

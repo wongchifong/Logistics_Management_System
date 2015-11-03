@@ -1,5 +1,7 @@
 package blservice.transitsalmanblservice;
 
-public interface TrafficMesManageService {
+import java.rmi.Remote;
+
+public interface TrafficMesManageService extends Remote {
 
 }

@@ -1,5 +1,7 @@
 package blservice.courierblservice;
 
-public interface PriceQueryService {
+import java.rmi.Remote;
+
+public interface PriceQueryService extends Remote {
 
 }

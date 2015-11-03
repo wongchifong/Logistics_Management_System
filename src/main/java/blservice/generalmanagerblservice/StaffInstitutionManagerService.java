@@ -1,11 +1,13 @@
 package blservice.generalmanagerblservice;
 
+import java.rmi.Remote;
+
 import po.generalmanagepo.StaffRole;
 import vo.generalmanagervo.Institutionvo;
 import vo.generalmanagervo.StaffInstitutionManagevo;
 import vo.generalmanagervo.Staffvo;
 
-public interface StaffInstitutionManagerService {
+public interface StaffInstitutionManagerService extends Remote {
 	
        public StaffInstitutionManagevo showStaffRole();
        

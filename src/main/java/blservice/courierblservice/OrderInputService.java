@@ -1,5 +1,8 @@
 package blservice.courierblservice;
 
-public interface OrderInputService {
+import java.rmi.Remote;
 
+public interface OrderInputService extends Remote {
+
+	
 }

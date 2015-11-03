@@ -1,5 +1,7 @@
 package blservice.transitsalmanblservice;
 
-public interface TransitReceiveService {
+import java.rmi.Remote;
+
+public interface TransitReceiveService extends Remote {
 
 }

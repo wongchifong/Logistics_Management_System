@@ -1,10 +1,11 @@
 package blservice.financialmanblservice;
 
+import java.rmi.Remote;
 import java.util.ArrayList;
 
 import vo.financialmanvo.AccountManagevo;
 
-public interface AccountManageService {
+public interface AccountManageService extends Remote {
 	public AccountManagevo showAccount();
 	public AccountManagevo addAcount(String name);
 	public boolean deleteAccount();

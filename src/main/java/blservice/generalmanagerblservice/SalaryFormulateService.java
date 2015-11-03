@@ -1,9 +1,11 @@
 package blservice.generalmanagerblservice;
 
+import java.rmi.Remote;
+
 import po.generalmanagepo.StaffRole;
 import vo.generalmanagervo.SalaryFormulatevo;
 
-public interface SalaryFormulateService {
+public interface SalaryFormulateService extends Remote {
 	
 	public SalaryFormulatevo showSalary();
 	

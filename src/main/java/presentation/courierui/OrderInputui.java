@@ -5,6 +5,9 @@
  */
 package presentation.courierui;
 
+import javax.swing.JOptionPane;
+import vo.couriervo.Personvo;
+
 /**
  *
  * @author user
@@ -16,6 +19,7 @@ public class OrderInputui extends javax.swing.JFrame {
      */
     public OrderInputui() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -35,7 +39,7 @@ public class OrderInputui extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         senderCompany = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        SenderPhone = new javax.swing.JTextField();
+        senderPhone = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         senderTele = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -114,7 +118,7 @@ public class OrderInputui extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SenderPhone))
+                        .addComponent(senderPhone))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -136,7 +140,7 @@ public class OrderInputui extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(senderCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(SenderPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(senderPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -367,6 +371,11 @@ public class OrderInputui extends javax.swing.JFrame {
         );
 
         jButton1.setText("确定");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("退出");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -430,6 +439,26 @@ public class OrderInputui extends javax.swing.JFrame {
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+       Personvo sender = new Personvo(senderName.getText(), senderAddress.getText(), senderCompany.getText()
+            , senderTele.getText(), senderPhone.getText());
+       Personvo consignee = new Personvo(consigneeName.getText(), consigneeAddress.getText(), 
+               consigneeCompany.getText()
+            , consigneeTele.getText(), consigneePhone.getText());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void missMes(){
+        JOptionPane.showMessageDialog(null, "信息不完整！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private void negativeInput(){
+        JOptionPane.showMessageDialog(null, "输入数量不能为负！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private void numberError(){
+        JOptionPane.showMessageDialog(null, "输入数量中包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
     /**
      * @param args the command line arguments
      */
@@ -466,7 +495,6 @@ public class OrderInputui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField SenderPhone;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField consigneeAddress;
@@ -510,6 +538,7 @@ public class OrderInputui extends javax.swing.JFrame {
     private javax.swing.JTextField senderAddress;
     private javax.swing.JTextField senderCompany;
     private javax.swing.JTextField senderName;
+    private javax.swing.JTextField senderPhone;
     private javax.swing.JTextField senderTele;
     private javax.swing.JTextField volume;
     private javax.swing.JTextField weight;

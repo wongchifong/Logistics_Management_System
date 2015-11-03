@@ -1,9 +1,11 @@
 package blservice.stockmanagermanblservice;
 
+import java.rmi.Remote;
+
 import po.stockmanagermanpo.Storingpo;
 import vo.stocmanagermanvo.WarehouseManagevo;
 
-public interface WarehouseManageService {
+public interface WarehouseManageService extends Remote {
     
 	public Storingpo out();
 	
