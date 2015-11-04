@@ -4,9 +4,18 @@ import po.generalmanagepo.StaffRole;
 import vo.generalmanagervo.Institutionvo;
 import vo.generalmanagervo.StaffInstitutionManagevo;
 import vo.generalmanagervo.Staffvo;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import blservice.generalmanagerblservice.StaffInstitutionManagerService;
 
-public class StaffInstitutionManagerImpl implements StaffInstitutionManagerService {
+public class StaffInstitutionManagerImpl extends UnicastRemoteObject implements StaffInstitutionManagerService {
+
+	public StaffInstitutionManagerImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public StaffInstitutionManagevo showStaffRole() {
 		// TODO Auto-generated method stub

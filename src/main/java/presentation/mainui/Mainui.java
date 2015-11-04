@@ -5,6 +5,8 @@
  */
 package presentation.mainui;
 
+import java.rmi.RemoteException;
+
 import presentation.queryui.Queryui;
 
 /**
@@ -49,7 +51,12 @@ public class Mainui extends javax.swing.JFrame {
         QueryInfo.setText("快递信息查询");
         QueryInfo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                QueryInfoMouseClicked(evt);
+                try {
+					QueryInfoMouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -132,7 +139,7 @@ public class Mainui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ExitMouseClicked
 
-    private void QueryInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QueryInfoMouseClicked
+    private void QueryInfoMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_QueryInfoMouseClicked
 
         Queryui q = new Queryui();
         q.print();

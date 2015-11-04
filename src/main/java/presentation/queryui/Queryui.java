@@ -5,6 +5,8 @@
  */
 package presentation.queryui;
 
+import java.rmi.RemoteException;
+
 import blservice.queryblservice.QueryService;
 import businesslogic.expressbl.Expressbl;
 import vo.queryvo.QueryOrdervo;
@@ -21,14 +23,14 @@ public class Queryui extends javax.swing.JFrame {
      */
     QueryService q;
     
-    public Queryui() {
+    public Queryui() throws RemoteException {
         initComponents();
         q = new Expressbl();
         this.error.setVisible(false);
         
     }
     
-    public void print() {
+    public void print() throws RemoteException {
         Queryui q = new Queryui();
         q.setVisible(true);
         q.setLocationRelativeTo(null);
@@ -62,7 +64,12 @@ public class Queryui extends javax.swing.JFrame {
         check.setText("查询");
         check.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkActionPerformed(evt);
+                try {
+					checkActionPerformed(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -125,7 +132,7 @@ public class Queryui extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_exitActionPerformed
 
-    private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
+    private void checkActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException {//GEN-FIRST:event_checkActionPerformed
         // TODO add your handling code here:
         error.setVisible(false);
         String s = number.getText();

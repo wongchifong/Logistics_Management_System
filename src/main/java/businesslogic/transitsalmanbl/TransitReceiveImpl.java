@@ -1,7 +1,21 @@
 package businesslogic.transitsalmanbl;
 
-import blservice.transitsalmanblservice.TransitReceiveService;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-public class TransitReceiveImpl implements TransitReceiveService {
+import blservice.transitsalmanblservice.TransitReceiveService;
+import vo.transitmanvo.TransitReceivevo;
+
+public class TransitReceiveImpl extends UnicastRemoteObject implements TransitReceiveService {
+
+	public TransitReceiveImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public TransitReceivevo getReceive() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

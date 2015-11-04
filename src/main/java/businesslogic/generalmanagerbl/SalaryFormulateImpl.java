@@ -2,9 +2,18 @@ package businesslogic.generalmanagerbl;
 
 import po.generalmanagepo.StaffRole;
 import vo.generalmanagervo.SalaryFormulatevo;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import blservice.generalmanagerblservice.SalaryFormulateService;
 
-public class SalaryFormulateImpl implements SalaryFormulateService {
+public class SalaryFormulateImpl extends UnicastRemoteObject implements SalaryFormulateService {
+
+	public SalaryFormulateImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public SalaryFormulatevo showSalary() {
 		// TODO Auto-generated method stub

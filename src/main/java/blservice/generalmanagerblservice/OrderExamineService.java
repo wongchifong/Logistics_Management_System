@@ -1,14 +1,16 @@
 package blservice.generalmanagerblservice;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 import vo.generalmanagervo.OrderExaminevo;
 import vo.generalmanagervo.Staffvo;
 
 public interface OrderExamineService extends Remote {
 
-	public OrderExaminevo showOrders();
+	public OrderExaminevo showOrders() throws RemoteException;
 	
-	public void approve(String type,String identifier,Staffvo operator);
+	public void approve(String type,String identifier,Staffvo operator)
+			 throws RemoteException;
 
 }

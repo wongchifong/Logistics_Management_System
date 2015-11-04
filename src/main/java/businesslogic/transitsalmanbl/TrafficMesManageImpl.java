@@ -1,7 +1,21 @@
 package businesslogic.transitsalmanbl;
 
-import blservice.transitsalmanblservice.TrafficMesManageService;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-public class TrafficMesManageImpl implements TrafficMesManageService {
+import blservice.transitsalmanblservice.TrafficMesManageService;
+import vo.transitmanvo.TrafficMesManagevo;
+
+public class TrafficMesManageImpl extends UnicastRemoteObject implements TrafficMesManageService {
+
+	public TrafficMesManageImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public TrafficMesManagevo getMes() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

@@ -1,7 +1,21 @@
 package businesslogic.courierbl;
 
-import blservice.courierblservice.ReceiveMesService;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-public class ReceiveMesImpl implements ReceiveMesService {
+import blservice.courierblservice.ReceiveMesService;
+import vo.couriervo.ReceiveMesvo;
+
+public class ReceiveMesImpl extends UnicastRemoteObject implements ReceiveMesService {
+
+	public ReceiveMesImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ReceiveMesvo getReceive() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

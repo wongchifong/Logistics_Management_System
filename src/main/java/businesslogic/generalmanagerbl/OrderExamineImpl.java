@@ -2,9 +2,18 @@ package businesslogic.generalmanagerbl;
 
 import vo.generalmanagervo.OrderExaminevo;
 import vo.generalmanagervo.Staffvo;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import blservice.generalmanagerblservice.OrderExamineService;
 
-public class OrderExamineImpl implements OrderExamineService {
+public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamineService {
+
+	public OrderExamineImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public OrderExaminevo showOrders(){
 		System.out.println("显示订单");

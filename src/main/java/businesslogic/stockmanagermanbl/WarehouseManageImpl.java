@@ -1,10 +1,18 @@
 package businesslogic.stockmanagermanbl;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import blservice.stockmanagermanblservice.WarehouseManageService;
 import po.stockmanagermanpo.Storingpo;
 import vo.stocmanagermanvo.WarehouseManagevo;
 
-public class WarehouseManageImpl implements WarehouseManageService {
+public class WarehouseManageImpl extends UnicastRemoteObject implements WarehouseManageService {
+
+	public WarehouseManageImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Storingpo out() {
 		// TODO Auto-generated method stub

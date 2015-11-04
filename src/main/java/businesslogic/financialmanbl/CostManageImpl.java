@@ -1,9 +1,17 @@
 package businesslogic.financialmanbl;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import blservice.financialmanblservice.CostManageService;
 import vo.financialmanvo.CostManagevo;
 
-public class CostManageImpl implements CostManageService {
+public class CostManageImpl extends UnicastRemoteObject implements CostManageService {
+
+	public CostManageImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public CostManagevo show(String date, int numOfBusHall) {
 		// TODO Auto-generated method stub
