@@ -1,9 +1,15 @@
 package vo.generalmanagervo;
 
+import java.io.Serializable;
+
 import po.generalmanagepo.StaffRole;
 
-public class Staffvo extends StaffInstitutionManagevo {
-	 String id;
+public class Staffvo extends StaffInstitutionManagevo implements Serializable {
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1342558994390365715L;
+	String id;
 	  String name;
 	  String worktime;                  //yyyy-mm-dd
 	  int age;

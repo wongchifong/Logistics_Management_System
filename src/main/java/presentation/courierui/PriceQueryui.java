@@ -17,6 +17,7 @@ public class PriceQueryui extends javax.swing.JFrame {
     public PriceQueryui() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**

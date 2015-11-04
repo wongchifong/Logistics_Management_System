@@ -1,5 +1,12 @@
 package vo.generalmanagervo;
 
-public class SalaryFormulatevo {
+import java.io.Serializable;
+
+public class SalaryFormulatevo implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5628118504708305954L;
 
 }

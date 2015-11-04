@@ -5,13 +5,22 @@
  */
 package vo.couriervo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author user
  */
-public class Personvo {
+public class Personvo implements Serializable{
     
-    public String name;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1735687075842741650L;
+	/**
+	 * 
+	 */
+	public String name;
     public String address;
     public String company;
     public String telephone;

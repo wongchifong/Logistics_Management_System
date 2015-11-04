@@ -1,6 +1,12 @@
 package vo.financialmanvo;
 
-public class SettlementManagevo {//管理结算
+import java.io.Serializable;
+
+public class SettlementManagevo implements Serializable {/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8293502044118451162L;
+//管理结算
 	String date;
 	String person;
 	String address;

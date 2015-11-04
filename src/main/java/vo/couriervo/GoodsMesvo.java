@@ -5,13 +5,22 @@
  */
 package vo.couriervo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author user
  */
-public class GoodsMesvo {
+public class GoodsMesvo implements Serializable{
     
-    public int number_of_goods;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5758436740344470196L;
+	/**
+	 * 
+	 */
+	public int number_of_goods;
     public String name;
     public double weight;
     public double volume;

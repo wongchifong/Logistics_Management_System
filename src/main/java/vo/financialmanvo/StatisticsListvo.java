@@ -1,6 +1,12 @@
 package vo.financialmanvo;
 
-public class StatisticsListvo {
+import java.io.Serializable;
+
+public class StatisticsListvo implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7907529352022365303L;
 	String date1;
 	String date2;
 	public StatisticsListvo(String d1,String d2){

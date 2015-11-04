@@ -27,6 +27,7 @@ import blservice.queryblservice.QueryService;
 import blservice.stockmanagermanblservice.WarehouseManageService;
 import blservice.transitsalmanblservice.TrafficMesManageService;
 import blservice.transitsalmanblservice.TransitReceiveService;
+import vo.couriervo.Personvo;
 
 
 
@@ -263,7 +264,5 @@ public class RMIClient {
     	UserAuthorityManagerService service = 
     			RMIClient.getUserAuthorityManagerService();
     	service.findUser(2);
-    	Test test = RMIClient.test();
-    	System.out.println(test.print("abc"));
     }
 }

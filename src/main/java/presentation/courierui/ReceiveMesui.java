@@ -16,6 +16,8 @@ public class ReceiveMesui extends javax.swing.JFrame {
      */
     public ReceiveMesui() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**

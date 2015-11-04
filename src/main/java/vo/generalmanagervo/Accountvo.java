@@ -1,5 +1,12 @@
 package vo.generalmanagervo;
 
-public class Accountvo {
+import java.io.Serializable;
+
+public class Accountvo implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2085583130940965500L;
 
 }

@@ -6,15 +6,21 @@
 package vo.queryvo;
 
 import data.orderdata.*;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author user
  */
-public class QueryOrdervo {
+public class QueryOrdervo implements Serializable {
     
-    private CheckOrder co;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4031887692482029076L;
+	private CheckOrder co;
     
     public QueryOrdervo(CheckOrder co) {
         this.co = co;

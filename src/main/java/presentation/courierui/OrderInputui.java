@@ -5,7 +5,14 @@
  */
 package presentation.courierui;
 
+import RMI.client.RMIClient;
+import blservice.courierblservice.OrderInputService;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
+import vo.couriervo.GoodsMesvo;
 import vo.couriervo.Personvo;
 
 /**
@@ -14,12 +21,17 @@ import vo.couriervo.Personvo;
  */
 public class OrderInputui extends javax.swing.JFrame {
 
+    static OrderInputService ois;
     /**
      * Creates new form OrderInputui
+     * @throws Exception 
      */
-    public OrderInputui() {
+    public OrderInputui() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        RMIClient.init();
+        ois = RMIClient.getOrderInputService();
     }
 
     /**
@@ -435,21 +447,39 @@ public class OrderInputui extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton5ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-       Personvo sender = new Personvo(senderName.getText(), senderAddress.getText(), senderCompany.getText()
-            , senderTele.getText(), senderPhone.getText());
-       Personvo consignee = new Personvo(consigneeName.getText(), consigneeAddress.getText(), 
-               consigneeCompany.getText()
-            , consigneeTele.getText(), consigneePhone.getText());
-        // TODO add your handling code here:
+    	Personvo sender = new Personvo(senderName.getText(), senderAddress.getText(), senderCompany.getText()
+ 	            , senderTele.getText(), senderPhone.getText());
+ 	    Personvo consignee = new Personvo(consigneeName.getText(), consigneeAddress.getText(), 
+ 	               consigneeCompany.getText()
+ 	            , consigneeTele.getText(), consigneePhone.getText());
+        try {
+        	GoodsMesvo goods = new GoodsMesvo(Integer.parseInt(num.getText()),
+  				   goodsName.getText(), Double.parseDouble(weight.getText()),
+  			 	   Double.parseDouble(volume.getText()));
+        	if(ois.hasNull(sender) || ois.hasNull(consignee)){
+        		missMes();
+        		return;
+        	}
+        	if(ois.hasNegative(goods)){
+        		negativeInput();
+        		return;
+        	}
+            ois.getOrder();
+            // TODO add your handling code here:
+        } catch (RemoteException ex) {
+            Logger.getLogger(OrderInputui.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e){
+  		   numberError();
+  		   return;
+  	   }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void missMes(){
-        JOptionPane.showMessageDialog(null, "信息不完整！", "输入有误", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "信息不完整！请检查输入！", "输入有误", JOptionPane.ERROR_MESSAGE);
     }
     
     private void negativeInput(){
@@ -457,7 +487,7 @@ public class OrderInputui extends javax.swing.JFrame {
     }
     
     private void numberError(){
-        JOptionPane.showMessageDialog(null, "输入数量中包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "输入数量错误或包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
     }
     /**
      * @param args the command line arguments
@@ -489,7 +519,12 @@ public class OrderInputui extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OrderInputui().setVisible(true);
+                try {
+					new OrderInputui().setVisible(true);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
     }

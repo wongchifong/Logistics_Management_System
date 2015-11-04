@@ -5,13 +5,22 @@
  */
 package vo.couriervo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author user
  */
-public class Othervo {
+public class Othervo  implements Serializable{
     
-    public String expressType;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5298450624319722317L;
+	/**
+	 * 
+	 */
+	public String expressType;
     public String packingType;
     public String ID;
     
