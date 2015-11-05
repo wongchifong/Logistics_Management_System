@@ -1,6 +1,6 @@
 package po.otherdatapo;
 
-import data.orderdata.CheckOrder;
+import po.courierpo.CourierOrderpo;
 
 public class Expresspo {
     String number;

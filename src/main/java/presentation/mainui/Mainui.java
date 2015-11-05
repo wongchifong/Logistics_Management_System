@@ -7,6 +7,7 @@ package presentation.mainui;
 
 import java.rmi.RemoteException;
 
+import RMI.client.RMIClient;
 import presentation.queryui.Queryui;
 
 /**
@@ -20,6 +21,12 @@ public class Mainui extends javax.swing.JFrame {
      */
     public Mainui() {
         initComponents();
+        try {
+			RMIClient.init();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     /**
@@ -142,7 +149,6 @@ public class Mainui extends javax.swing.JFrame {
     private void QueryInfoMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_QueryInfoMouseClicked
 
         Queryui q = new Queryui();
-        q.print();
 // TODO add your handling code here:
     }//GEN-LAST:event_QueryInfoMouseClicked
 

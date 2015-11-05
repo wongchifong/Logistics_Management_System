@@ -4,8 +4,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import blservice.queryblservice.QueryService;
-import data.orderdata.CheckOrder;
 import dataservice.otherdataservice.ExpressService;
+import po.courierpo.CourierOrderpo;
 import vo.queryvo.QueryOrdervo;
 import vo.queryvo.Queryvo;
 
@@ -19,7 +19,7 @@ public class Expressbl extends UnicastRemoteObject implements QueryService {
 	public QueryOrdervo checkOrder(Queryvo qvo) {
          //To change body of generated methods, choose Tools | Templates.
         ExpressService es = new ExpressService(qvo.getID());
-        CheckOrder co = es.Message();
+        CourierOrderpo co = es.Message();
         if(co == null) return null;
         return new QueryOrdervo(co);
     }

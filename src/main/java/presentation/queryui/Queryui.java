@@ -7,6 +7,7 @@ package presentation.queryui;
 
 import java.rmi.RemoteException;
 
+import RMI.client.RMIClient;
 import blservice.queryblservice.QueryService;
 import businesslogic.expressbl.Expressbl;
 import vo.queryvo.QueryOrdervo;
@@ -21,20 +22,17 @@ public class Queryui extends javax.swing.JFrame {
     /**
      * Creates new form Queryui
      */
-    QueryService q;
+    static QueryService q;
     
     public Queryui() throws RemoteException {
         initComponents();
-        q = new Expressbl();
+        q = RMIClient.getQueryService();
         this.error.setVisible(false);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
         
     }
     
-    public void print() throws RemoteException {
-        Queryui q = new Queryui();
-        q.setVisible(true);
-        q.setLocationRelativeTo(null);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -136,11 +134,23 @@ public class Queryui extends javax.swing.JFrame {
         // TODO add your handling code here:
         error.setVisible(false);
         String s = number.getText();
+        if(s.equals("")){
+            error.setText("订单格式应该为10位数！");
+            error.setVisible(true);
+            return;
+        }
         Queryvo qvo = new Queryvo(s);
         if(!q.isValid(s)){
             error.setText("订单格式应该为10位数！");
             error.setVisible(true);
             return;
+        }
+        for(int i = 0 ; i < s.length(); i++){
+        	if(!(s.charAt(i) >= '0' && s.charAt(i) <= '9')){
+        		error.setText("订单格式应该为数字！");
+                error.setVisible(true);
+                return;
+        	}
         }
         QueryOrdervo qovo = q.checkOrder(qvo);
         if(qovo == null) {
@@ -148,6 +158,8 @@ public class Queryui extends javax.swing.JFrame {
             this.error.setVisible(true);
             return;
         }
+        new QueryResultui(qovo);
+        number.setText("");
     }//GEN-LAST:event_checkActionPerformed
 
     /**

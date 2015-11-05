@@ -3,20 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data.orderdata;
+package po.courierpo;
+
+import java.io.Serializable;
 
 /**
  *
  * @author user
  */
-public class GoodsMes {
+public class GoodsMespo implements Serializable {
     
-    public int num;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7049906434975017252L;
+	public int num;
     public double weight;
     public double volume;
     public String name;
     
-    public GoodsMes(int num , double weight , double volume , String name) {
+    public GoodsMespo(int num , double weight , double volume , String name) {
         this.name = name;
         this.num = num;
         this.volume = volume;

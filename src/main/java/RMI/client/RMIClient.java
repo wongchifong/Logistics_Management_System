@@ -27,7 +27,6 @@ import blservice.queryblservice.QueryService;
 import blservice.stockmanagermanblservice.WarehouseManageService;
 import blservice.transitsalmanblservice.TrafficMesManageService;
 import blservice.transitsalmanblservice.TransitReceiveService;
-import vo.couriervo.Personvo;
 
 
 

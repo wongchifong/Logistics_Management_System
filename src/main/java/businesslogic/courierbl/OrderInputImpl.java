@@ -4,9 +4,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import blservice.courierblservice.OrderInputService;
+import data.orderdata.OrderIO;
+import dataservice.courierdataservice.CourierService;
+import po.courierpo.CourierOrderpo;
 import vo.couriervo.GoodsMesvo;
 import vo.couriervo.OrderInputvo;
 import vo.couriervo.Personvo;
+import vo.couriervo.PriceAndTimevo;
 
 public class OrderInputImpl extends UnicastRemoteObject implements OrderInputService {
 
@@ -15,10 +19,13 @@ public class OrderInputImpl extends UnicastRemoteObject implements OrderInputSer
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderInputvo getOrder() throws RemoteException {
+	public boolean getOrder(OrderInputvo o, PriceAndTimevo p) {
 		// TODO Auto-generated method stub
-            System.out.println("hhhhhh");
-		return null;
+            System.out.println(o.sender.name + o.sender.address + 
+            		o.sender.company);
+            if(CourierService.writeData(o, p))
+            	return true;
+            return false;
 	}
 
 	public boolean hasNull(Personvo p) throws RemoteException {
@@ -35,5 +42,6 @@ public class OrderInputImpl extends UnicastRemoteObject implements OrderInputSer
 			return true;
 		return false;
 	}
+
 
 }

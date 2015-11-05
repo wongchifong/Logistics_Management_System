@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import blservice.courierblservice.PriceQueryService;
+import vo.couriervo.Datevo;
+import vo.couriervo.PriceAndTimevo;
 
 public class PriceQueryImpl extends UnicastRemoteObject implements PriceQueryService {
 
@@ -12,9 +14,11 @@ public class PriceQueryImpl extends UnicastRemoteObject implements PriceQuerySer
 		// TODO Auto-generated constructor stub
 	}
 
-	public PriceQueryService getPrice() throws RemoteException {
+	public PriceAndTimevo getPriceAndTime(PriceAndTimevo p) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+            p.price = 100;
+            p.date = new Datevo();
+		return p;
 	}
 
 }

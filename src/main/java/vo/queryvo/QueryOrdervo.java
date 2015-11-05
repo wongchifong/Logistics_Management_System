@@ -6,9 +6,13 @@
 package vo.queryvo;
 
 import data.orderdata.*;
+import po.courierpo.CourierOrderpo;
+import po.courierpo.ExpressTypepo;
+import po.courierpo.PackingTypepo;
 
 import java.io.Serializable;
 import java.util.List;
+import po.courierpo.ExamineType;
 
 /**
  *
@@ -20,9 +24,9 @@ public class QueryOrdervo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -4031887692482029076L;
-	private CheckOrder co;
+	private CourierOrderpo co;
     
-    public QueryOrdervo(CheckOrder co) {
+    public QueryOrdervo(CourierOrderpo co) {
         this.co = co;
     }
     
@@ -54,6 +58,22 @@ public class QueryOrdervo implements Serializable {
         return co.getSender().tele;
     }
     
+    public String getSenderUnit(){
+        return co.getSender().unit;
+    }
+    
+    public String getConsigneeUnit(){
+        return co.getConsignee().unit;
+    }
+    
+    public String getSenderPhone(){
+        return co.getSender().phone;
+    }
+    
+    public String getConsigneePhone(){
+        return co.getConsignee().phone;
+    }
+    
     public double getPrice() {
         return co.getPrice();
     }
@@ -66,16 +86,20 @@ public class QueryOrdervo implements Serializable {
         return co.getGoodMes().name;
     }
     
-    public PackingType getPackingType() {
+    public PackingTypepo getPackingType() {
         return co.getPackingType();
     }
     
-    public ExpressType getExpressType() {
+    public ExpressTypepo getExpressType() {
         return co.getExpressType();
     }
     
     public List<String> getHistory() {
         return co.getHistory();
+    }
+    
+    public ExamineType getExamineType() {
+        return co.getExamineType();
     }
     
 }

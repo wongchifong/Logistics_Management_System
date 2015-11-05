@@ -1,18 +1,23 @@
 package dataservice.otherdataservice;
 
-import data.orderdata.CheckOrder;
+import data.orderdata.OrderIO;
+import po.courierpo.CourierOrderpo;
 import po.otherdatapo.Expresspo;
 
 public class ExpressService {
-    CheckOrder co;
+    CourierOrderpo co;
     String number;
     public ExpressService(String s){
         number = s;
     }
     
-    public CheckOrder Message() {
-        co = new CheckOrder(new Expresspo(number));
-        if(co.findOrder() == false) return null;
+    public CourierOrderpo Message() {
+        try {
+			co = OrderIO.search(number);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return co;
     }
 
