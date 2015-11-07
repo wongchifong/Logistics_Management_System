@@ -54,6 +54,7 @@ public class OrderIO {
 	}
 	
 	public static void main(String[] args) throws Exception {
+		write();
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		List<CourierOrderpo> list = (List<CourierOrderpo>) ois.readObject();
