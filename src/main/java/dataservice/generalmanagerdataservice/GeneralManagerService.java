@@ -1,5 +1,5 @@
 package dataservice.generalmanagerdataservice;
 
-public class GeneralManagerService {
+public interface GeneralManagerService {
 
 }

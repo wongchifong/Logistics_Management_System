@@ -9,13 +9,13 @@ public class OrderInputvo implements Serializable {
 	 */
 	private static final long serialVersionUID = -2325826403399233813L;
 	
-	public Personvo sender;
+	public final Personvo sender;
 	
-	public Personvo consignee;
+	public final Personvo consignee;
 	
-	public GoodsMesvo goods;
+	public final GoodsMesvo goods;
 	
-	public Othervo other;
+	public final Othervo other;
 	
 	public OrderInputvo(Personvo s, Personvo c, GoodsMesvo g, Othervo o){
 		sender = s;

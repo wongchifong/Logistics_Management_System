@@ -18,13 +18,13 @@ public class PriceAndTimevo implements Serializable {
 	 */
 	private static final long serialVersionUID = -8770505050324345642L;
 	
-	public String begin;
+	public final String begin;
 	
-	public String aim;
+	public final String aim;
 	
-	public GoodsMesvo goods;
+	public final GoodsMesvo goods;
 	
-	public Othervo other;
+	public final Othervo other;
 	
 	public double price;
 	

@@ -20,10 +20,10 @@ public class GoodsMesvo implements Serializable{
 	/**
 	 * 
 	 */
-	public int number_of_goods;
-    public String name;
-    public double weight;
-    public double volume;
+	public final int number_of_goods;
+    public final String name;
+    public final double weight;
+    public final double volume;
     
     public GoodsMesvo(int num, String n, double w, double v){
         number_of_goods = num;

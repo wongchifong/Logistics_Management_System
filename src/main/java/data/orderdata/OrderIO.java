@@ -8,11 +8,15 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataservice.courierdataservice.CourierService;
+import dataservice.otherdataservice.ExpressService;
 import po.courierpo.CourierOrderpo;
+import po.courierpo.PriceAndTimepo;
+import po.courierpo.ReceiveOrderpo;
 
-public class OrderIO {
+public class OrderIO implements CourierService, ExpressService {
 	
-	public static boolean write(CourierOrderpo cpo) throws Exception {
+	public boolean writeOrder(CourierOrderpo cpo) throws Exception {
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		@SuppressWarnings("unchecked")
@@ -31,7 +35,7 @@ public class OrderIO {
 		return true;
 	}
 	
-	public static CourierOrderpo search(String ID) throws Exception {
+	public CourierOrderpo search(String ID) throws Exception {
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		List<CourierOrderpo> list = (List<CourierOrderpo>) ois.readObject();
@@ -62,6 +66,16 @@ public class OrderIO {
 			System.out.println(list.get(i).getExpressType().toString() + list.get(i)
 			.getPackingType().toString());
 		}
+	}
+
+	public PriceAndTimepo query() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean writeReceive(ReceiveOrderpo r) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

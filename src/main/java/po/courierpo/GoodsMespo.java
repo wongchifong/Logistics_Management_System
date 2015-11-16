@@ -17,10 +17,10 @@ public class GoodsMespo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -7049906434975017252L;
-	public int num;
-    public double weight;
-    public double volume;
-    public String name;
+	public final int num;
+    public final double weight;
+    public final double volume;
+    public final String name;
     
     public GoodsMespo(int num , double weight , double volume , String name) {
         this.name = name;

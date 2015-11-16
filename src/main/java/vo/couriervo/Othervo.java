@@ -20,9 +20,9 @@ public class Othervo  implements Serializable{
 	/**
 	 * 
 	 */
-	public int expressType;
-    public int packingType;
-    public String ID;
+	public final int expressType;
+    public final int packingType;
+    public final String ID;
     
     public Othervo(int e, int p, String ID){
         expressType = e;

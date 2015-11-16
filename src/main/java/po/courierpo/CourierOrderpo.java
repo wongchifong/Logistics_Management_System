@@ -21,14 +21,14 @@ public class CourierOrderpo  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 165712927463596445L;
-	PersonMespo sender , consignee;
-    String ID;
-    GoodsMespo gm;
-    double price;
-    PackingTypepo pt;
-    ExpressTypepo et;
-    List<String> history;
-    ExamineType ext;
+	final PersonMespo sender , consignee;
+	final String ID;
+	final  GoodsMespo gm;
+	final  double price;
+	final PackingTypepo pt;
+	final ExpressTypepo et;
+	List<String> history;
+	final ExamineType ext;
     
     public CourierOrderpo(OrderInputvo order, PriceAndTimevo p) {
     	System.out.println(order.sender.name);
@@ -60,9 +60,6 @@ public class CourierOrderpo  implements Serializable{
     	else et = ExpressTypepo.SpecialExpress;
     }
     
-    public CourierOrderpo(Expresspo epo) {
-        findOrder();
-    }
     
     public boolean findOrder() {
         return false;

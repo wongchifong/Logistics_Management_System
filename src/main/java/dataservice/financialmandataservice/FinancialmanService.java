@@ -1,5 +1,5 @@
 package dataservice.financialmandataservice;
 
-public class FinancialmanService {
+public interface FinancialmanService {
 
 }

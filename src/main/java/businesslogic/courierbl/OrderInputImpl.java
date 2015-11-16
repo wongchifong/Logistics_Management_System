@@ -23,8 +23,14 @@ public class OrderInputImpl extends UnicastRemoteObject implements OrderInputSer
 		// TODO Auto-generated method stub
             System.out.println(o.sender.name + o.sender.address + 
             		o.sender.company);
-            if(CourierService.writeData(o, p))
-            	return true;
+            CourierService cs = new OrderIO();
+            try {
+				if(cs.writeOrder(new CourierOrderpo(o, p)))
+					return true;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             return false;
 	}
 

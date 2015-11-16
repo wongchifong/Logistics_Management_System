@@ -16,11 +16,11 @@ public class PersonMespo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -6315665737336297922L;
-	public String name;
-    public String address;
-    public String unit;
-    public String tele;
-    public String phone;
+	public final String name;
+    public final String address;
+    public final String unit;
+    public final String tele;
+    public final String phone;
     
     public PersonMespo(String name , String address , String unit , String tele
          ,String phone) {

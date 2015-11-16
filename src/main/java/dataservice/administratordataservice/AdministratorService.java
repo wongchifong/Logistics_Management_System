@@ -1,5 +1,5 @@
 package dataservice.administratordataservice;
 
-public class AdministratorService {
+public interface AdministratorService {
 
 }

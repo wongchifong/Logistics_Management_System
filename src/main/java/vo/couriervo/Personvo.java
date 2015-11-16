@@ -20,11 +20,11 @@ public class Personvo implements Serializable{
 	/**
 	 * 
 	 */
-	public String name;
-    public String address;
-    public String company;
-    public String telephone;
-    public String phone;
+	public final String name;
+    public final String address;
+    public final String company;
+    public final String telephone;
+    public final String phone;
     
     public Personvo(String n, String a, String c, String t, String p){
         name = n;
