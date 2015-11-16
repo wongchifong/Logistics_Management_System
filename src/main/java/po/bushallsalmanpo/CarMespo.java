@@ -1,5 +1,11 @@
 package po.bushallsalmanpo;
 
-public class CarMespo {
+import java.io.Serializable;
 
+public class CarMespo implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5430455624614750434L;
+	
 }
