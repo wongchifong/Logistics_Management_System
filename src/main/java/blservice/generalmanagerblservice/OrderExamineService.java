@@ -13,4 +13,6 @@ public interface OrderExamineService extends Remote {
 	public void approve(String type,String identifier,Staffvo operator)
 			 throws RemoteException;
 
+	public void disapprove(String type,String identifier,Staffvo operator)
+	        throws RemoteException;
 }

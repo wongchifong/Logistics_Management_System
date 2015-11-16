@@ -21,7 +21,11 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	}
 	
 	public void approve(String type,String identifier,Staffvo operator){
-		System.out.println("增加一条订单");
+		System.out.println("订单通过");
+	}
+	
+	public void disapprove(String type,String identifier,Staffvo operator){
+		System.out.println("订单通过");
 	}
 
 

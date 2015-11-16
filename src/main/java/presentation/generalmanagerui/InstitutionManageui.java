@@ -45,7 +45,7 @@ public class InstitutionManageui extends javax.swing.JFrame {
 
         jLabel6.setText("jLabel6");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("营业厅：");
 
