@@ -16,6 +16,7 @@ public class StoreCheckui extends javax.swing.JFrame {
      */
     public StoreCheckui() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**

@@ -5,6 +5,10 @@
  */
 package presentation.stockmanagermanui;
 
+import java.awt.event.MouseEvent;
+
+import presentation.courierui.OrderInputui;
+
 /**
  *
  * @author user
@@ -56,12 +60,42 @@ public class StockManagermanMainui extends javax.swing.JFrame {
         jLabel3.setText("账号：");
 
         jButton1.setText("库存报警系统");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+
+        });
 
         jButton2.setText("入库信息管理");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+
+
+        });
 
         jButton3.setText("出库信息管理");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+
+
+
+        });
 
         jButton4.setText("库存盘点");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+
+
+
+
+        });
 
         jButton5.setText("库存初始化");
 
@@ -127,6 +161,42 @@ public class StockManagermanMainui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1MouseClicked(MouseEvent evt) {
+    	// TODO Auto-generated method stub
+    	try {
+			new WarehouseWarningui();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    private void jButton2MouseClicked(MouseEvent evt) {
+    	// TODO Auto-generated method stub
+    	try {
+			new PutInStoreui();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    private void jButton3MouseClicked(MouseEvent evt) {
+    	// TODO Auto-generated method stub
+    	try {
+			new OutFromStockui();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    private void jButton4MouseClicked(MouseEvent evt) {
+    	// TODO Auto-generated method stub
+    	try {
+			new StoreCheckui();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
     /**
      * @param args the command line arguments
      */

@@ -5,6 +5,8 @@
  */
 package presentation.bushallsalmanui;
 
+import java.awt.event.MouseEvent;
+
 /**
  *
  * @author user
@@ -57,26 +59,85 @@ public class BushallsalmanMainui extends javax.swing.JFrame {
         jLabel3.setText("账号：");
 
         jButton1.setText("车辆装车管理");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+
+        });
 
         jButton2.setText("收款单");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+
+
+        });
 
         jButton3.setText("司机信息管理");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+
+
+        });
 
         jButton4.setText("车辆信息管理");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+
+
+
+        });
 
         jButton5.setText("接收");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+
+
+
+
+        });
 
         jButton6.setText("派件");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
 
+
+
+
+
+        });
         jMenu1.setText("File");
 
         jMenu2.setText("修改账户信息");
         jMenu1.add(jMenu2);
 
         jMenu3.setText("注销");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+
+        });
         jMenu1.add(jMenu3);
+        
 
         jMenu4.setText("退出");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+
+        });
         jMenu1.add(jMenu4);
 
         jMenuBar1.add(jMenu1);
@@ -136,9 +197,66 @@ public class BushallsalmanMainui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
+
+	/**
      * @param args the command line arguments
      */
+    private void jMenu3MouseClicked(MouseEvent evt) {
+    	// TODO Auto-generated method stub
+    	this.dispose();
+    }
+    private void jMenu4MouseClicked(MouseEvent evt) {
+    	// TODO Auto-generated method stub
+    	System.exit(0);
+    }
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {
+    	// TODO Auto-generated method stub
+    	try{
+    		new CarLoadingui();
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
+    private void jButton2MouseClicked(MouseEvent evt) {
+    	// TODO Auto-generated method stub
+    	try{
+    		new CashRegisterui();
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
+    private void jButton3MouseClicked(MouseEvent evt) {
+    	// TODO Auto-generated method stub
+    	try{
+    		new DriverMesManageui();
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
+    private void jButton4MouseClicked(MouseEvent evt) {
+    	// TODO Auto-generated method stub
+    	try{
+    		new CarMesManageui();
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
+    private void jButton5MouseClicked(MouseEvent evt) {
+    	// TODO Auto-generated method stub
+    	try{
+    		new Receiveui();
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
+    private void jButton6MouseClicked(MouseEvent evt) {
+    	// TODO Auto-generated method stub
+    	try{
+    		new Sendui();
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -16,6 +16,7 @@ public class OutFromStockui extends javax.swing.JFrame {
      */
     public OutFromStockui() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**

@@ -7,5 +7,5 @@ import vo.bushallsalmanvo.CarLoadingvo;
 
 public interface CarLoadingService extends Remote {
 
-	public void inputLoad(CarLoadingvo information)  throws RemoteException;
+	public boolean inputLoad(CarLoadingvo information)  throws RemoteException;
 }

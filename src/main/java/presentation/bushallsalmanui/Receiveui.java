@@ -16,6 +16,7 @@ public class Receiveui extends javax.swing.JFrame {
      */
     public Receiveui() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**

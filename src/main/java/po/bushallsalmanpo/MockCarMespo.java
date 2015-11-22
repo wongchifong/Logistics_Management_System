@@ -1,7 +1,13 @@
 package po.bushallsalmanpo;
 
+import vo.bushallsalmanvo.CarMesManagevo;
+
 public class MockCarMespo extends CarMespo{
 
+	public MockCarMespo(CarMesManagevo cm) {
+		super(cm);
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * 
 	 */
@@ -12,13 +18,13 @@ public class MockCarMespo extends CarMespo{
     public int month=10;
     public int day=1;
     
-    public MockCarMespo(int d,String  c,int y,int m,int da){
-    	daihao=d;
-    	chepaihao=c;
-    	year=y;
-    	month=m;
-    	day=da;
-    }
+//    public MockCarMespo(CarMesManagevo cm){
+//    	daihao=d;
+//    	chepaihao=c;
+//    	year=y;
+//    	month=m;
+//    	day=da;
+//    }
     public int getdaihao(){
     	return daihao;
     }

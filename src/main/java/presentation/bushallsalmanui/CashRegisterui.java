@@ -16,6 +16,7 @@ public class CashRegisterui extends javax.swing.JFrame {
      */
     public CashRegisterui() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**

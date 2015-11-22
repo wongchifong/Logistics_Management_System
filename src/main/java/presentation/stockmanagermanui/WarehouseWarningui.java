@@ -16,6 +16,7 @@ public class WarehouseWarningui extends javax.swing.JFrame {
      */
     public WarehouseWarningui() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**

@@ -16,6 +16,7 @@ public class PutInStoreui extends javax.swing.JFrame {
      */
     public PutInStoreui() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**

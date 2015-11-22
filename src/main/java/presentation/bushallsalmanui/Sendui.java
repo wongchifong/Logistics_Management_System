@@ -16,6 +16,7 @@ public class Sendui extends javax.swing.JFrame {
      */
     public Sendui() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**
