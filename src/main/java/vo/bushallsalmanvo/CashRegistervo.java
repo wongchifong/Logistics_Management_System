@@ -9,8 +9,25 @@ public class CashRegistervo implements Serializable {
 	 */
 	private static final long serialVersionUID = 133566084811595475L;
 
+	public final String year;
+	public final String month;
+	public final String day;
+	public final String money;
+	public final String kuaidiyuan;
+	public final String tiaoxingma;
+	
+	public CashRegistervo(String y, String mt, String d, String me, String k, String t) {
+		// TODO Auto-generated constructor stub
+		year=y;
+		month=mt;
+		day=d;
+		money=me;
+		kuaidiyuan=k;
+		tiaoxingma=t;
+	}
+
 	public static CashRegistervo getInformation(){
-		return new CashRegistervo();
+		return new CashRegistervo(null, null, null, null, null, null);
 		
 	}
 }

@@ -8,6 +8,6 @@ import vo.bushallsalmanvo.CashRegistervo;
 
 public interface CashRegisterService extends Remote {
 
-	public CashReceiveOrderpo inputcash(CashRegistervo information)
+	public boolean inputcash(CashRegistervo information)
 			throws RemoteException;
 }

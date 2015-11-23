@@ -5,10 +5,10 @@ import vo.bushallsalmanvo.CashRegistervo;
 
 public class CashRegisterService_Stub implements CashRegisterService{
 
-	public CashReceiveOrderpo inputcash(CashRegistervo information) {
+	public boolean inputcash(CashRegistervo information) {
 		// TODO Auto-generated method stub
 		System.out.println("生成收款单");
-		return null;
+		return true;
 	}
 
 	

@@ -2,16 +2,16 @@ package blservice.stockmanagermanblservice;
 
 import java.rmi.RemoteException;
 
-import vo.stocmanagermanvo.WarehouseManagevo;
+import vo.stocmanagermanvo.WarehouseWarningvo;
 
 public class WarehouseManageService_Driver {
 
 	public void drive(WarehouseManageService warehouseManageService) throws RemoteException{
-		WarehouseManagevo information = WarehouseManagevo.getInformation();
-		warehouseManageService.in();
+		WarehouseWarningvo information = WarehouseWarningvo.getInformation();
+		warehouseManageService.in(null, null);
 		warehouseManageService.out();
 		warehouseManageService.search(information);
-		warehouseManageService.set();
+		//warehouseManageService.set();
 		warehouseManageService.initialize();
 	}
 	

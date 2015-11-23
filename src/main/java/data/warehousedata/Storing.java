@@ -1,15 +1,82 @@
 package data.warehousedata;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
-import po.stockmanagermanpo.Storingpo;
+import dataservice.stockmanagermandataservice.StockManagermanService;
+import po.bushallsalmanpo.CarLoadingpo;
+import po.courierpo.CourierOrderpo;
+import po.stockmanagermanpo.InStoringpo;
+import po.stockmanagermanpo.Warningpo;
 
-public class Storing {
+public class Storing implements StockManagermanService {
 	
-	public static boolean write(Storingpo po) throws Exception{
-		FileInputStream fis = new FileInputStream("src/main/java/data/save/Storing.txt");
+	public static boolean write1() throws Exception{
+		FileOutputStream fos = 
+				new FileOutputStream("src/main/java/data/save/warning.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		List<String> l = new ArrayList<String>();
+		oos.writeObject(l);
+		oos.close();
 		return true;
 		
+	}
+	
+	public static boolean write2() throws Exception{
+		FileOutputStream fos = 
+				new FileOutputStream("src/main/java/data/save/instock.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		List<String> l = new ArrayList<String>();
+		oos.writeObject(l);
+		oos.close();
+		return true;
+		
+	}
+
+	public boolean set(Warningpo wpo) throws Exception {
+		// TODO Auto-generated method stub
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/warning.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<Warningpo> list = (List<Warningpo>) ois.readObject();
+		ois.close();
+		list.add(wpo);
+		FileOutputStream fos = 
+				new FileOutputStream("src/main/java/data/save/warning.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(list);
+		oos.close();
+		return true;
+	}
+	
+	public static void main(String[] args) throws Exception {
+		write1();
+		write2();
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/warning.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		List<Warningpo> list = (List<Warningpo>) ois.readObject();
+		ois.close();
+		
+	}
+
+	public boolean in(InStoringpo wpo) throws Exception {
+		// TODO Auto-generated method stub
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/instock.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<InStoringpo> list = (List<InStoringpo>) ois.readObject();
+		ois.close();
+		list.add(wpo);
+		FileOutputStream fos = 
+				new FileOutputStream("src/main/java/data/save/instock.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(list);
+		oos.close();
+		return true;
 	}
 
 }

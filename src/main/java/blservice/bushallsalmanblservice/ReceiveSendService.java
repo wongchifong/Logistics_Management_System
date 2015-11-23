@@ -5,13 +5,15 @@ import java.rmi.RemoteException;
 
 import po.bushallsalmanpo.ReceiveOrderpo;
 import po.bushallsalmanpo.SendOrderpo;
-import vo.bushallsalmanvo.ReceiveSendvo;
+import vo.bushallsalmanvo.Receivevo;
+import vo.bushallsalmanvo.Receivevo1;
+import vo.bushallsalmanvo.Sendvo;
 
 public interface ReceiveSendService extends Remote {
 
-	public ReceiveOrderpo inputreceive(ReceiveSendvo receiveInformation)
+	public boolean inputreceive(Receivevo receive)
 			throws RemoteException;
 	
-	public SendOrderpo inputsend(ReceiveSendvo sendInformation)
+	public boolean inputsend(Sendvo send)
 			throws RemoteException;
 }

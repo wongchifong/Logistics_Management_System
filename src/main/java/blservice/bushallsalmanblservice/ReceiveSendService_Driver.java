@@ -2,15 +2,16 @@ package blservice.bushallsalmanblservice;
 
 import java.rmi.RemoteException;
 
-import vo.bushallsalmanvo.ReceiveSendvo;
+import vo.bushallsalmanvo.Receivevo1;
+import vo.bushallsalmanvo.Sendvo;
 
 public class ReceiveSendService_Driver {
 
 	public void drive(ReceiveSendService receiveSendService) throws RemoteException{
-		ReceiveSendvo receiveInformation =ReceiveSendvo.getReceiveInformation();
-		ReceiveSendvo sendInformation = ReceiveSendvo.getSendInformation();
-		receiveSendService.inputreceive(receiveInformation);
-		receiveSendService.inputsend(sendInformation);
+		//Receivevo1 receiveInformation =Receivevo1.getReceiveInformation();
+		//Sendvo sendInformation = Receivevo1.getSendInformation();
+		//receiveSendService.inputreceive(receiveInformation);
+		//receiveSendService.inputsend(sendInformation);
 	}
 	
 	public static void main(String[] args) throws RemoteException{

@@ -5,18 +5,35 @@
  */
 package presentation.stockmanagermanui;
 
+import java.awt.event.ActionEvent;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.JOptionPane;
+
+import RMI.client.RMIClient;
+import blservice.stockmanagermanblservice.WarehouseManageService;
+import presentation.courierui.PriceAndTimeui;
+import vo.stocmanagermanvo.WarehouseWarningvo;
+
 /**
  *
  * @author user
  */
 public class WarehouseWarningui extends javax.swing.JFrame {
 
+	static WarehouseManageService wms;
     /**
      * Creates new form WarehouseManageui
+     * @throws Exception 
      */
-    public WarehouseWarningui() {
+    public WarehouseWarningui() throws Exception {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
+        RMIClient.init();
+        wms=RMIClient.getWarehouseManageService();
     }
 
     /**
@@ -41,8 +58,27 @@ public class WarehouseWarningui extends javax.swing.JFrame {
         jLabel2.setText("%");
 
         jButton1.setText("确定");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+
+
+
+
+        });
 
         jButton2.setText("退出");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+
+
+
+
+
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,7 +117,31 @@ public class WarehouseWarningui extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void jButton1ActionPerformed(ActionEvent evt) {
+    	// TODO Auto-generated method stub
+    	WarehouseWarningvo warning = new WarehouseWarningvo(jTextField1.getText());
+    	try {
+            boolean a = wms.set(warning);
+            if(a){
+                System.out.println("成功！");
+                JOptionPane.showMessageDialog(null, "写入成功", "成功", 
+                		JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "写入失败", "失败！", 
+                		JOptionPane.ERROR_MESSAGE);
+            }
+            // TODO add your handling code here:
+        } catch (RemoteException ex) {
+            Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
+    private void jButton2ActionPerformed(ActionEvent evt) {
+    	// TODO Auto-generated method stub
+    	this.dispose();
+    }
     /**
      * @param args the command line arguments
      */
@@ -113,7 +173,12 @@ public class WarehouseWarningui extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WarehouseWarningui().setVisible(true);
+                try {
+					new WarehouseWarningui().setVisible(true);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
     }

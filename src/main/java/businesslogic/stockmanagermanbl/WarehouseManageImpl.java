@@ -4,8 +4,15 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import blservice.stockmanagermanblservice.WarehouseManageService;
-import po.stockmanagermanpo.Storingpo;
-import vo.stocmanagermanvo.WarehouseManagevo;
+import data.warehousedata.Storing;
+import dataservice.stockmanagermandataservice.StockManagermanService;
+import po.bushallsalmanpo.CarLoadingpo;
+import po.stockmanagermanpo.InStoringpo;
+import po.stockmanagermanpo.Warningpo;
+import vo.stocmanagermanvo.Instockvo;
+import vo.stocmanagermanvo.Kuaidivo;
+import vo.stocmanagermanvo.WarehouseWarningvo;
+import vo.stocmanagermanvo.Weizhivo;
 
 public class WarehouseManageImpl extends UnicastRemoteObject implements WarehouseManageService {
 
@@ -14,29 +21,48 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 		// TODO Auto-generated constructor stub
 	}
 
-	public Storingpo out() {
+	public InStoringpo out() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Storingpo in() {
+
+	public InStoringpo search(WarehouseWarningvo information) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Storingpo search(WarehouseManagevo information) {
+
+	public InStoringpo initialize() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public int set() {
+	public boolean set(WarehouseWarningvo warning) throws RemoteException {
 		// TODO Auto-generated method stub
-		return 0;
+		StockManagermanService sms = new Storing();
+		try {
+			if(sms.set(new Warningpo(warning)))
+				return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+		
 	}
 
-	public Storingpo initialize() {
+	public boolean in(Kuaidivo kd,Weizhivo wz) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		StockManagermanService sms = new Storing();
+		try {
+			if(sms.in(new InStoringpo(kd,wz)))
+				return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

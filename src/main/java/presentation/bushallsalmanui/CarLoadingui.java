@@ -240,6 +240,7 @@ public class CarLoadingui extends javax.swing.JFrame {
     	// TODO Auto-generated method stub
     	CarLoadingvo carLoading=new CarLoadingvo(year.getText(),month.getText(),day.getText(),yingYeTing.getText(),car.getText(),chuFaDi.getText(),destinaton.getText(),jianZhuang.getText(),yaYun.getText(),yunFei.getText(),tuoYunDan.getText());
         String yytID="";
+       // System.out.println(yingYeTing.getText());
         if((yytID=yingYeTing.getText()).equals("")||yytID.length()!=6){
         	erroryytID();
         	return;
