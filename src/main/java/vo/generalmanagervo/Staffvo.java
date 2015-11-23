@@ -13,9 +13,9 @@ public class Staffvo extends StaffInstitutionManagevo implements Serializable {
 	  String name;
 	  String worktime;                  //yyyy-mm-dd
 	  int age;
-	  StaffRole role;
+	  String role;
 	  
-	 public Staffvo(String i,String n,String w,int a,StaffRole r){
+	 public Staffvo(String i,String n,String w,int a,String r){
 	    	id = i;
 	    	name = n;
 	    	worktime = w;
@@ -34,7 +34,7 @@ public class Staffvo extends StaffInstitutionManagevo implements Serializable {
   public int getAge(){
   	return age;
   }
-  public StaffRole role(){
+  public String role(){
   	return role;
   }
 }

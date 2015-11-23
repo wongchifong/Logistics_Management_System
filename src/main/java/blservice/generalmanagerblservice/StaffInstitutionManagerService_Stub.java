@@ -1,5 +1,7 @@
 package blservice.generalmanagerblservice;
 
+import java.rmi.RemoteException;
+
 import po.generalmanagepo.StaffRole;
 import vo.generalmanagervo.Institutionvo;
 import vo.generalmanagervo.StaffInstitutionManagevo;
@@ -19,7 +21,7 @@ public class StaffInstitutionManagerService_Stub implements StaffInstitutionMana
 		return new StaffInstitutionManagevo();
 	}
 
-	public Staffvo addStaff(String i,String n,String w,int a,StaffRole r) {
+	public Staffvo addStaff(String i,String n,String w,int a,String r) {
 		System.out.println("增加了一条员工信息");
 		// TODO Auto-generated method stub
 		return new Staffvo(i,n,w,a,r);
@@ -36,12 +38,6 @@ public class StaffInstitutionManagerService_Stub implements StaffInstitutionMana
 		// TODO Auto-generated method stub
 	}
 
-	public Institutionvo addInstitution(String n,String l) {
-		System.out.println("增加了一条机构信息");
-		// TODO Auto-generated method stub
-		return new Institutionvo(n,l);
-	}
-
 	public void deleteInstitution(String n,String l) {
 		System.out.println("删除了一条机构信息");
 		// TODO Auto-generated method stub
@@ -50,6 +46,18 @@ public class StaffInstitutionManagerService_Stub implements StaffInstitutionMana
 	public void modifyInstitution(String n,String l) {
 		System.out.println("修改了一条机构信息");
 		// TODO Auto-generated method stub
+	}
+
+	public Staffvo addStaff(String i, String n, String w, int a, StaffRole r)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Institutionvo addInstitution(String n, String l)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

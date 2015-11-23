@@ -8,12 +8,9 @@ import vo.generalmanagervo.SalaryFormulatevo;
 
 public interface SalaryFormulateService extends Remote {
 	
-	public SalaryFormulatevo showSalary() throws RemoteException;
-	
-	public void modifyAmount(StaffRole role,int amount)
-			 throws RemoteException;
-	
-    public void modifystrategy(StaffRole role,String strategy)
+	public SalaryFormulatevo[] showSalary() throws RemoteException;
+
+    public void modifystrategy(SalaryFormulatevo staffs[])
     		 throws RemoteException;
     
 }

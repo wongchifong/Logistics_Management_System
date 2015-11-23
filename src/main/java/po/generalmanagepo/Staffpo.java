@@ -1,19 +1,20 @@
 package po.generalmanagepo;
 
 public class Staffpo {
-
-	  String id;
-	  String name;
-	  String worktime;                  //yyyy-mm-dd
-	  int age;
-	  StaffRole role;
+	 public String id;
+	 public String name;
+	 public String worktime;                  //yyyy-mm-dd
+	 public int age;
+	 public String role;
+	 public String workunit;
 	  
-	 public Staffpo(String i,String n,String w,int a,StaffRole r){
+	 public Staffpo(String i,String n,String w,int a,String r,String work){
 	    	id = i;
 	    	name = n;
 	    	worktime = w;
 	    	age = a;
 	    	role = r;
+	    	workunit=work;
 	    }
 	    public String getName(){
 	    	return name;
@@ -27,7 +28,7 @@ public class Staffpo {
 	    public int getAge(){
 	    	return age;
 	    }
-	    public StaffRole role(){
+	    public String role(){
 	    	return role;
 	    }
 }

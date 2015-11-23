@@ -8,5 +8,14 @@ public class Constancyvo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4844889841029455906L;
-
+	
+	public double bushalldistance;
+    public double standardprice;
+    public Cityvo city;
+    
+    public Constancyvo(double d1,double d2,Cityvo c){
+    		bushalldistance=d1;
+    		standardprice=d2;
+    		city=c;
+    }
 }

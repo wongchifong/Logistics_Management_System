@@ -7,8 +7,8 @@ import vo.generalmanagervo.Constancyvo;
 
 public interface ConstantFormulateService extends Remote {
 
-	public Constancyvo showConstancy() throws RemoteException;
+	public Constancyvo showConstancy() throws RemoteException, Exception;
 	
-	public void modifyConstancy(String constancy,double amount)
+	public boolean modifyconstancy(Constancyvo cv)
 			 throws RemoteException;
 }

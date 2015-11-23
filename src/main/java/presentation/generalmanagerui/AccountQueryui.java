@@ -5,19 +5,30 @@
  */
 package presentation.generalmanagerui;
 
+import blservice.generalmanagerblservice.AccountQueryService;
+import RMI.client.RMIClient;
+
 /**
  *
  * @author user
  */
-public class AccountQueryui extends javax.swing.JFrame {
 
+public class AccountQueryui extends javax.swing.JFrame {
     /**
      * Creates new form AccountQueryui
+     * @throws Exception 
      */
-    public AccountQueryui(String name,int balance) {
+	
+	static AccountQueryService aqs;
+	
+    public AccountQueryui(String name,int balance) throws Exception {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        RMIClient.init();
+        aqs = RMIClient.getAccountQueryService();
+        
         jLabel2.setText("账户名称："+name);
-
         jLabel3.setText("余额信息："+balance);
     }
 
@@ -132,7 +143,12 @@ public class AccountQueryui extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AccountQueryui("啦啦啦快递公司工行账户",9999999).setVisible(true);
+                try {
+					new AccountQueryui("啦啦啦快递公司工行账户",9999999).setVisible(true);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
     }

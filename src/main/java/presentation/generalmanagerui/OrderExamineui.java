@@ -5,6 +5,9 @@
  */
 package presentation.generalmanagerui;
 
+import blservice.generalmanagerblservice.OrderExamineService;
+import RMI.client.RMIClient;
+
 /**
  *
  * @author user
@@ -13,9 +16,16 @@ public class OrderExamineui extends javax.swing.JFrame {
 
     /**
      * Creates new form OrderExamineui
+     * @throws Exception 
      */
-    public OrderExamineui() {
+	
+static OrderExamineService oes;
+    public OrderExamineui() throws Exception {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        RMIClient.init();
+        oes = RMIClient.getOrderExamineService();
     }
 
     /**
@@ -83,7 +93,12 @@ public class OrderExamineui extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OrderExamineui().setVisible(true);
+                try {
+					new OrderExamineui().setVisible(true);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
     }

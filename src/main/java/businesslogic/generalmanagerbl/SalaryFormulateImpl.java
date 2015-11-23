@@ -1,11 +1,13 @@
 package businesslogic.generalmanagerbl;
 
-import po.generalmanagepo.StaffRole;
 import vo.generalmanagervo.SalaryFormulatevo;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import po.generalmanagepo.Salarypo;
+import data.salarydata.Salary;
+import dataservice.generalmanagerdataservice.SalaryService;
 import blservice.generalmanagerblservice.SalaryFormulateService;
 
 public class SalaryFormulateImpl extends UnicastRemoteObject implements SalaryFormulateService {
@@ -15,17 +17,33 @@ public class SalaryFormulateImpl extends UnicastRemoteObject implements SalaryFo
 		// TODO Auto-generated constructor stub
 	}
 
-	public SalaryFormulatevo showSalary() {
+	public SalaryFormulatevo[] showSalary() {
 		// TODO Auto-generated method stub
-		return null;
+		SalaryService ss = new Salary();
+		SalaryFormulatevo[] sfv = new SalaryFormulatevo[7];
+		Salarypo[] salary= ss.showSalary();
+		if(salary==null){
+			for(int i=0;i<7;i++){
+				sfv[i]=new SalaryFormulatevo("按月",0);
+			}
+		}
+		else{
+		for(int i=0;i<7;i++){		
+		SalaryFormulatevo temp =salary[i].getSalary();
+			sfv[i]=temp;
+		   }
+		}
+		return sfv;
 	}
 
-	public void modifyAmount(StaffRole role,int amount) {
+	public void modifystrategy(SalaryFormulatevo staffs[]) {
 		// TODO Auto-generated method stub
-	}
-
-	public void modifystrategy(StaffRole role,String strategy) {
-		// TODO Auto-generated method stub
+		SalaryService ss = new Salary();
+		Salarypo salary[] = new Salarypo[7];
+		for(int i=0;i<7;i++)
+		salary[i]=new Salarypo(staffs[i]);
+		
+	     ss.writesalary(salary);
 	}
     
 }
