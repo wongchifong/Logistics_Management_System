@@ -9,7 +9,7 @@ public class WarehouseManageService_Driver {
 	public void drive(WarehouseManageService warehouseManageService) throws RemoteException{
 		WarehouseWarningvo information = WarehouseWarningvo.getInformation();
 		warehouseManageService.in(null, null);
-		warehouseManageService.out();
+		warehouseManageService.out(null, null);
 		warehouseManageService.search(information);
 		//warehouseManageService.set();
 		warehouseManageService.initialize();
