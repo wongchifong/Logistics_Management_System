@@ -26,6 +26,8 @@ public class OrderIO implements CourierService, ExpressService {
 			if(list.get(i).getID().equals(cpo.getID()))
 				return false;
 		}
+		cpo.getHistory().add("快递员已揽件");
+		System.out.println(cpo.date);
 		list.add(cpo);
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/courierOrder.txt");
@@ -69,14 +71,43 @@ public class OrderIO implements CourierService, ExpressService {
 		}
 	}
 
-	public PriceAndTimepo query() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public boolean writeReceive(ReceiveOrderpo r) {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+			FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<CourierOrderpo> list = (List<CourierOrderpo>) ois.readObject();
+			
+			
+			CourierOrderpo cpo = null;
+			for(int i = 0 ; i < list.size() ; i++){
+				if(list.get(i).getID().equals(r.ID))
+					cpo = list.get(i);
+			}
+			ois.close();
+			System.out.println(r.ID);
+			if(cpo == null) return false;
+			cpo.getHistory().add("已收件，收件人是" + r.receiver + " , 收件时间是"
+					+ r.date.year + "年" + r.date.month + "月" + 
+					r.date.day + "日");
+			
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/courierOrder.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(list);
+			oos.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	public PriceAndTimepo query(PriceAndTimepo p) {
+		// TODO Auto-generated method stub
+		p.price = 50;
+		return p;
 	}
 
 }
