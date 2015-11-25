@@ -241,16 +241,16 @@ public class AddID extends javax.swing.JFrame {
     	else if(gjcwy.isSelected())type=6;
     	else if(zjl.isSelected())type=7;
     	else if(gly.isSelected())type=8;
-    	String mes1=id.getText();
-    	String mes2=mm.getText();
-    	String mes3=xm.getText();
+    	String mes1=jTextField1.getText();
+    	String mes2=jTextField2.getText();
+    	String mes3=jTextField3.getText();
     	if(mes1==""||mes2==""||mes3==""||type==0){
     		missMes();//检查输入完整性
     		return;
     	}
-    		
+    		System.out.println(jTextField1.getText()+"id.getText()");
     	
-    	UserAuthorityManagervo u=new UserAuthorityManagervo(mes1, mes2, mes3, type);
+    	UserAuthorityManagervo u=new UserAuthorityManagervo(jTextField1.getText(),jTextField2.getText(), jTextField3.getText(), type);
     	
     	 try {
              boolean b = uams.getOrder(u);

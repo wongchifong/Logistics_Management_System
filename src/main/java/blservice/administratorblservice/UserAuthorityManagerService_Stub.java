@@ -2,6 +2,8 @@ package blservice.administratorblservice;
 
 import java.rmi.RemoteException;
 
+import vo.administratorvo.QueryMesvo;
+import vo.administratorvo.QueryUservo;
 import vo.administratorvo.UserAuthorityManagervo;
 
 public class UserAuthorityManagerService_Stub implements UserAuthorityManagerService {
@@ -16,6 +18,10 @@ public class UserAuthorityManagerService_Stub implements UserAuthorityManagerSer
 	public boolean getOrder(UserAuthorityManagervo u) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	public QueryUservo checkOrder(QueryMesvo qvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

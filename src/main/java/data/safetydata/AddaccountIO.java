@@ -19,7 +19,7 @@ public class AddaccountIO implements AdministratorService {
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		List< UserMespo> list = (List< UserMespo>) ois.readObject();
 		ois.close();
-		System.out.println("find");
+		System.out.println("find"+"111111");
 		for(int i = 0; i < list.size(); i++){
 			if(list.get(i).getID().equals(ID))
 				return list.get(i);
@@ -34,10 +34,10 @@ public class AddaccountIO implements AdministratorService {
 		@SuppressWarnings("unchecked")
 		List<UserMespo> list = (List<UserMespo>) ois.readObject();
 		ois.close();
-//		for(int i = 0 ; i < list.size() ; i++){
-//			if(list.get(i).getID().equals(cpo.getID()))
-//				return false;
-//		}
+		for(int i = 0 ; i < list.size() ; i++){
+			if(list.get(i).getID().equals(cpo.getID()))
+				return false;
+		}
 		list.add(cpo);
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/UserMes.txt");
@@ -62,9 +62,9 @@ public class AddaccountIO implements AdministratorService {
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		List< UserMespo> list = (List< UserMespo>) ois.readObject();
 		ois.close();
-//		for(int i = 0 ; i < list.size() ; i++){
-//			System.out.println(list.get(i).getExpressType().toString() + list.get(i)
-//			.getPackingType().toString());
-//		}
+		for(int i = 0 ; i < list.size() ; i++){
+			System.out.println(list.get(i).getName() + list.get(i)
+			.getID().toString());
+		}
 	}
 }

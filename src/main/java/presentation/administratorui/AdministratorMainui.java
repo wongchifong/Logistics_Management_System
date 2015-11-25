@@ -5,6 +5,8 @@
  */
 package presentation.administratorui;
 
+import RMI.client.RMIClient;
+
 /**
  *
  * @author user
@@ -16,6 +18,12 @@ public class AdministratorMainui extends javax.swing.JFrame {
      */
     public AdministratorMainui() {
         initComponents();
+        try {
+			RMIClient.init();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//非常重要！！！！！！！！！！！！！！！！！！！
     }
 
     /**
@@ -125,7 +133,12 @@ public class AdministratorMainui extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-         new QueryID().setVisible(true);
+         try {
+			new QueryID().setVisible(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }//GEN-LAST:event_jButton2MouseClicked
 
     /**

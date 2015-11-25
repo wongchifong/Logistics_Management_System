@@ -5,6 +5,8 @@
  */
 package presentation.administratorui;
 
+import vo.administratorvo.QueryUservo;
+
 /**
  *
  * @author user
@@ -12,10 +14,21 @@ package presentation.administratorui;
 public class UserAuthorityManagerui extends javax.swing.JFrame {
 
     /**
+	 * 
+	 */
+	
+	/**
      * Creates new form UserAuthorityManagerui
      */
-    public UserAuthorityManagerui() {
+    public UserAuthorityManagerui( QueryUservo quvo) {
         initComponents();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.jLabel1.setText("账户ID：" + quvo.getID());
+        this.jLabel2.setText("账户密码：" + quvo.getPassword());
+        this.jLabel3.setText("员工姓名：" + quvo.getName());
+        this.jLabel4.setText("员工职位：" + quvo.getRole());
+        
     }
 
     /**
@@ -26,6 +39,7 @@ public class UserAuthorityManagerui extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -160,11 +174,12 @@ public class UserAuthorityManagerui extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UserAuthorityManagerui().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//               
+//				new UserAuthorityManagerui(null).setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
