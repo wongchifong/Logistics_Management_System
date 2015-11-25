@@ -119,4 +119,19 @@ public class Storing implements StockManagermanService {
 		return true;
 	}
 
+	public InStoringpo search() throws Exception {
+		// TODO Auto-generated method stub
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/instock.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		List<InStoringpo> list = (List<InStoringpo>) ois.readObject();
+		ois.close();
+		System.out.println("find");
+		for(int i = 0; i < list.size(); i++){
+//			if(list.get(i).getID().equals(ID))
+				return list.get(i);
+		}
+		return null;
+	
+	}
+
 }

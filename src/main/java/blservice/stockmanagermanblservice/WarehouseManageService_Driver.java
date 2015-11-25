@@ -10,7 +10,7 @@ public class WarehouseManageService_Driver {
 		WarehouseWarningvo information = WarehouseWarningvo.getInformation();
 		warehouseManageService.in(null, null);
 		warehouseManageService.out(null, null);
-		warehouseManageService.search(information);
+		warehouseManageService.search();
 		//warehouseManageService.set();
 		warehouseManageService.initialize();
 	}

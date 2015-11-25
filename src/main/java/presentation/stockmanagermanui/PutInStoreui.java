@@ -220,6 +220,7 @@ public class PutInStoreui extends javax.swing.JFrame {
 
 
 
+
         });
 
         jButton2.setText("退出");
@@ -227,6 +228,7 @@ public class PutInStoreui extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
+
 
 
 

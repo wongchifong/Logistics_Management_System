@@ -13,4 +13,6 @@ public interface StockManagermanService {
 	public boolean out(OutStoringpo opo) throws Exception;
 	
 	public boolean initialize() throws Exception;
+	
+	public InStoringpo search() throws Exception;
 }

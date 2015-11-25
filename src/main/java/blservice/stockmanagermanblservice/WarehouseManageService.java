@@ -8,6 +8,7 @@ import vo.stocmanagermanvo.Instockvo;
 import vo.stocmanagermanvo.Kuaidivo;
 import vo.stocmanagermanvo.Outstockvo;
 import vo.stocmanagermanvo.Outstockvo1;
+import vo.stocmanagermanvo.StoreCheckvo;
 import vo.stocmanagermanvo.WarehouseWarningvo;
 import vo.stocmanagermanvo.Weizhivo;
 import vo.stocmanagermanvo.Zhuangyunvo;
@@ -17,7 +18,7 @@ public interface WarehouseManageService extends Remote {
 	
 	public boolean in(Kuaidivo kd,Weizhivo wz) throws RemoteException;
 	
-	public InStoringpo search(WarehouseWarningvo information) throws RemoteException;
+	public StoreCheckvo search() throws RemoteException;
 	
 	public boolean set(WarehouseWarningvo warning) throws RemoteException;
 	

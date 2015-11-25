@@ -17,6 +17,7 @@ import RMI.client.RMIClient;
 import blservice.stockmanagermanblservice.WarehouseManageService;
 import presentation.courierui.OrderInputui;
 import presentation.courierui.PriceAndTimeui;
+import vo.stocmanagermanvo.StoreCheckvo;
 
 /**
  *
@@ -24,13 +25,16 @@ import presentation.courierui.PriceAndTimeui;
  */
 public class StockManagermanMainui extends javax.swing.JFrame {
 
-	
+	static WarehouseManageService wms;
     /**
      * Creates new form StockManagermanMainui
      * @throws Exception 
      */
     public StockManagermanMainui() throws Exception {
         initComponents();
+        wms=RMIClient.getWarehouseManageService();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
         
     }
     
@@ -213,7 +217,7 @@ public class StockManagermanMainui extends javax.swing.JFrame {
     private void jButton4MouseClicked(MouseEvent evt) {
     	// TODO Auto-generated method stub
     	try {
-			new StoreCheckui();
+             new StoreCheck();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

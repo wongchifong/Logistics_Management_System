@@ -20,6 +20,14 @@ public class InStoringpo implements Serializable{
 		weizhi = new Weizhipo(wz.quhao,wz.paihao,wz.jiahao,wz.weihao);
 		
 	}
+	
+	public Kuaidipo getKuaidi(){
+		return kuaidi;
+	}
+	
+	public Weizhipo getWeizhi(){
+		return weizhi;
+	}
 
 	
 

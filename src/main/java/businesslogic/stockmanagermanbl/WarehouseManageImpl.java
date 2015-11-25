@@ -14,6 +14,7 @@ import vo.stocmanagermanvo.Instockvo;
 import vo.stocmanagermanvo.Kuaidivo;
 import vo.stocmanagermanvo.Outstockvo;
 import vo.stocmanagermanvo.Outstockvo1;
+import vo.stocmanagermanvo.StoreCheckvo;
 import vo.stocmanagermanvo.WarehouseWarningvo;
 import vo.stocmanagermanvo.Weizhivo;
 import vo.stocmanagermanvo.Zhuangyunvo;
@@ -23,12 +24,6 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 	public WarehouseManageImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-
-	public InStoringpo search(WarehouseWarningvo information) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 
@@ -84,6 +79,21 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+
+	public StoreCheckvo search() throws RemoteException {
+		// TODO Auto-generated method stub
+		StockManagermanService sms = new Storing();
+		InStoringpo io;
+		try{
+			io=sms.search();
+			return new StoreCheckvo(io);
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
