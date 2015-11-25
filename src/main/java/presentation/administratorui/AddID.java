@@ -244,8 +244,11 @@ public class AddID extends javax.swing.JFrame {
     	String mes1=id.getText();
     	String mes2=mm.getText();
     	String mes3=xm.getText();
-    	if(mes1==""||mes2==""||mes3==""||type==0)
+    	if(mes1==""||mes2==""||mes3==""||type==0){
     		missMes();//检查输入完整性
+    		return;
+    	}
+    		
     	
     	UserAuthorityManagervo u=new UserAuthorityManagervo(mes1, mes2, mes3, type);
     	

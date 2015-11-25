@@ -32,12 +32,12 @@ public class AddaccountIO implements AdministratorService {
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/UserMes.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		@SuppressWarnings("unchecked")
-		List< UserMespo> list = (List< UserMespo>) ois.readObject();
+		List<UserMespo> list = (List<UserMespo>) ois.readObject();
 		ois.close();
-		for(int i = 0 ; i < list.size() ; i++){
-			if(list.get(i).getID().equals(cpo.getID()))
-				return false;
-		}
+//		for(int i = 0 ; i < list.size() ; i++){
+//			if(list.get(i).getID().equals(cpo.getID()))
+//				return false;
+//		}
 		list.add(cpo);
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/UserMes.txt");
