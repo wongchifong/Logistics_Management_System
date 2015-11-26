@@ -5,12 +5,30 @@
  */
 package presentation.courierui;
 
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+import RMI.client.RMIClient;
+import blservice.courierblservice.OrderInputService;
+import blservice.courierblservice.PriceQueryService;
+
+import static presentation.courierui.OrderInputui.ois;
+import vo.couriervo.GoodsMesvo;
+import vo.couriervo.OrderInputvo;
+import vo.couriervo.Othervo;
+import vo.couriervo.PriceAndTimevo;
+
 /**
  *
  * @author user
  */
 public class PriceQueryui extends javax.swing.JFrame {
 
+	static OrderInputService ois;
+    
+    static PriceQueryService pqs;
     /**
      * Creates new form PriceQueryui
      */
@@ -18,6 +36,14 @@ public class PriceQueryui extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        try {
+			RMIClient.init();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        ois = RMIClient.getOrderInputService();
+        pqs = RMIClient.getPriceQueryService();
     }
 
     /**
@@ -238,6 +264,11 @@ public class PriceQueryui extends javax.swing.JFrame {
         );
 
         jButton1.setText("确定");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -308,6 +339,63 @@ public class PriceQueryui extends javax.swing.JFrame {
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+
+        String send = jTextField1.getText();
+        String receive = jTextField2.getText();
+        int pack = 1;
+        if(jRadioButton1.isSelected()) pack = 1;
+        else if(jRadioButton2.isSelected()) pack = 2;
+        else if(jRadioButton3.isSelected()) pack = 3;
+        else if(jRadioButton4.isSelected()) pack = 4;
+        int type = 1;
+        if(jRadioButton5.isSelected()) type = 1;
+        else if(jRadioButton6.isSelected()) type = 3;
+        else if(jRadioButton7.isSelected()) type = 2;
+        String ID = "";
+        Othervo other = new Othervo(pack, type, ID);
+        try {
+            String num = jTextField3.getText();
+            String volume = jTextField4.getText();
+            String weight = jTextField5.getText();
+            GoodsMesvo goods = new GoodsMesvo(Integer.parseInt(num),
+  				   "", Double.parseDouble(weight),
+  			 	   Double.parseDouble(volume));
+            if(ois.hasNegative(goods)){
+        		negativeInput();
+        		return;
+            }
+            if(send.equals("") || receive.equals("")){
+                missMes();
+                return;
+            }
+            
+            PriceAndTimevo patv = new PriceAndTimevo(send, 
+        			receive, goods, other);
+        	patv = pqs.getPriceAndTime(patv);
+            
+            new PriceAndTimeui(this , patv);
+            // TODO add your handling code here:
+        } catch (RemoteException ex) {
+            Logger.getLogger(OrderInputui.class.getName()).log(
+            		Level.SEVERE, null, ex);
+        } catch (NumberFormatException e){
+  	    numberError();
+  	   }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
+
+        private void negativeInput(){
+            JOptionPane.showMessageDialog(null, "输入数量不能为负！", "输入有误", JOptionPane.ERROR_MESSAGE);
+        }
+    
+        private void numberError(){
+            JOptionPane.showMessageDialog(null, "输入数量错误或包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+        }
+    
+        private void missMes(){
+            JOptionPane.showMessageDialog(null, "信息不完整！请检查输入！", "输入有误", JOptionPane.ERROR_MESSAGE);
+        }
     /**
      * @param args the command line arguments
      */

@@ -1,6 +1,10 @@
 package blservice.financialmanblservice;
 
+import java.rmi.RemoteException;
+
 import vo.financialmanvo.CostManagevo;
+import vo.financialmanvo.Moneyvo;
+import vo.financialmanvo.PaymentInputvo;
 
 public class CostManageService_Stub implements CostManageService {
 
@@ -32,6 +36,16 @@ public class CostManageService_Stub implements CostManageService {
 		System.out.println("计算总收益");
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public boolean getOrder(PaymentInputvo pivo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean hasNegative(Moneyvo g) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

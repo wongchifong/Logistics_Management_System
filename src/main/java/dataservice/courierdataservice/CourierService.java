@@ -18,8 +18,10 @@ public interface CourierService {
 //		return false;
 //	}
 	
-	public PriceAndTimepo query();
+	public PriceAndTimepo query(PriceAndTimepo p);
 	
 	public boolean writeReceive(ReceiveOrderpo r);
+
+	public CourierOrderpo search(String id) throws Exception;
 
 }

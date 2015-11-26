@@ -2,9 +2,10 @@ package blservice.financialmanblservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 import vo.financialmanvo.CostManagevo;
+import vo.financialmanvo.Moneyvo;
+import vo.financialmanvo.PaymentInputvo;
 
 public interface CostManageService extends Remote {
 	public CostManagevo show(String date,int numOfBusHall) throws RemoteException;
@@ -16,6 +17,11 @@ public interface CostManageService extends Remote {
 					 throws RemoteException;
 	
 	public boolean daochu() throws RemoteException;
+	public boolean getOrder(PaymentInputvo pivo) throws RemoteException;
 	
 	public CostManagevo profit() throws RemoteException;
+	boolean hasNegative(Moneyvo g) throws RemoteException;
+	
+	
 }
+

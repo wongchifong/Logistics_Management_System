@@ -5,8 +5,12 @@ import java.rmi.RemoteException;
 import po.stockmanagermanpo.InStoringpo;
 import vo.stocmanagermanvo.Instockvo;
 import vo.stocmanagermanvo.Kuaidivo;
+import vo.stocmanagermanvo.Outstockvo;
+import vo.stocmanagermanvo.Outstockvo1;
+import vo.stocmanagermanvo.StoreCheckvo;
 import vo.stocmanagermanvo.WarehouseWarningvo;
 import vo.stocmanagermanvo.Weizhivo;
+import vo.stocmanagermanvo.Zhuangyunvo;
 
 public class WarehouseManageService_Stub implements WarehouseManageService{
 
@@ -34,10 +38,10 @@ public class WarehouseManageService_Stub implements WarehouseManageService{
 		return 0;
 	}
 
-	public InStoringpo initialize() {
+	public boolean initialize() {
 		// TODO Auto-generated method stub
 		System.out.println("库存初始化");
-		return null;
+		return true;
 	}
 
 	public boolean set(WarehouseWarningvo warning) throws RemoteException {
@@ -53,6 +57,21 @@ public class WarehouseManageService_Stub implements WarehouseManageService{
 	public boolean in(Kuaidivo kd, Weizhivo wz) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public boolean out(Outstockvo out) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean out(Outstockvo1 out1, Zhuangyunvo zy) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public StoreCheckvo search() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

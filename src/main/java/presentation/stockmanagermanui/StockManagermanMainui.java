@@ -5,9 +5,19 @@
  */
 package presentation.stockmanagermanui;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
+
+import RMI.client.RMIClient;
+import blservice.stockmanagermanblservice.WarehouseManageService;
 import presentation.courierui.OrderInputui;
+import presentation.courierui.PriceAndTimeui;
+import vo.stocmanagermanvo.StoreCheckvo;
 
 /**
  *
@@ -15,17 +25,24 @@ import presentation.courierui.OrderInputui;
  */
 public class StockManagermanMainui extends javax.swing.JFrame {
 
+	static WarehouseManageService wms;
     /**
      * Creates new form StockManagermanMainui
+     * @throws Exception 
      */
-    public StockManagermanMainui() {
+    public StockManagermanMainui() throws Exception {
         initComponents();
+        wms=RMIClient.getWarehouseManageService();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        
     }
     
     public StockManagermanMainui(String name, String ID) {
         initComponents();
         jLabel2.setText("姓名：" + name);
         jLabel3.setText("账号：" + ID);
+       
     }
 
     /**
@@ -98,7 +115,16 @@ public class StockManagermanMainui extends javax.swing.JFrame {
         });
 
         jButton5.setText("库存初始化");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
 
+
+
+
+
+        });
         jMenu1.setText("File");
 
         jMenu2.setText("修改账户信息");
@@ -191,12 +217,22 @@ public class StockManagermanMainui extends javax.swing.JFrame {
     private void jButton4MouseClicked(MouseEvent evt) {
     	// TODO Auto-generated method stub
     	try {
-			new StoreCheckui();
+             new StoreCheck();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
+    private void jButton5MouseClicked(MouseEvent evt) {
+    	// TODO Auto-generated method stub
+    	try {
+			new Initialize();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
     /**
      * @param args the command line arguments
      */

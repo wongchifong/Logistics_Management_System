@@ -116,13 +116,13 @@ public class PriceAndTimeui extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
+                        .addGap(97, 97, 97)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton3)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -5,12 +5,27 @@
  */
 package presentation.courierui;
 
+import java.rmi.RemoteException;
+
+import javax.swing.JOptionPane;
+
+import RMI.client.RMIClient;
+import blservice.courierblservice.ReceiveMesService;
+import blservice.queryblservice.QueryService;
+import vo.couriervo.ReceiveMesvo;
+import vo.queryvo.QueryOrdervo;
+import vo.queryvo.Queryvo;
+
 /**
  *
  * @author user
  */
 public class ReceiveMesui extends javax.swing.JFrame {
 
+	static QueryService q;
+	
+	static ReceiveMesService rm;
+	
     /**
      * Creates new form ReceiveMesui
      */
@@ -18,6 +33,16 @@ public class ReceiveMesui extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        try {
+			RMIClient.init();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        q = RMIClient.getQueryService();
+        rm = RMIClient.getReceiveMesService();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -39,6 +64,11 @@ public class ReceiveMesui extends javax.swing.JFrame {
         jLabel1.setText("订单条形码：");
 
         jButton1.setText("确定");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("退出");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -86,6 +116,54 @@ public class ReceiveMesui extends javax.swing.JFrame {
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        String s = jTextField1.getText();
+        if(s.equals("")){
+        	errorID();
+            return;
+        }
+        Queryvo qvo = new Queryvo(s);
+        try {
+			if(!q.isValid(s)){
+				errorID();
+			    return;
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        for(int i = 0 ; i < s.length(); i++){
+        	if(!(s.charAt(i) >= '0' && s.charAt(i) <= '9')){
+        		errorID();
+                return;
+        	}
+        }
+        QueryOrdervo qovo;
+		try {
+			qovo = q.checkOrder(qvo);
+			if(qovo == null) {
+	            nullOrder();
+	            return;
+	        }
+			ReceiveMesvo r = new ReceiveMesvo(s);
+			SubReceiveMesui srm = new SubReceiveMesui(r , qovo);
+			this.dispose();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+    	// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void nullOrder(){
+        JOptionPane.showMessageDialog(null, "不存在该订单！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private void errorID(){
+        JOptionPane.showMessageDialog(null, "条形码应该为十位数字！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
+    
     /**
      * @param args the command line arguments
      */

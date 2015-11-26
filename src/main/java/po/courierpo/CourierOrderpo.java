@@ -6,6 +6,9 @@
 package po.courierpo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import po.otherdatapo.Expresspo;
@@ -29,6 +32,10 @@ public class CourierOrderpo  implements Serializable{
 	final ExpressTypepo et;
 	List<String> history;
 	final ExamineType ext;
+	public final Date date;
+	public Datepo receiveDate;
+	public String receiver;
+	public boolean rece;
     
     public CourierOrderpo(OrderInputvo order, PriceAndTimevo p) {
     	System.out.println(order.sender.name);
@@ -58,6 +65,10 @@ public class CourierOrderpo  implements Serializable{
     	else if(order.other.expressType == 2)
     		et = ExpressTypepo.Standard;
     	else et = ExpressTypepo.SpecialExpress;
+    	Calendar cal = Calendar.getInstance();
+    	date = cal.getTime();
+    	history = new ArrayList<String>();
+    	rece = false;
     }
     
     

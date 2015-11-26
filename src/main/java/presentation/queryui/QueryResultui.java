@@ -5,6 +5,8 @@
  */
 package presentation.queryui;
 
+import java.util.List;
+
 import vo.queryvo.QueryOrdervo;
 /**
  *
@@ -36,6 +38,10 @@ public class QueryResultui extends javax.swing.JFrame {
         this.jLabel12.setText("快递类型：" + q.getExpressType().toString());
         this.jLabel13.setText("条形码编号：" + q.getID());
         this.jLabel15.setText("价格：" + q.getPrice());
+        List<String> list = q.getHistory();
+        for(int i = 0 ; i < list.size() ; i++){
+        	jTextArea1.append(list.get(i) + "\n");
+        }
     }
 
     /**

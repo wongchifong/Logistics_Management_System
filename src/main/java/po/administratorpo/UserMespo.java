@@ -1,21 +1,39 @@
 package po.administratorpo;
 
-public class UserMespo {
-	int id;
-	String name;
-	String password;
-	String role;//这里的role考虑用UserRole类型
-	public UserMespo(int i,String n,String p,String r){
-		id=i;
-		name=n;
-		password=p;
-		role=r;
+import java.io.Serializable;
+
+import po.courierpo.PackingTypepo;
+import vo.administratorvo.UserAuthorityManagervo;
+
+public class UserMespo implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8597630906845329744L;
+	final String id;
+	final String name;
+	final String password;
+	final Rolepo role;//这里的role考虑用UserRole类型
+	public UserMespo(UserAuthorityManagervo user){
+		id=user.ID;
+		name=user.Name;
+		password=user.Mima;
+		if(user.Type==1) role = Rolepo.kdy;
+		else if(user.Type==2) role=Rolepo.yytywy;
+		else if(user.Type==3) role=Rolepo.zzzxywy;
+		else if(user.Type==4) role=Rolepo.zzzxkcgly;
+		else if(user.Type==5) role=Rolepo.ybcwy;
+		else if(user.Type==6) role=Rolepo.gjcwy;
+		else if(user.Type==7) role=Rolepo.zjl;
+		else role=Rolepo.gly;
+		
 	}
+	
 	public String getName(){
 		return name;
 		
 	}
-	public int getID(){
+	public String getID(){
 		return id;
 		
 	}
@@ -23,7 +41,7 @@ public class UserMespo {
 		return password;
 		
 	}
-	public String getRole(){
+	public Rolepo getRole(){
 		return role;
 		
 	}
