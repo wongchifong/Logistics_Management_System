@@ -7,7 +7,6 @@ package presentation.stockmanagermanui;
 
 import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import vo.stocmanagermanvo.StoreCheckvo;
 
@@ -30,8 +29,7 @@ public class StoreCheckui extends javax.swing.JFrame {
         this.jLabel13.setText("排号："+s.getPaihao());
         this.jLabel14.setText("架号："+s.getJiahao());
         this.jLabel15.setText("位号："+s.getWeihao());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss"); 
-        this.jLabel4.setText("当前截止点："+sdf.format(new Date()));
+       // SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss"); 
     }
 
     /**
