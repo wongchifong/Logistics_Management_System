@@ -14,7 +14,7 @@ public class Constancypo implements Serializable {
 	double economicprice;               //18:23:25
 	double standardprice;
 	double expressPrice;
-    Citypo city;
+    Citypo[] city;
     
 	  public Constancypo(Constancyvo cv) {
 		// TODO Auto-generated constructor stub
@@ -22,10 +22,11 @@ public class Constancypo implements Serializable {
 	standardprice = cv.standardprice;
 	economicprice = cv.standardprice/23*18;
 	expressPrice = cv.standardprice/23*25;
+	city=cv.city;
 	  }
 
 	  public Constancyvo getcontancy(){
-		  return new Constancyvo(bushalldistance,standardprice,new Cityvo());
+		  return new Constancyvo(bushalldistance,standardprice,city);
 	  }
 	  
 }

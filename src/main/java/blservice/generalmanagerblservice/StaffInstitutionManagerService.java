@@ -10,23 +10,23 @@ import vo.generalmanagervo.Staffvo;
 
 public interface StaffInstitutionManagerService extends Remote {
 	
-       public StaffInstitutionManagevo showStaffRole() throws RemoteException;
+       public Staffvo showStaffRole(String id) throws RemoteException;
        
-       public StaffInstitutionManagevo showInstitutions() throws RemoteException;
+       public Institutionvo showInstitutions(String id) throws RemoteException;
        
-       public Staffvo addStaff(String i,String n,String w,int a,StaffRole r)
+       public Staffvo addStaff(Staffvo sv)
     		   throws RemoteException;
        
-       public void deleteStaff(String i,String n,String w,int a,StaffRole r)
+       public void deleteStaff(Staffvo sv)
     		   throws RemoteException;
        
-       public void modifyStaff(String i,String n,String w,int a,StaffRole r)
+       public void modifyStaff(Staffvo sv)
     		   throws RemoteException;
        
-       public Institutionvo addInstitution(String n,String l)
+       public Institutionvo addInstitution(Institutionvo iv)
     		   throws RemoteException;
        
-       public void deleteInstitution(String n,String l) throws RemoteException;
+       public void deleteInstitution(Institutionvo iv) throws RemoteException;
  
-       public void modifyInstitution(String n,String l) throws RemoteException;
+       public void modifyInstitution(Institutionvo oldiv,Institutionvo iv) throws RemoteException;
 }

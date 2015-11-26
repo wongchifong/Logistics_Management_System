@@ -10,15 +10,13 @@ public class Institutionvo extends StaffInstitutionManagevo implements Serializa
 	public String name;
 	public String ID;
     public String leader;
-    public int transitamount;
-    public String workunit;
-       
-       public Institutionvo(String n,String I,String l,int i,String work){
+    public int type;
+    
+    public Institutionvo(int t,String n,String I,String l){
     	   name=n;
     	   ID=I;
     	   leader=l;
-           transitamount = i;
-           workunit = work;
+           type=t;
        }
 }
 
