@@ -35,6 +35,7 @@ public class CourierOrderpo  implements Serializable{
 	public final Date date;
 	public Datepo receiveDate;
 	public String receiver;
+	public boolean rece;
     
     public CourierOrderpo(OrderInputvo order, PriceAndTimevo p) {
     	System.out.println(order.sender.name);
@@ -67,6 +68,7 @@ public class CourierOrderpo  implements Serializable{
     	Calendar cal = Calendar.getInstance();
     	date = cal.getTime();
     	history = new ArrayList<String>();
+    	rece = false;
     }
     
     

@@ -88,6 +88,8 @@ public class OrderIO implements CourierService, ExpressService {
 			ois.close();
 			System.out.println(r.ID);
 			if(cpo == null) return false;
+			if(cpo.rece) return false;
+			cpo.rece = true;
 			cpo.getHistory().add("已收件，收件人是" + r.receiver + " , 收件时间是"
 					+ r.date.year + "年" + r.date.month + "月" + 
 					r.date.day + "日");

@@ -471,8 +471,8 @@ public class OrderInputui extends javax.swing.JFrame {
             else if(jRadioButton4.isSelected()) pack = 4;
             int type = 1;
             if(jRadioButton5.isSelected()) type = 1;
-            else if(jRadioButton6.isSelected()) type = 3;
-            else if(jRadioButton7.isSelected()) type = 2;
+            else if(jRadioButton6.isSelected()) type = 2;
+            else if(jRadioButton7.isSelected()) type = 3;
             String ID = "";
             if((ID = jTextField15.getText()).equals("") || ID.length() != 10) {
                 errorID();
@@ -485,7 +485,7 @@ public class OrderInputui extends javax.swing.JFrame {
             	}
             }
             
-            Othervo other = new Othervo(pack, type, ID);
+            Othervo other = new Othervo(type, pack, ID);
         try {
         	GoodsMesvo goods = new GoodsMesvo(Integer.parseInt(num.getText()),
   				   goodsName.getText(), Double.parseDouble(weight.getText()),

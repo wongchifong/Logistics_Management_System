@@ -187,6 +187,7 @@ public class SubReceiveMesui extends javax.swing.JFrame {
     			errortimeL();
     			return;
     		}
+    		rmv.receiver = name;
     		rmv.date = date;
     		if(ReceiveMesui.rm.getReceive(rmv)){
     			succese();
@@ -207,7 +208,7 @@ public class SubReceiveMesui extends javax.swing.JFrame {
 
     private void fail() {
 		// TODO Auto-generated method stub
-    	JOptionPane.showMessageDialog(null, "出现未知问题！", "输入失败", JOptionPane.ERROR_MESSAGE);
+    	JOptionPane.showMessageDialog(null, "该快件已收件！", "输入失败", JOptionPane.ERROR_MESSAGE);
 	}
 
 	private void dateError() {
