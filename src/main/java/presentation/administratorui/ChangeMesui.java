@@ -14,8 +14,13 @@ public class ChangeMesui extends javax.swing.JFrame {
     /**
      * Creates new form ChangeMesui
      */
-    public ChangeMesui() {
+    public ChangeMesui(String id,String password,String name) {
         initComponents();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.id.setText("账户ID：        "+id);
+        this.mm.setText("账户密码：    "+password);
+        this.xm.setText("员工姓名：    "+name);
     }
 
     /**
@@ -215,11 +220,11 @@ public class ChangeMesui extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ChangeMesui().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ChangeMesui().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

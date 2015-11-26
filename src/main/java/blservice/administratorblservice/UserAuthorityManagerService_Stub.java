@@ -23,5 +23,9 @@ public class UserAuthorityManagerService_Stub implements UserAuthorityManagerSer
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public boolean deleteOrder(UserAuthorityManagervo qvo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

@@ -261,7 +261,7 @@ public class AddID extends javax.swing.JFrame {
                  this.dispose();
              }
              else{
-                 JOptionPane.showMessageDialog(null, "写入失败", "可能存在相同订单！", 
+                 JOptionPane.showMessageDialog(null, "写入失败", "可能存在相同ID！", 
                  		JOptionPane.ERROR_MESSAGE);
              }
              // TODO add your handling code here:

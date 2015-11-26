@@ -26,6 +26,26 @@ public class AddaccountIO implements AdministratorService {
 		}
 		return null;
 	}
+//	public boolean delete(UserMespo cpo) throws Exception {
+//		FileInputStream fis = new FileInputStream("src/main/java/data/save/UserMes.txt");
+//		ObjectInputStream ois = new ObjectInputStream(fis);
+//		List< UserMespo> list = (List< UserMespo>) ois.readObject();
+//		ois.close();
+//		System.out.println("find"+"111111");
+//		for(int i = 0; i < list.size(); i++){
+//			if(list.get(i).getID().equals(cpo.getID())){
+//				list.remove(i);
+//				i--;
+//				
+//			}
+//
+//		}
+//		list.remove(cpo);
+
+//		return true;
+//
+//		
+//	}
 
 	public boolean writeOrder( UserMespo cpo) throws Exception {
 		// TODO Auto-generated method stub
@@ -67,4 +87,9 @@ public class AddaccountIO implements AdministratorService {
 			.getID().toString());
 		}
 	}
+
+//	public boolean delete(UserMespo userMespo) throws Exception {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 }

@@ -63,6 +63,47 @@ public class UserAuthorityManagerImpl extends UnicastRemoteObject implements Use
             return false;
 	}
 	
+//	public boolean deleteOrder(UserAuthorityManagervo o) {
+//		// TODO Auto-generated method stub
+////		System.out.println(o.beizhu.moneymouth+"sfeferegrttry");
+////		System.out.println("ssss");
+//
+////            FinancialmanService cs = new PaymentListIO();
+//		///////////////////////////////////////////////////////////////////
+//		AdministratorService cs=new AddaccountIO();
+//		
+//            try {
+//				
+//            	if(cs.delete(new UserMespo(o))){
+//            		System.out.println("delete.............");
+//            		return true;
+//            	}
+//					
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//            return false;
+//	}
+//	public boolean deleteOrder(UserAuthorityManagervo o) {
+//        //To change body of generated methods, choose Tools | Templates.
+//	   AdministratorService es = new AddaccountIO();
+//	 
+////	   AdministratorService cs=new AddaccountIO();
+//	   try {
+//			
+//       	if(es.delete(new UserMespo(o))){
+//       		System.out.println("deteleOrder......");
+//       		return true;
+//       	}
+//				
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return false;}
+	
+	
 	public QueryUservo checkOrder(QueryMesvo qvo) {
         //To change body of generated methods, choose Tools | Templates.
 	   AdministratorService es = new AddaccountIO();

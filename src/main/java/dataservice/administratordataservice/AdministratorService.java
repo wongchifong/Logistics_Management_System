@@ -6,5 +6,6 @@ public interface AdministratorService {
 
 	public boolean writeOrder(UserMespo userMespo)throws Exception;
 	 public UserMespo search(String ID) throws Exception ;
+//	public boolean delete(UserMespo userMespo)throws Exception;
 
 }

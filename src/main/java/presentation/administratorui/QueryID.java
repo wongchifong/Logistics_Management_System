@@ -126,7 +126,12 @@ public class QueryID extends javax.swing.JFrame {
            this.error.setVisible(true);
            return;
        }
-       new UserAuthorityManagerui(quvo);
+       try {
+		new UserAuthorityManagerui(quvo);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
        jTextField1.setText("");
 //       new UserAuthorityManagerui();
 //       jTextField1.setText("");
