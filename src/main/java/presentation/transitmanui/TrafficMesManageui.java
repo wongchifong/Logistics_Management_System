@@ -16,6 +16,8 @@ public class TrafficMesManageui extends javax.swing.JFrame {
      */
     public TrafficMesManageui() {
         initComponents();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
     /**

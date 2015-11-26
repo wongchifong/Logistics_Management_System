@@ -11,6 +11,7 @@ import java.util.List;
 import dataservice.courierdataservice.CourierService;
 import dataservice.otherdataservice.ExpressService;
 import po.courierpo.CourierOrderpo;
+import po.courierpo.ExamineType;
 import po.courierpo.PriceAndTimepo;
 import po.courierpo.ReceiveOrderpo;
 
@@ -89,6 +90,9 @@ public class OrderIO implements CourierService, ExpressService {
 			System.out.println(r.ID);
 			if(cpo == null) return false;
 			if(cpo.rece) return false;
+                        if(cpo.getExamineType() == ExamineType.NOApproval || 
+                                cpo.getExamineType() == ExamineType.NotApprove)
+                            return false;
 			cpo.rece = true;
 			cpo.getHistory().add("已收件，收件人是" + r.receiver + " , 收件时间是"
 					+ r.date.year + "年" + r.date.month + "月" + 
