@@ -27,4 +27,10 @@ public class OutStoringpo implements Serializable{
     	else zy=null;
 	}
 
+	public Object getID() {
+		// TODO Auto-generated method stub
+		
+		return out1.bianhao;
+	}
+
 }

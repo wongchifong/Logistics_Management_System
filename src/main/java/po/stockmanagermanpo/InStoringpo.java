@@ -29,6 +29,12 @@ public class InStoringpo implements Serializable{
 		return weizhi;
 	}
 
+	public Object getID() {
+		// TODO Auto-generated method stub
+		return kuaidi.bianhao;
+		
+	}
+
 	
 
 
