@@ -2,7 +2,6 @@ package blservice.generalmanagerblservice;
 
 import java.rmi.RemoteException;
 
-import po.generalmanagepo.StaffRole;
 import vo.generalmanagervo.SalaryFormulatevo;
 
 public class SalaryFormulateService_Stub implements SalaryFormulateService {

@@ -91,11 +91,12 @@ public class Institution implements Institutionservice{
 			List<Institutionpo> result = (List<Institutionpo>) ois.readObject();
 			ois.close();
 			for(int i=0;i<result.size();i++){
-				if(((Institutionpo)result.get(i)).equals(oldip)){
+				if((((Institutionpo)result.get(i)).getID()).equals(oldip.getID())){
 					result.remove(i);
 				    result.add(ip);
 				    System.out.println("Modify Institution!");
 				}
+				System.out.println("No find old one");
 			}
 			FileOutputStream fos = 
 					new FileOutputStream("src/main/java/data/save/Institution.txt");

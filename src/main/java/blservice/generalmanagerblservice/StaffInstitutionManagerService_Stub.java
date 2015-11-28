@@ -62,5 +62,10 @@ public class StaffInstitutionManagerService_Stub implements StaffInstitutionMana
 		return null;
 	}
 
+	public void modifyStaff(Staffvo oldsv, Staffvo sv) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

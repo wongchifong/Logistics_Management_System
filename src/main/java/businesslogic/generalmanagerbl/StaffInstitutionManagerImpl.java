@@ -1,7 +1,7 @@
 package businesslogic.generalmanagerbl;
 
 import po.generalmanagepo.Institutionpo;
-import po.generalmanagepo.StaffRole;
+import po.otherdatapo.Staffpo;
 import vo.generalmanagervo.Institutionvo;
 import vo.generalmanagervo.StaffInstitutionManagevo;
 import vo.generalmanagervo.Staffvo;
@@ -10,7 +10,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import data.institutiondata.Institution;
+import data.staffdata.Staff;
 import dataservice.generalmanagerdataservice.Institutionservice;
+import dataservice.generalmanagerdataservice.Staffservice;
 import blservice.generalmanagerblservice.StaffInstitutionManagerService;
 
 public class StaffInstitutionManagerImpl extends UnicastRemoteObject implements StaffInstitutionManagerService {
@@ -32,25 +34,32 @@ public class StaffInstitutionManagerImpl extends UnicastRemoteObject implements 
 
 	public Staffvo showStaffRole(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		Staffservice ss = new Staff();
+		Staffpo sp = ss.getStaff(id);
+		if(sp==null)  return null;
+		return sp.getStaff();
 	}
 
 
 	public Staffvo addStaff(Staffvo sv) throws RemoteException {
 		// TODO Auto-generated method stub
+		Staffservice ss = new Staff();
+		ss.writeStaff(new Staffpo(sv));
 		return null;
 	}
 
 
 	public void deleteStaff(Staffvo sv) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		Staffservice ss = new Staff();
+		ss.deleteStaff(new Staffpo(sv));
 	}
 
 
-	public void modifyStaff(Staffvo sv) throws RemoteException {
+	public void modifyStaff(Staffvo oldsv,Staffvo sv) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		Staffservice ss = new Staff();
+		ss.modifyStaff(new Staffpo(oldsv),new Staffpo(sv));
 	}
 
 

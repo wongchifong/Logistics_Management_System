@@ -24,12 +24,13 @@ public class Institutionmodify extends javax.swing.JFrame {
      * @throws Exception 
      */
     public Institutionmodify(Institutionvo iv) throws Exception {
+    	   find=iv;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         RMIClient.init();
         sims = RMIClient.getStaffInstitutionManagerService();
-        find=iv;
+        defaultdata(find);
     }
 
     /**
@@ -39,8 +40,14 @@ public class Institutionmodify extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void defaultdata(Institutionvo iv){
+    	 name.setText(iv.name);
+         ID.setText(iv.ID);
+         leader.setText(iv.leader);
+  
+    }
     private void initComponents() {
-
+       
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();

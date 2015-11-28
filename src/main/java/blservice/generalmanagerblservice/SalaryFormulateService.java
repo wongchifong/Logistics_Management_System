@@ -3,7 +3,6 @@ package blservice.generalmanagerblservice;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import po.generalmanagepo.StaffRole;
 import vo.generalmanagervo.SalaryFormulatevo;
 
 public interface SalaryFormulateService extends Remote {

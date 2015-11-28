@@ -138,6 +138,7 @@ else{
 
     private void modifyMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_modifyMouseClicked
         new Institutionmodify(find).setVisible(true);
+        dispose();
         // TODO add your handling code here:
       
     }//GEN-LAST:event_modifyMouseClicked
