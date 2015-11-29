@@ -5,17 +5,25 @@
  */
 package presentation.transitmanui;
 
+import RMI.client.RMIClient;
+import blservice.courierblservice.OrderInputService;
+import blservice.transitsalmanblservice.TransitReceiveService;
+
 /**
  *
  * @author user
  */
 public class TrafficManageui extends javax.swing.JFrame {
 
+    
+    
     /**
      * Creates new form TransitReceiiveu
      */
-    public TrafficManageui() {
+    public TrafficManageui() throws Exception {
         initComponents();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
         carryer.setVisible(false);
         carryerName.setVisible(false);
     }
@@ -120,6 +128,11 @@ public class TrafficManageui extends javax.swing.JFrame {
         jButton2.setText("确定");
 
         jButton3.setText("退出");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,9 +207,9 @@ public class TrafficManageui extends javax.swing.JFrame {
                         .addGap(82, 82, 82)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
+                        .addGap(118, 118, 118)
                         .addComponent(jButton2)
-                        .addGap(38, 38, 38)
+                        .addGap(55, 55, 55)
                         .addComponent(jButton3)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -283,6 +296,11 @@ public class TrafficManageui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton3MouseClicked
 
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+
+        this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -314,11 +332,6 @@ public class TrafficManageui extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TrafficManageui().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
