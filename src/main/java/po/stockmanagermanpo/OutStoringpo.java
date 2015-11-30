@@ -15,6 +15,7 @@ public class OutStoringpo implements Serializable{
 
 	final OutStoringpo1 out1;
 	final Zhuangyunpo zy;
+	final OsExamineType ose;
 	
 	public OutStoringpo(Outstockvo1 o1, Zhuangyunvo z) {
 		// TODO Auto-generated constructor stub
@@ -25,6 +26,8 @@ public class OutStoringpo implements Serializable{
     	else if(z.zhuangyun == 3)
     		zy = Zhuangyunpo.Car;
     	else zy=null;
+		
+		ose=OsExamineType.NOApproval;
 	}
 
 	public Object getID() {
@@ -33,4 +36,9 @@ public class OutStoringpo implements Serializable{
 		return out1.bianhao;
 	}
 
+	
+
+	public OsExamineType getExamineType() {
+        return ose;
+    }
 }

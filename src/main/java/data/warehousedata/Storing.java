@@ -11,9 +11,12 @@ import javax.swing.JOptionPane;
 
 import dataservice.stockmanagermandataservice.StockManagermanService;
 import po.bushallsalmanpo.CarLoadingpo;
+import po.bushallsalmanpo.ClExamineType;
 import po.courierpo.CourierOrderpo;
 import po.generalmanagepo.Institutionpo;
 import po.stockmanagermanpo.InStoringpo;
+import po.stockmanagermanpo.IsExamineType;
+import po.stockmanagermanpo.OsExamineType;
 import po.stockmanagermanpo.OutStoringpo;
 import po.stockmanagermanpo.Warningpo;
 
@@ -86,6 +89,10 @@ public class Storing implements StockManagermanService {
 		@SuppressWarnings("unchecked")
 		List<InStoringpo> list = (List<InStoringpo>) ois.readObject();
 		ois.close();
+		if(ipo.getExamineType() == IsExamineType.NOApproval || 
+                ipo.getExamineType() == IsExamineType.NotApprove){
+            return false;
+		}
 		list.add(ipo);
 		FileInputStream fis1 = new FileInputStream("src/main/java/data/save/warning.txt");
 		ObjectInputStream ois1 = new ObjectInputStream(fis1);
@@ -112,6 +119,10 @@ public class Storing implements StockManagermanService {
 		@SuppressWarnings("unchecked")
 		List<OutStoringpo> list = (List<OutStoringpo>) ois.readObject();
 		ois.close();
+		if(opo.getExamineType() == OsExamineType.NOApproval || 
+                opo.getExamineType() == OsExamineType.NotApprove){
+            return false;
+		}
 		list.add(opo);
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/outstock.txt");
@@ -149,18 +160,18 @@ public class Storing implements StockManagermanService {
 		return true;
 	}
 
-	public InStoringpo search() throws Exception {
+	public List<InStoringpo> search() throws Exception {
 		// TODO Auto-generated method stub
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/instock.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		List<InStoringpo> list = (List<InStoringpo>) ois.readObject();
 		ois.close();
 		System.out.println("find");
-		for(int i = 0; i < list.size(); i++){
-//			if(list.get(i).getID().equals(ID))
-				return list.get(i);
-		}
-		return null;
+//		for(int i = 0; i < list.size(); i++){
+////			if(list.get(i).getID().equals(ID))
+//				return list.get(i);
+//		}
+		return list;
 	
 	}
 

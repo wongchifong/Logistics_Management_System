@@ -13,6 +13,7 @@ public class ReceiveOrderpo implements Serializable{
 
 	final ReceiveOrderpo1 r1;
 	final Zhuangtaipo zt;
+	final RoExamineType roe;
 	public ReceiveOrderpo(Receivevo re) {
 		// TODO Auto-generated constructor stub
 		r1=new ReceiveOrderpo1(re.receive1);
@@ -20,6 +21,11 @@ public class ReceiveOrderpo implements Serializable{
 		else if(re.receive2.zhuangtai==2) zt=Zhuangtaipo.Lost;
 		else if(re.receive2.zhuangtai==3) zt=Zhuangtaipo.Hurt;
 		else zt=null;
+		roe=RoExamineType.NOApproval;
 	}
+	
+	public RoExamineType getExamineType() {
+        return roe;
+    }
 
 }

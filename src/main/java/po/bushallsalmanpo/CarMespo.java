@@ -16,6 +16,8 @@ public class CarMespo implements Serializable{
 	public final String month;
 	public final String day;
 	
+	final CmExamineType cme;
+	
 	public CarMespo(CarMesManagevo cm) {
 		// TODO Auto-generated constructor stub
 		cardaihao=cm.cardaihao;
@@ -23,7 +25,13 @@ public class CarMespo implements Serializable{
 		year=cm.year;
 		month=cm.month;
 		day=cm.day;
+		
+		cme=CmExamineType.NOApproval;
 	}
+	
+	public CmExamineType getExamineType() {
+        return cme;
+    }
 
 	
 }
