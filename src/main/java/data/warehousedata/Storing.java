@@ -89,10 +89,6 @@ public class Storing implements StockManagermanService {
 		@SuppressWarnings("unchecked")
 		List<InStoringpo> list = (List<InStoringpo>) ois.readObject();
 		ois.close();
-		if(ipo.getExamineType() == IsExamineType.NOApproval || 
-                ipo.getExamineType() == IsExamineType.NotApprove){
-            return false;
-		}
 		list.add(ipo);
 		FileInputStream fis1 = new FileInputStream("src/main/java/data/save/warning.txt");
 		ObjectInputStream ois1 = new ObjectInputStream(fis1);
@@ -119,10 +115,6 @@ public class Storing implements StockManagermanService {
 		@SuppressWarnings("unchecked")
 		List<OutStoringpo> list = (List<OutStoringpo>) ois.readObject();
 		ois.close();
-		if(opo.getExamineType() == OsExamineType.NOApproval || 
-                opo.getExamineType() == OsExamineType.NotApprove){
-            return false;
-		}
 		list.add(opo);
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/outstock.txt");

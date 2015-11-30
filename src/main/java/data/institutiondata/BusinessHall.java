@@ -33,10 +33,7 @@ public class BusinessHall implements BushallsalmanService {
 		@SuppressWarnings("unchecked")
 		List<CarLoadingpo> list = (List<CarLoadingpo>) ois.readObject();
 		ois.close();
-		if(clpo.getExamineType() == ClExamineType.NOApproval || 
-                clpo.getExamineType() == ClExamineType.NotApprove){
-            return false;
-		}
+		
 		list.add(clpo);
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/carLoading.txt");
@@ -128,9 +125,6 @@ public class BusinessHall implements BushallsalmanService {
 		@SuppressWarnings("unchecked")
 		List<CarMespo> list = (List<CarMespo>) ois.readObject();
 		ois.close();
-		if(cmpo.getExamineType() == CmExamineType.NOApproval || 
-                cmpo.getExamineType() == CmExamineType.NotApprove)
-            return false;
 		list.add(cmpo);
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/carMes.txt");
@@ -147,9 +141,6 @@ public class BusinessHall implements BushallsalmanService {
 		@SuppressWarnings("unchecked")
 		List<DriverMespo> list = (List<DriverMespo>) ois.readObject();
 		ois.close();
-		if(dmpo.getExamineType() == DmExamineType.NOApproval || 
-                dmpo.getExamineType() == DmExamineType.NotApprove)
-            return false;
 		list.add(dmpo);
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/driverMes.txt");
@@ -166,9 +157,6 @@ public class BusinessHall implements BushallsalmanService {
 		@SuppressWarnings("unchecked")
 		List<CashReceiveOrderpo> list = (List<CashReceiveOrderpo>) ois.readObject();
 		ois.close();
-		if(cropo.getExamineType() == CrExamineType.NOApproval || 
-                cropo.getExamineType() == CrExamineType.NotApprove)
-            return false;
 		list.add(cropo);
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/cashReceive.txt");
@@ -185,9 +173,6 @@ public class BusinessHall implements BushallsalmanService {
 		@SuppressWarnings("unchecked")
 		List<ReceiveOrderpo> list = (List<ReceiveOrderpo>) ois.readObject();
 		ois.close();
-		if(ropo.getExamineType() == RoExamineType.NOApproval || 
-                ropo.getExamineType() == RoExamineType.NotApprove)
-            return false;
 		list.add(ropo);
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/receiveOrder.txt");
@@ -204,9 +189,6 @@ public class BusinessHall implements BushallsalmanService {
 		@SuppressWarnings("unchecked")
 		List<SendOrderpo> list = (List<SendOrderpo>) ois.readObject();
 		ois.close();
-		if(sopo.getExamineType() == SoExamineType.NOApproval || 
-                sopo.getExamineType() == SoExamineType.NotApprove)
-            return false;
 		list.add(sopo);
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/sendOrder.txt");
