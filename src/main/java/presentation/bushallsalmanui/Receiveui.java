@@ -14,6 +14,9 @@ import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
 import blservice.bushallsalmanblservice.ReceiveSendService;
+import data.orderdata.OrderIO;
+import dataservice.otherdataservice.ExpressService;
+import po.courierpo.CourierOrderpo;
 import presentation.courierui.PriceAndTimeui;
 import vo.bushallsalmanvo.Receivevo;
 import vo.bushallsalmanvo.Receivevo1;
@@ -66,6 +69,8 @@ public class Receiveui extends javax.swing.JFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
+        jLabel8 = new javax.swing.JLabel();
+        tiaoxingma = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -97,6 +102,8 @@ public class Receiveui extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("损坏");
 
+        jLabel8.setText("订单条形码号：");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -104,16 +111,16 @@ public class Receiveui extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
-                        .addGap(37, 37, 37)
-                        .addComponent(jRadioButton2))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel6))
+                        .addGap(3, 3, 3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,11 +134,17 @@ public class Receiveui extends javax.swing.JFrame {
                             .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabel4))
-                        .addComponent(zhongzhuan)
-                        .addComponent(chufa)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jRadioButton3)
-                .addGap(51, 51, 51))
+                        .addComponent(zhongzhuan))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jRadioButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton2)
+                        .addGap(31, 31, 31)
+                        .addComponent(jRadioButton3))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(tiaoxingma, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(chufa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))
+                .addGap(51, 61, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,18 +162,20 @@ public class Receiveui extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(zhongzhuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(tiaoxingma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(chufa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton1)
-                        .addComponent(jRadioButton2)
-                        .addComponent(jRadioButton3)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton3)))
         );
 
         jButton1.setText("确定");
@@ -168,8 +183,6 @@ public class Receiveui extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
-
-
         });
 
         jButton2.setText("退出");
@@ -177,8 +190,6 @@ public class Receiveui extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
-
-
 
         });
 
@@ -202,7 +213,7 @@ public class Receiveui extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(0, 30, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         pack();
@@ -215,7 +226,30 @@ public class Receiveui extends javax.swing.JFrame {
     	 if(jRadioButton1.isSelected()) zhuangtai = 1;
          else if(jRadioButton2.isSelected()) zhuangtai = 2;
          else if(jRadioButton3.isSelected()) zhuangtai = 3;
-    	 
+    	 String txmID=tiaoxingma.getText();
+    	 if((txmID.equals("") || txmID.length() != 10)) {
+             errorID();
+             return;
+         }
+    	 for(int i=0;i<txmID.length();i++){
+    		 if(!(txmID.charAt(i)>='0'&&txmID.charAt(i)<='9')){
+    			 errorID2();
+    			 return;
+    		 }
+    	 }
+    	 ExpressService es = new OrderIO();
+         CourierOrderpo co;
+ 			try {
+ 				co = es.search(txmID);
+ 				if(co==null){
+ 					notExit(txmID);
+ 					return;
+ 				}
+ 			} catch (Exception e) {
+ 				// TODO Auto-generated catch block
+ 				e.printStackTrace();
+ 			}
+
     	 Receivevo2 receive2 = new Receivevo2(zhuangtai);
     	 Receivevo receive = new Receivevo(receive1,receive2);
     	try {
@@ -235,7 +269,22 @@ public class Receiveui extends javax.swing.JFrame {
             }
     }
 
-    private void jButton2ActionPerformed(ActionEvent evt) {
+    private void errorID2() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "条形码号应全为数字！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void errorID() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "订单输入有误！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void notExit(String txmID) {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "不存在该订单"+txmID+"！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void jButton2ActionPerformed(ActionEvent evt) {
     	// TODO Auto-generated method stub
     	this.dispose();
     }
@@ -293,11 +342,13 @@ public class Receiveui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JTextField month;
+    private javax.swing.JTextField tiaoxingma;
     private javax.swing.JTextField year;
     private javax.swing.JTextField zhongzhuan;
     // End of variables declaration//GEN-END:variables
