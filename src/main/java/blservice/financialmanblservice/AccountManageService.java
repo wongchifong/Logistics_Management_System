@@ -18,4 +18,7 @@ public interface AccountManageService extends Remote {
 	public AccountManagevo Initialize(String jigou,ArrayList<String> renyuan,
 			ArrayList<String> cheliang,int kucun,String accountname,int money)
 					 throws RemoteException;
+
+	public boolean getOrder(AccountManagevo amvo) throws RemoteException;
+	
 }

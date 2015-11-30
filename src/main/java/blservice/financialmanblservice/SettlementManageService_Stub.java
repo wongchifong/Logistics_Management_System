@@ -1,5 +1,9 @@
 package blservice.financialmanblservice;
 
+import java.rmi.RemoteException;
+
+import po.financialmanpo.IncomeInputpo;
+import vo.financialmanvo.IncomeInputvo;
 import vo.financialmanvo.SettlementManagevo;
 
 public class SettlementManageService_Stub implements SettlementManageService{
@@ -13,6 +17,16 @@ public class SettlementManageService_Stub implements SettlementManageService{
 		System.out.println("已经保存");
 		// TODO Auto-generated method stub
 		
+	}
+
+	public boolean getOrder2(IncomeInputvo iivo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean writeOrder2(IncomeInputpo incomeInputpo) throws RemoteException, Exception {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

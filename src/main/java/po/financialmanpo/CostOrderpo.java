@@ -2,6 +2,7 @@ package po.financialmanpo;
 
 import java.io.Serializable;
 
+import po.courierpo.ExamineType;
 import vo.financialmanvo.Beizhuvo;
 import vo.financialmanvo.Datevo;
 import vo.financialmanvo.PaymentInputvo;
@@ -19,6 +20,7 @@ public class CostOrderpo implements Serializable {
 	final Paypo pay;
 	final Tiaomupo tiaomu;
 	final Beizhupo beizhu;
+	final ExamineType ext;
 	public CostOrderpo(PaymentInputvo order){
 		System.out.println(order.pay.name+"jdkhfdgf");
 		dvo=new Datepo(order.date.year,order.date.mouth,order.date.day);
@@ -27,7 +29,7 @@ public class CostOrderpo implements Serializable {
 		tiaomu=new Tiaomupo(order.tiaomu.yearfee, order.tiaomu.trafficfee, order.tiaomu.salary,
 				order.tiaomu.bonus);
 		beizhu=new Beizhupo(order.beizhu.moneyyear, order.beizhu.number, order.beizhu.moneymouth);
-		
+		ext = ExamineType.NOApproval;
 		
 	}
 	public Datepo getDate(){
@@ -45,5 +47,8 @@ public class CostOrderpo implements Serializable {
 	public Beizhupo getBeizhu(){
 		return beizhu;
 	}
+	public ExamineType getExamineType() {
+	        return ext;
+	    }
 
 }

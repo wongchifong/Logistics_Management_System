@@ -1,5 +1,6 @@
 package blservice.financialmanblservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import vo.financialmanvo.AccountManagevo;
@@ -33,6 +34,11 @@ public class AccountManageService_Stub implements AccountManageService{
 		System.out.println("初始化账户");
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public boolean getOrder(AccountManagevo amvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

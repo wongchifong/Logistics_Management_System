@@ -29,9 +29,9 @@ public class QueryMes extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Delete = new javax.swing.JButton();
+        Modify = new javax.swing.JButton();
+        Init = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -40,11 +40,29 @@ public class QueryMes extends javax.swing.JFrame {
 
         jLabel2.setText("账户金额：");
 
-        jButton1.setText("删除当前账户");
+        Delete.setText("删除当前账户");
+        Delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DeleteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                DeleteMouseEntered(evt);
+            }
+        });
 
-        jButton2.setText("修改账户属性");
+        Modify.setText("修改账户属性");
+        Modify.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ModifyMouseClicked(evt);
+            }
+        });
 
-        jButton3.setText("初始化当前账户");
+        Init.setText("初始化当前账户");
+        Init.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InitMouseClicked(evt);
+            }
+        });
 
         jButton4.setText("退出");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -67,9 +85,9 @@ public class QueryMes extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(87, 87, 87)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Modify, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Init, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(165, 165, 165)
                         .addComponent(jButton4)))
@@ -83,11 +101,11 @@ public class QueryMes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(44, 44, 44)
-                .addComponent(jButton1)
+                .addComponent(Delete)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(Modify)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(Init)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
                 .addContainerGap(15, Short.MAX_VALUE))
@@ -100,6 +118,22 @@ public class QueryMes extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void InitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InitMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InitMouseClicked
+
+    private void ModifyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModifyMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ModifyMouseClicked
+
+    private void DeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteMouseEntered
+
+    private void DeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -137,9 +171,9 @@ public class QueryMes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton Delete;
+    private javax.swing.JButton Init;
+    private javax.swing.JButton Modify;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

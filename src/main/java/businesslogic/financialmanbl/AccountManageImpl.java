@@ -5,9 +5,18 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import blservice.financialmanblservice.AccountManageService;
+import data.accountdata.AccountIO;
+import dataservice.financialmandataservice.FinancialmanService;
+import po.financialmanpo.Accountpo;
+import po.financialmanpo.CostOrderpo;
 import vo.financialmanvo.AccountManagevo;
 
 public class AccountManageImpl extends UnicastRemoteObject implements AccountManageService {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7115447212691987826L;
 
 	public AccountManageImpl() throws RemoteException {
 		super();
@@ -38,6 +47,22 @@ public class AccountManageImpl extends UnicastRemoteObject implements AccountMan
 			String accountname, int money) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public boolean getOrder(AccountManagevo amvo)  {
+//		return false;
+		FinancialmanService fs=new AccountIO();
+		 try {
+				System.out.println("sdweretr");
+         	if(fs.addAccount(new Accountpo(amvo)))
+					return true;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+         return false;
+		// TODO Auto-generated method stub
+//		AccountManageService am=new 
 	}
 
 }
