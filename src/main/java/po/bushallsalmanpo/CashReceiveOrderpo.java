@@ -17,6 +17,8 @@ public class CashReceiveOrderpo implements Serializable{
 	public final String kuaidiyuan;
 	public final String tiaoxingma;
 	
+	final CrExamineType cre;
+	
 	public CashReceiveOrderpo(CashRegistervo cr) {
 		// TODO Auto-generated constructor stub
 		year=cr.year;
@@ -25,6 +27,12 @@ public class CashReceiveOrderpo implements Serializable{
 		kuaidiyuan=cr.kuaidiyuan;
 		tiaoxingma=cr.tiaoxingma;
 		
+		cre=CrExamineType.NOApproval;
+		
 	}
+	
+	public CrExamineType getExamineType() {
+        return cre;
+    }
 
 }

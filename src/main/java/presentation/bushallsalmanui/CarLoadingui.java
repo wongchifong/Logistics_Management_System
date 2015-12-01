@@ -5,6 +5,7 @@
  */
 package presentation.bushallsalmanui;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
@@ -14,8 +15,13 @@ import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
 import blservice.bushallsalmanblservice.CarLoadingService;
+import blservice.queryblservice.QueryService;
+import data.orderdata.OrderIO;
+import dataservice.otherdataservice.ExpressService;
+import po.courierpo.CourierOrderpo;
 import presentation.courierui.PriceAndTimeui;
 import vo.bushallsalmanvo.CarLoadingvo;
+import vo.queryvo.QueryOrdervo;
 
 /**
  *
@@ -24,6 +30,7 @@ import vo.bushallsalmanvo.CarLoadingvo;
 public class CarLoadingui extends javax.swing.JFrame {
 
 	static CarLoadingService cls;
+	static QueryService q;
     /**
      * Creates new form CarLoadingui
      * @throws Exception 
@@ -34,6 +41,7 @@ public class CarLoadingui extends javax.swing.JFrame {
         this.setVisible(true);
         RMIClient.init();
         cls=RMIClient.getCarLoadingService();
+        q=RMIClient.getQueryService();
     }
 
     /**
@@ -68,8 +76,8 @@ public class CarLoadingui extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         yunFei = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tuoYunDan = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tiaoxingma = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -99,11 +107,11 @@ public class CarLoadingui extends javax.swing.JFrame {
 
         jLabel11.setText("运费：");
 
-        jLabel12.setText("托运单号：");
+        jLabel12.setText("订单条形码号：");
 
-        tuoYunDan.setColumns(20);
-        tuoYunDan.setRows(5);
-        jScrollPane2.setViewportView(tuoYunDan);
+        tiaoxingma.setColumns(20);
+        tiaoxingma.setRows(5);
+        jScrollPane1.setViewportView(tiaoxingma);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,28 +131,27 @@ public class CarLoadingui extends javax.swing.JFrame {
                         .addComponent(jLabel10))
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel4))
-                        .addComponent(yingYeTing, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                        .addComponent(car)
-                        .addComponent(chuFaDi)
-                        .addComponent(destinaton)
-                        .addComponent(jianZhuang)
-                        .addComponent(yaYun)
-                        .addComponent(yunFei))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4))
+                    .addComponent(yingYeTing, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                    .addComponent(car)
+                    .addComponent(chuFaDi)
+                    .addComponent(destinaton)
+                    .addComponent(jianZhuang)
+                    .addComponent(yaYun)
+                    .addComponent(yunFei)
+                    .addComponent(jScrollPane1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -190,22 +197,25 @@ public class CarLoadingui extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jButton2.setText("确定");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
+
         jButton3.setText("退出");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
+
         });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -232,13 +242,13 @@ public class CarLoadingui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3MouseClicked(MouseEvent evt) {
+    private void jButton3ActionPerformed(ActionEvent evt) {
     	// TODO Auto-generated method stub
     	this.dispose();
     }
-    private void jButton2MouseClicked(MouseEvent evt) {
+    private void jButton2ActionPerformed(ActionEvent evt) {
     	// TODO Auto-generated method stub
-    	CarLoadingvo carLoading=new CarLoadingvo(year.getText(),month.getText(),day.getText(),yingYeTing.getText(),car.getText(),chuFaDi.getText(),destinaton.getText(),jianZhuang.getText(),yaYun.getText(),yunFei.getText(),tuoYunDan.getText());
+    	CarLoadingvo carLoading=new CarLoadingvo(year.getText(),month.getText(),day.getText(),yingYeTing.getText(),car.getText(),chuFaDi.getText(),destinaton.getText(),jianZhuang.getText(),yaYun.getText(),yunFei.getText(),tiaoxingma.getText());
         String yytID="";
        // System.out.println(yingYeTing.getText());
         if((yytID=yingYeTing.getText()).equals("")||yytID.length()!=6){
@@ -249,6 +259,56 @@ public class CarLoadingui extends javax.swing.JFrame {
         if((qyID=car.getText()).equals("")||qyID.length()!=19){
         	errorqyID();
         	return;
+        }
+        
+        int i=0;
+        int row=0;
+        while(tiaoxingma.getText().charAt(i)!=' '){
+        if(tiaoxingma.getText().charAt(i)=='\n'){
+        	row++;
+        }
+        i++;
+        }
+        int k=0;
+        for(int j=1;j<=row;j++){
+        	String txmID="";
+        while(tiaoxingma.getText().charAt(k)!='\n'){
+        	txmID+=tiaoxingma.getText().charAt(k);
+        	k++;
+        }
+        k++;
+        if(txmID.equals("")||txmID.length()!=10){
+        	errortxmID();
+        	return;
+        }
+        for(int n=0;n<txmID.length();n++){
+   		 if(!(txmID.charAt(n)>='0'&&txmID.charAt(n)<='9')){
+   			 errorID2();
+   			 return;
+   		 }
+        }
+        }
+        int m=0;
+        for(int j1=1;j1<=row;j1++){
+        	String txmID1="";
+        while(tiaoxingma.getText().charAt(m)!='\n'){
+        	txmID1+=tiaoxingma.getText().charAt(m);
+        	m++;
+        }
+        m++;
+        ExpressService es = new OrderIO();
+        CourierOrderpo co;
+			try {
+				co = es.search(txmID1);
+				if(co==null){
+					notExit(txmID1);
+					return;
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
         }
         try {
             boolean a = cls.inputLoad(carLoading);
@@ -266,7 +326,23 @@ public class CarLoadingui extends javax.swing.JFrame {
         } catch (RemoteException ex) {
             Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+        }
+    
+
+	private void errorID2() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "条形码号应全为数字！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void notExit(String txmID) {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "不存在该订单"+txmID+"!", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void errortxmID() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "订单条形码号输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
 
 	private void erroryytID() {
 		// TODO Auto-generated method stub
@@ -337,10 +413,10 @@ public class CarLoadingui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jianZhuang;
     private javax.swing.JTextField month;
-    private javax.swing.JTextArea tuoYunDan;
+    private javax.swing.JTextArea tiaoxingma;
     private javax.swing.JTextField yaYun;
     private javax.swing.JTextField year;
     private javax.swing.JTextField yingYeTing;

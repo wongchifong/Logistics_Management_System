@@ -1,11 +1,7 @@
 package businesslogic.administratorbl;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.List;
 
 import blservice.administratorblservice.UserAuthorityManagerService;
 import data.safetydata.AddaccountIO;
@@ -14,7 +10,6 @@ import po.administratorpo.UserMespo;
 import vo.administratorvo.QueryMesvo;
 import vo.administratorvo.QueryUservo;
 import vo.administratorvo.UserAuthorityManagervo;
-import vo.queryvo.QueryOrdervo;
 
 public class UserAuthorityManagerImpl extends UnicastRemoteObject implements UserAuthorityManagerService {
 
@@ -63,45 +58,25 @@ public class UserAuthorityManagerImpl extends UnicastRemoteObject implements Use
             return false;
 	}
 	
-//	public boolean deleteOrder(UserAuthorityManagervo o) {
-//		// TODO Auto-generated method stub
-////		System.out.println(o.beizhu.moneymouth+"sfeferegrttry");
-////		System.out.println("ssss");
-//
-////            FinancialmanService cs = new PaymentListIO();
-//		///////////////////////////////////////////////////////////////////
-//		AdministratorService cs=new AddaccountIO();
-//		
-//            try {
-//				
-//            	if(cs.delete(new UserMespo(o))){
-//            		System.out.println("delete.............");
-//            		return true;
-//            	}
-//					
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//            return false;
-//	}
-//	public boolean deleteOrder(UserAuthorityManagervo o) {
-//        //To change body of generated methods, choose Tools | Templates.
-//	   AdministratorService es = new AddaccountIO();
-//	 
-////	   AdministratorService cs=new AddaccountIO();
-//	   try {
-//			
-//       	if(es.delete(new UserMespo(o))){
-//       		System.out.println("deteleOrder......");
-//       		return true;
-//       	}
-//				
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return false;}
+	public boolean deleteOrder(UserAuthorityManagervo o) {
+		// TODO Auto-generated method stub
+
+		AdministratorService cs=new AddaccountIO();
+		
+            try {
+				
+            	if(cs.deleteUser(new UserMespo(o))){
+            		System.out.println("delete.............");
+            		return true;
+            	}
+					
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            return false;
+	}
+
 	
 	
 	public QueryUservo checkOrder(QueryMesvo qvo) {
@@ -120,6 +95,40 @@ public class UserAuthorityManagerImpl extends UnicastRemoteObject implements Use
 		}
 		return null;
    }
+
+	public boolean changeOrder(UserAuthorityManagervo o,UserAuthorityManagervo n) {
+		// TODO Auto-generated method stub
+		AdministratorService cs=new AddaccountIO();
+		
+        try {
+			
+        	if(cs.changeUser(new UserMespo(o),new UserMespo(n))){
+        		System.out.println("change.............");
+        		return true;
+        	}
+				
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return false;
+	}
+
+//	public void deleteUser(UserAuthorityManagervo find) throws RemoteException {
+//		// TODO Auto-generated method stub
+//		AdministratorService is=new AddaccountIO();
+//		is.deleteUser(new UserMespo(find));
+//		
+//	}
+
+//	public void deleteUser(QueryUservo find) throws RemoteException {
+//		// TODO Auto-generated method stub
+//		
+//	}
+
+	
+
+	
 	
 
 	

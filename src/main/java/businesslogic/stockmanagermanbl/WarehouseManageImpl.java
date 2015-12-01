@@ -2,6 +2,7 @@ package businesslogic.stockmanagermanbl;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 import blservice.stockmanagermanblservice.WarehouseManageService;
 import data.warehousedata.Storing;
@@ -85,7 +86,7 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 	public StoreCheckvo search() throws RemoteException {
 		// TODO Auto-generated method stub
 		StockManagermanService sms = new Storing();
-		InStoringpo io;
+		List<InStoringpo> io;
 		try{
 			io=sms.search();
 			return new StoreCheckvo(io);

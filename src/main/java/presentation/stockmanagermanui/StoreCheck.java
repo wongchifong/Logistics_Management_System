@@ -45,7 +45,7 @@ public class StoreCheck extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("          进行库存查看");
+        jLabel1.setText("                      进行库存查看");
 
         jButton1.setText("确定");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

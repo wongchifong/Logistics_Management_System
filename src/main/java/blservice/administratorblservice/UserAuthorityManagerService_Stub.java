@@ -27,5 +27,9 @@ public class UserAuthorityManagerService_Stub implements UserAuthorityManagerSer
 		// TODO Auto-generated method stub
 		return false;
 	}
+	public boolean changeOrder(UserAuthorityManagervo uavo,UserAuthorityManagervo uav) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

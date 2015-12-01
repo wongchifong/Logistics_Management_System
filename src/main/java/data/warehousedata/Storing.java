@@ -7,10 +7,16 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import dataservice.stockmanagermandataservice.StockManagermanService;
 import po.bushallsalmanpo.CarLoadingpo;
+import po.bushallsalmanpo.ClExamineType;
 import po.courierpo.CourierOrderpo;
+import po.generalmanagepo.Institutionpo;
 import po.stockmanagermanpo.InStoringpo;
+import po.stockmanagermanpo.IsExamineType;
+import po.stockmanagermanpo.OsExamineType;
 import po.stockmanagermanpo.OutStoringpo;
 import po.stockmanagermanpo.Warningpo;
 
@@ -76,14 +82,24 @@ public class Storing implements StockManagermanService {
 		
 	}
 
-	public boolean in(InStoringpo wpo) throws Exception {
+	public boolean in(InStoringpo ipo) throws Exception {
 		// TODO Auto-generated method stub
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/instock.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		@SuppressWarnings("unchecked")
 		List<InStoringpo> list = (List<InStoringpo>) ois.readObject();
 		ois.close();
-		list.add(wpo);
+		list.add(ipo);
+		FileInputStream fis1 = new FileInputStream("src/main/java/data/save/warning.txt");
+		ObjectInputStream ois1 = new ObjectInputStream(fis1);
+		@SuppressWarnings("unchecked")
+		List<Warningpo> list1 = (List<Warningpo>) ois1.readObject();
+		//System.out.println(4*Integer.parseInt(list1.get(0).warning)/100);
+		if(list.size()>=1000*Integer.parseInt(list1.get(0).warning)/100){
+			JOptionPane.showMessageDialog(null, "库存数量已超过警戒比例", "警告！", 
+            		JOptionPane.ERROR_MESSAGE);
+		}
+		ois1.close();
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/instock.txt");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -105,6 +121,23 @@ public class Storing implements StockManagermanService {
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(list);
 		oos.close();
+		FileInputStream fis1 = new FileInputStream("src/main/java/data/save/instock.txt");
+		ObjectInputStream ois1 = new ObjectInputStream(fis1);
+		@SuppressWarnings("unchecked")
+		List<InStoringpo> list1 = (List<InStoringpo>) ois1.readObject();
+		for(int i=0;i<list1.size();i++){
+			if(((list1.get(i)).getID()).equals(opo.getID())){
+				list1.remove(i);
+				i--;
+				//System.out.println("Delete ");
+			}}
+		ois1.close();
+        FileOutputStream fos1 = 
+				new FileOutputStream("src/main/java/data/save/instock.txt");
+		ObjectOutputStream oos1 = new ObjectOutputStream(fos1);
+		oos1.writeObject(list1);
+		oos1.close();
+
 		return true;
 	}
 
@@ -119,18 +152,18 @@ public class Storing implements StockManagermanService {
 		return true;
 	}
 
-	public InStoringpo search() throws Exception {
+	public List<InStoringpo> search() throws Exception {
 		// TODO Auto-generated method stub
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/instock.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		List<InStoringpo> list = (List<InStoringpo>) ois.readObject();
 		ois.close();
 		System.out.println("find");
-		for(int i = 0; i < list.size(); i++){
-//			if(list.get(i).getID().equals(ID))
-				return list.get(i);
-		}
-		return null;
+//		for(int i = 0; i < list.size(); i++){
+////			if(list.get(i).getID().equals(ID))
+//				return list.get(i);
+//		}
+		return list;
 	
 	}
 

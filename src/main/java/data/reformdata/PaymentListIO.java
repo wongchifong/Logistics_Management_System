@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataservice.financialmandataservice.FinancialmanService;
-
+import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
+import po.financialmanpo.IncomeInputpo;
 
 public class PaymentListIO implements FinancialmanService {
 
@@ -67,5 +68,17 @@ public class PaymentListIO implements FinancialmanService {
 //			.getPackingType().toString());
 //		}
 	}
+
+	public boolean writeOrder2(IncomeInputpo incomeInputpo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean addAccount(Accountpo accountpo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 
 }

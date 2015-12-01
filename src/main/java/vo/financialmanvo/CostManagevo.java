@@ -13,11 +13,11 @@ public class CostManagevo implements Serializable {/**
 		date=d;
 		numOfBusHall=n;
 	}
-	public String getdate(){
-		return date;
-	}
-	public int getnumOfbBusHall(){
-		return numOfBusHall;
-	}
+//	public String getdate(){
+//		return date;
+//	}
+//	public int getnumOfbBusHall(){
+//		return numOfBusHall;
+//	}
 	
 }

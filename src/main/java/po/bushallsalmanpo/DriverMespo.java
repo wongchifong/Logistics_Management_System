@@ -16,6 +16,8 @@ public class DriverMespo implements Serializable{
 	final Commonpo common;
 	final Xingbiepo other;
 	
+	final DmExamineType dme;
+	
 	public DriverMespo(DriverMesManagevo dm) {
 		// TODO Auto-generated constructor stub
 		common=new Commonpo(dm.common);
@@ -23,6 +25,10 @@ public class DriverMespo implements Serializable{
 		else if(dm.other.xingbie==2) other=Xingbiepo.Woman;
 		else other=null;
 		
+		dme=DmExamineType.NOApproval;
 	}
 
+	public DmExamineType getExamineType() {
+        return dme;
+    }
 }

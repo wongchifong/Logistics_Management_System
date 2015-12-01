@@ -251,7 +251,7 @@ public class AddID extends javax.swing.JFrame {
     		System.out.println(jTextField1.getText()+"id.getText()");
     	
     	UserAuthorityManagervo u=new UserAuthorityManagervo(jTextField1.getText(),jTextField2.getText(), jTextField3.getText(), type);
-    	
+    	System.out.println(type+"zxcvbnm");
     	 try {
              boolean b = uams.getOrder(u);
              if(b){

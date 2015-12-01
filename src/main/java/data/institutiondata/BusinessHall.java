@@ -12,9 +12,16 @@ import dataservice.bushallsalmandataservice.BushallsalmanService;
 import po.bushallsalmanpo.CarLoadingpo;
 import po.bushallsalmanpo.CarMespo;
 import po.bushallsalmanpo.CashReceiveOrderpo;
+import po.bushallsalmanpo.ClExamineType;
+import po.bushallsalmanpo.CmExamineType;
+import po.bushallsalmanpo.CrExamineType;
+import po.bushallsalmanpo.DmExamineType;
 import po.bushallsalmanpo.DriverMespo;
 import po.bushallsalmanpo.ReceiveOrderpo;
+import po.bushallsalmanpo.RoExamineType;
 import po.bushallsalmanpo.SendOrderpo;
+import po.bushallsalmanpo.SoExamineType;
+import po.courierpo.ExamineType;
 
 
 public class BusinessHall implements BushallsalmanService {
@@ -26,6 +33,7 @@ public class BusinessHall implements BushallsalmanService {
 		@SuppressWarnings("unchecked")
 		List<CarLoadingpo> list = (List<CarLoadingpo>) ois.readObject();
 		ois.close();
+		
 		list.add(clpo);
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/carLoading.txt");
@@ -158,14 +166,14 @@ public class BusinessHall implements BushallsalmanService {
 		return true;
 	}
 
-	public boolean writereceive(ReceiveOrderpo cropo) throws Exception {
+	public boolean writereceive(ReceiveOrderpo ropo) throws Exception {
 		// TODO Auto-generated method stub
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/receiveOrder.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		@SuppressWarnings("unchecked")
 		List<ReceiveOrderpo> list = (List<ReceiveOrderpo>) ois.readObject();
 		ois.close();
-		list.add(cropo);
+		list.add(ropo);
 		FileOutputStream fos = 
 				new FileOutputStream("src/main/java/data/save/receiveOrder.txt");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);

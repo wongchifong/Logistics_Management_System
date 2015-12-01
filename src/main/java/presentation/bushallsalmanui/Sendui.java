@@ -14,6 +14,9 @@ import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
 import blservice.bushallsalmanblservice.ReceiveSendService;
+import data.orderdata.OrderIO;
+import dataservice.otherdataservice.ExpressService;
+import po.courierpo.CourierOrderpo;
 import presentation.courierui.PriceAndTimeui;
 import vo.bushallsalmanvo.Sendvo;
 
@@ -72,7 +75,7 @@ public class Sendui extends javax.swing.JFrame {
 
         jLabel4.setText("日");
 
-        jLabel5.setText("快件条形码：");
+        jLabel5.setText("订单条形码：");
 
         jLabel6.setText("派件员：");
 
@@ -132,9 +135,6 @@ public class Sendui extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
-
-
-
         });
 
         jButton2.setText("退出");
@@ -142,9 +142,6 @@ public class Sendui extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
-
-
-
 
         });
 
@@ -182,6 +179,26 @@ public class Sendui extends javax.swing.JFrame {
             errorID();
             return;
         }
+        String txmID=tiaoxingma.getText();
+        for(int i=0;i<txmID.length();i++){
+   		 if(!(txmID.charAt(i)>='0'&&txmID.charAt(i)<='9')){
+   			 errorID2();
+   			 return;
+   		 }
+   	 }
+        ExpressService es = new OrderIO();
+        CourierOrderpo co;
+			try {
+				co = es.search(txmID);
+				if(co==null){
+					notExit(txmID);
+					return;
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
         try {
             boolean a = rss.inputsend(send);
             if(a){
@@ -199,7 +216,18 @@ public class Sendui extends javax.swing.JFrame {
             Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private void errorID() {
+
+	private void errorID2() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "条形码号应全为数字！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void notExit(String txmID) {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "不存在该订单"+txmID+"！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void errorID() {
 		// TODO Auto-generated method stub
     	JOptionPane.showMessageDialog(null, "条形码输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}

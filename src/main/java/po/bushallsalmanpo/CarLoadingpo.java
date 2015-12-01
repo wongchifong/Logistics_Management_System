@@ -2,6 +2,7 @@ package po.bushallsalmanpo;
 
 import java.io.Serializable;
 
+import po.courierpo.ExamineType;
 import vo.bushallsalmanvo.CarLoadingvo;
 
 public class CarLoadingpo implements Serializable{
@@ -21,6 +22,9 @@ public class CarLoadingpo implements Serializable{
 	public final String yaYun;
 	public final String yunFei;
 	public final String tuoYunDan;
+	
+	final ClExamineType cle;
+	
 	public CarLoadingpo(CarLoadingvo cl) {
 		// TODO Auto-generated constructor stub
 		year=cl.year;
@@ -34,7 +38,12 @@ public class CarLoadingpo implements Serializable{
 		yaYun=cl.yaYun;
 		yunFei=cl.yunFei;
 		tuoYunDan=cl.tuoYunDan;
+		
+		cle=ClExamineType.NOApproval;
 	}
 
 
+	public ClExamineType getExamineType() {
+        return cle;
+    }
 }

@@ -9,6 +9,8 @@ import java.util.List;
 
 import dataservice.administratordataservice.AdministratorService;
 import po.administratorpo.UserMespo;
+import vo.administratorvo.UserAuthorityManagervo;
+
 
 
 
@@ -17,7 +19,7 @@ public class AddaccountIO implements AdministratorService {
 		// TODO Auto-generated method stub
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/UserMes.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
-		List< UserMespo> list = (List< UserMespo>) ois.readObject();
+		List< UserMespo> list = (List<UserMespo>) ois.readObject();
 		ois.close();
 		System.out.println("find"+"111111");
 		for(int i = 0; i < list.size(); i++){
@@ -26,26 +28,32 @@ public class AddaccountIO implements AdministratorService {
 		}
 		return null;
 	}
-//	public boolean delete(UserMespo cpo) throws Exception {
-//		FileInputStream fis = new FileInputStream("src/main/java/data/save/UserMes.txt");
-//		ObjectInputStream ois = new ObjectInputStream(fis);
-//		List< UserMespo> list = (List< UserMespo>) ois.readObject();
-//		ois.close();
-//		System.out.println("find"+"111111");
-//		for(int i = 0; i < list.size(); i++){
-//			if(list.get(i).getID().equals(cpo.getID())){
-//				list.remove(i);
-//				i--;
-//				
-//			}
-//
-//		}
-//		list.remove(cpo);
-
-//		return true;
-//
-//		
-//	}
+	public boolean deleteUser(UserMespo cpo) throws Exception {
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/UserMes.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<UserMespo> result = (List<UserMespo>) ois.readObject();
+			for(int i=0;i<result.size();i++){
+				if(((result.get(i)).getID()).equals(cpo.getID())){
+					result.remove(i);
+					i--;
+					System.out.println("Delete Institution");
+				}}
+			ois.close();
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/UserMes.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			 oos.writeObject(result);
+		     oos.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		return true;
+		
+	
+	}
 
 	public boolean writeOrder( UserMespo cpo) throws Exception {
 		// TODO Auto-generated method stub
@@ -87,6 +95,36 @@ public class AddaccountIO implements AdministratorService {
 			.getID().toString());
 		}
 	}
+	public boolean changeUser(UserMespo oldone,UserMespo newone) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/UserMes.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<UserMespo> result = (List<UserMespo>) ois.readObject();
+			ois.close();
+			for(int i=0;i<result.size();i++){
+				if(((result.get(i)).getID()).equals(oldone.getID())){
+					System.out.println("find old one");
+					result.remove(i);
+					result.add(newone);
+					System.out.println("change");
+				}
+				System.out.println(" no find old one");}
+			
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/UserMes.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			 oos.writeObject(result);
+		     oos.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		return true;
+	}
+	
+	
 
 //	public boolean delete(UserMespo userMespo) throws Exception {
 //		// TODO Auto-generated method stub

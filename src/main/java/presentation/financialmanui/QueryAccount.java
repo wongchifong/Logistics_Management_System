@@ -29,17 +29,17 @@ public class QueryAccount extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        query = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("输入关键字：");
 
-        jButton1.setText("查询");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        query.setText("查询");
+        query.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                queryMouseClicked(evt);
             }
         });
 
@@ -62,7 +62,7 @@ public class QueryAccount extends javax.swing.JFrame {
                 .addContainerGap(88, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(query)
                 .addGap(49, 49, 49)
                 .addComponent(jButton2)
                 .addGap(108, 108, 108))
@@ -76,7 +76,7 @@ public class QueryAccount extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(query)
                     .addComponent(jButton2))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
@@ -89,10 +89,10 @@ public class QueryAccount extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void queryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_queryMouseClicked
         // TODO add your handling code here:
         new QueryMes().setVisible(true);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_queryMouseClicked
 
     /**
      * @param args the command line arguments
@@ -130,9 +130,9 @@ public class QueryAccount extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton query;
     // End of variables declaration//GEN-END:variables
 }

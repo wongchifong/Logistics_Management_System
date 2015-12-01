@@ -5,17 +5,35 @@
  */
 package presentation.financialmanui;
 
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.JOptionPane;
+
+import RMI.client.RMIClient;
+import blservice.financialmanblservice.AccountManageService;
+import presentation.courierui.PriceAndTimeui;
+import vo.financialmanvo.AccountManagevo;
+
 /**
  *
  * @author user
  */
 public class AddAccount extends javax.swing.JFrame {
-
+	 static AccountManageService as;
     /**
      * Creates new form AddAccount
+     * @throws Exception 
      */
-    public AddAccount() {
-        initComponents();
+    public AddAccount() throws Exception {
+    	 initComponents();
+         this.setLocationRelativeTo(null);
+         this.setVisible(true);
+         error.setVisible(false);
+         RMIClient.init();
+         as= RMIClient.getAccountManageService();
+        
     }
 
     /**
@@ -28,15 +46,24 @@ public class AddAccount extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        accountName = new javax.swing.JTextField();
+        OK = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        initMoney = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        error = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("新增账户名称：");
 
-        jButton1.setText("确定");
+        OK.setText("确定");
+        OK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OKMouseClicked(evt);
+            }
+        });
 
         jButton2.setText("退出");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -45,6 +72,13 @@ public class AddAccount extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("设定初始金额：");
+
+        jLabel3.setText("元");
+
+        error.setForeground(new java.awt.Color(255, 0, 0));
+        error.setText("已存在相同账户！");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -52,27 +86,43 @@ public class AddAccount extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(122, 122, 122)
-                        .addComponent(jButton1)
+                        .addComponent(OK)
                         .addGap(37, 37, 37)
-                        .addComponent(jButton2)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(accountName, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                            .addComponent(initMoney))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addComponent(error)))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(21, 21, 21)
+                .addComponent(error)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                    .addComponent(accountName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jLabel2)
+                    .addComponent(initMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(OK)
                     .addComponent(jButton2))
                 .addGap(35, 35, 35))
         );
@@ -85,6 +135,36 @@ public class AddAccount extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
+    private void OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKMouseClicked
+        // TODO add your handling code here:
+    	String mes1=accountName.getText();
+    	String mes2=initMoney.getText();
+    	if(mes1==""||mes2==""){
+    		missMes();//检查输入完整性
+    		return;
+    	}
+    	
+    	AccountManagevo amvo=new AccountManagevo(mes1, mes2);
+    	 try {
+             boolean b = as.getOrder(amvo);
+             if(b){
+                 System.out.println("成功！");
+                 JOptionPane.showMessageDialog(null, "增加账户成功", "成功", 
+                 		JOptionPane.INFORMATION_MESSAGE);
+                 this.dispose();
+             }
+             else{
+                 JOptionPane.showMessageDialog(null, "写入失败", "已存在相同账户！", 
+                 		JOptionPane.ERROR_MESSAGE);
+             }
+             // TODO add your handling code here:
+         } catch (RemoteException ex) {
+             Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }//GEN-LAST:event_OKMouseClicked
+    private void missMes(){
+        JOptionPane.showMessageDialog(null, "信息不完整！请检查输入！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    }
     /**
      * @param args the command line arguments
      */
@@ -115,15 +195,24 @@ public class AddAccount extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddAccount().setVisible(true);
+                try {
+					new AddAccount().setVisible(true);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton OK;
+    private javax.swing.JTextField accountName;
+    private javax.swing.JLabel error;
+    private javax.swing.JTextField initMoney;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

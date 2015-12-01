@@ -5,22 +5,43 @@
  */
 package presentation.administratorui;
 
+import java.rmi.RemoteException;
+
+import javax.swing.JOptionPane;
+
+import RMI.client.RMIClient;
+import blservice.administratorblservice.UserAuthorityManagerService;
+import vo.administratorvo.UserAuthorityManagervo;
+
 /**
  *
  * @author user
  */
 public class ChangeMesui extends javax.swing.JFrame {
+	String Id;
+	String Password;
+	String Name;
+	static UserAuthorityManagerService u;
 
     /**
      * Creates new form ChangeMesui
+     * @throws Exception 
      */
-    public ChangeMesui(String id,String password,String name) {
+    public ChangeMesui(String id,String password,String name) throws Exception {
         initComponents();
+        
+
+        this.Id=id;
+        this.Password=password;
+        this.Name=name;
+       
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.id.setText("账户ID：        "+id);
         this.mm.setText("账户密码：    "+password);
         this.xm.setText("员工姓名：    "+name);
+        RMIClient.init();
+        u= RMIClient.getUserAuthorityManagerService();
     }
 
     /**
@@ -93,7 +114,12 @@ public class ChangeMesui extends javax.swing.JFrame {
         ok.setText("确定");
         ok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                okMouseClicked(evt);
+                try {
+					okMouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -183,14 +209,43 @@ public class ChangeMesui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_kuaiActionPerformed
 
-    private void okMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okMouseClicked
+    private void okMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_okMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_okMouseClicked
-
+    	int type=0;
+    	if(kuai.isSelected()) type=1;
+    	else if(yingywy.isSelected())type=2;
+    	else if(zhongywy.isSelected())type=3;
+    	else if(zhongkc.isSelected())type=4;
+    	else if(yibancwy.isSelected())type=5;
+    	else if(gaojicwy.isSelected())type=6;
+    	else if(zongjl.isSelected())type=7;
+    	else if(guanly.isSelected())type=8;
+    	System.out.println(Id+"   "+Password+"    "+Name+"    "+type);
+    	UserAuthorityManagervo o=new
+    			UserAuthorityManagervo(Id, Password, Name, 0);
+    	UserAuthorityManagervo n=new
+    			UserAuthorityManagervo(Id, Password, Name, type);
+    	
+    	boolean b = u.changeOrder(o,n);
+    	System.out.println("lalalalaalalalal");
+		if(b){
+		    System.out.println("成功！");
+		    JOptionPane.showMessageDialog(null, "修改成功", "成功", 
+		    		JOptionPane.INFORMATION_MESSAGE);
+		    this.dispose();
+		}
+		else{
+		    JOptionPane.showMessageDialog(null, "修改失败", "可能不存在此ID！", 
+		    		JOptionPane.ERROR_MESSAGE);
+		}
+		// TODO add your handling code here:
+       }
+////GEN-LAST:event_okMouseClicked
+//
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_backMouseClicked
+   }//GEN-LAST:event_backMouseClicked
 
     /**
      * @param args the command line arguments

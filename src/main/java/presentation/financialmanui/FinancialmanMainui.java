@@ -177,7 +177,12 @@ public class FinancialmanMainui extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        new SettleAccounts().setVisible(true);
+        try {
+			new SettleAccounts().setVisible(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }//GEN-LAST:event_jButton2MouseClicked
 
     /**

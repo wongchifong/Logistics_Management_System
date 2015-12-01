@@ -6,10 +6,14 @@
 package presentation.administratorui;
 
 import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.JOptionPane;
 
 import RMI.client.RMIClient;
 import blservice.administratorblservice.UserAuthorityManagerService;
-import vo.administratorvo.QueryMesvo;
+import presentation.courierui.PriceAndTimeui;
 import vo.administratorvo.QueryUservo;
 import vo.administratorvo.UserAuthorityManagervo;
 
@@ -19,6 +23,8 @@ import vo.administratorvo.UserAuthorityManagervo;
  */
 public class UserAuthorityManagerui extends javax.swing.JFrame {
 	static UserAuthorityManagerService u;
+	static QueryUservo quvo;
+//	QueryUservo find;
     /**
 	 * 
 	 */
@@ -30,6 +36,7 @@ public class UserAuthorityManagerui extends javax.swing.JFrame {
     public UserAuthorityManagerui( QueryUservo quvo) throws Exception {
         initComponents();
         RMIClient.init();
+        this.quvo=quvo;
         u = RMIClient.getUserAuthorityManagerService();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -123,19 +130,19 @@ public class UserAuthorityManagerui extends javax.swing.JFrame {
         delete.setText("删除当前账号");
         delete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                try {
-					deleteMouseClicked(evt);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                deleteMouseClicked(evt);
             }
         });
 
         modify.setText("修改账户信息");
         modify.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                modifyMouseClicked(evt);
+                try {
+					modifyMouseClicked(evt);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -184,22 +191,37 @@ public class UserAuthorityManagerui extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton3MouseClicked
 
-    private void modifyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyMouseClicked
+    private void modifyMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_modifyMouseClicked
         // TODO add your handling code here:
     	 
         new ChangeMesui(id1.getText(),mima1.getText(),xm1.getText());
     }//GEN-LAST:event_modifyMouseClicked
 
-    private void deleteMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_deleteMouseClicked
-        // TODO add your handling code here:
-//    	UserAuthorityManagervo qvo=new UserAuthorityManagervo(id1.getText(),mima1.getText(), xm1.getText(),0);
-//        boolean quvo=u.deleteOrder(qvo);
-//        if(quvo ==true) {
-//           System.out.println("yes......................");
-//            return;
-//        }
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt)  {//GEN-FIRST:event_deleteMouseClicked
     	
-    }//GEN-LAST:event_deleteMouseClicked
+    	System.out.println("asfdrtyn...............");
+//    	System.out.println(quvo.getRole());
+//    	int type=0;
+    	
+//    	System.out.println(Integer.parseInt(quvo.getRole().toString())+"sfdgfdg");
+    	UserAuthorityManagervo uavo=new UserAuthorityManagervo(quvo.getID(),quvo.getPassword(), quvo.getName(),7);
+//    	System.out.println(Integer.parseInt(zw1.getText())+"zzzzzzzzzzzzzzzzzzz");
+   	 try {
+            boolean b = u.deleteOrder(uavo);
+            if(b){
+                System.out.println("成功！");
+                JOptionPane.showMessageDialog(null, "删除成功", "成功", 
+                		JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "输出失败", "可能存在相同ID！", 
+                		JOptionPane.ERROR_MESSAGE);
+            }
+            // TODO add your handling code here:
+        } catch (RemoteException ex) {
+            Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);}
+        }
 
     /**
      * @param args the command line arguments

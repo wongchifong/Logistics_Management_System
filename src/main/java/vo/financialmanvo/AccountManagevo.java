@@ -9,21 +9,21 @@ public class AccountManagevo implements Serializable {/**
 
 //管理账户
 	
-	String accountName;
+	public String accountName;
 	
-	int money;
+	public String money;
 	
-	public AccountManagevo(String a,int m){
+	public AccountManagevo(String a,String m){
 		accountName=a;
 		money=m;
 	}
 	
-	public String getAccountName(){
-		return accountName;
-	}
-	
-	public int getMoney(){
-		return money;
-	}
+//	public String getAccountName(){
+//		return accountName;
+//	}
+//	
+//	public String getMoney(){
+//		return money;
+//	}
 	
 }
