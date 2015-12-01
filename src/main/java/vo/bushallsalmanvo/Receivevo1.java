@@ -13,18 +13,20 @@ public class Receivevo1 implements Serializable {
 	public final String day;
 	public final String zhongzhuan;
 	public final String chufa;
+	public final String ID;
 
-	public Receivevo1(String y, String m, String d, String z, String c) {
+	public Receivevo1(String y, String m, String d, String z, String c, String t) {
 		// TODO Auto-generated constructor stub
 		year=y;
 		month=m;
 		day=d;
 		zhongzhuan=z;
 		chufa=c;
+		ID=t;
 	}
 
 	public static Receivevo1 getReceiveInformation(){
-		return new Receivevo1(null, null, null, null, null);
+		return new Receivevo1(null, null, null, null, null,null);
 	}
 	
 	public static Sendvo getSendInformation(){
