@@ -39,14 +39,14 @@ public class Staffmodify extends javax.swing.JFrame {
 		worktime.setText(sv.worktime);
 		workunit.setText(sv.workunit);
 		switch(sv.role){
-		case "快递员":courier.setSelected(true);
-		case "司机":driver.setSelected(true);
-		case "营业厅业务员":bushall.setSelected(true);
-		case "中转中心业务员":zhongzhuan.setSelected(true);
-		case "仓库管理员":stockman.setSelected(true);
-		case "财务人员":financialman.setSelected(true);
-		case "管理员":administrater.setSelected(true);
-		case "总经理":manager.setSelected(true);
+		case "快递员":courier.setSelected(true);break;
+		case "司机":driver.setSelected(true);break;
+		case "营业厅业务员":bushall.setSelected(true);break;
+		case "中转中心业务员":zhongzhuan.setSelected(true);break;
+		case "仓库管理员":stockman.setSelected(true);break;
+		case "财务人员":financialman.setSelected(true);break;
+		case "管理员":administrater.setSelected(true);break;
+		case "总经理":manager.setSelected(true);break;
 		}
 	}
 

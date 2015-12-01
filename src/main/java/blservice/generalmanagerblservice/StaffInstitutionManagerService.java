@@ -13,6 +13,8 @@ public interface StaffInstitutionManagerService extends Remote {
        
        public Institutionvo showInstitutions(String id) throws RemoteException;
        
+       public Staffvo[] searchbyrole(String role) throws RemoteException;
+       
        public Staffvo addStaff(Staffvo sv)
     		   throws RemoteException;
        

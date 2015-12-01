@@ -9,13 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataservice.courierdataservice.CourierService;
+import dataservice.generalmanagerdataservice.OrderExamineService;
 import dataservice.otherdataservice.ExpressService;
 import po.courierpo.CourierOrderpo;
 import po.courierpo.ExamineType;
 import po.courierpo.PriceAndTimepo;
 import po.courierpo.ReceiveOrderpo;
 
-public class OrderIO implements CourierService, ExpressService {
+public class OrderIO implements CourierService, ExpressService,OrderExamineService {
 	
 	public boolean writeOrder(CourierOrderpo cpo) throws Exception {
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
@@ -116,4 +117,23 @@ public class OrderIO implements CourierService, ExpressService {
 		return p;
 	}
 
+	@Override
+	public String[] SearchUnchecked() {
+		// TODO Auto-generated method stub
+		String result [] = null;
+		int k=0;
+		try{
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		List<CourierOrderpo> list = (List<CourierOrderpo>) ois.readObject();
+		ois.close();
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getExamineType().equals(ExamineType.NOApproval))
+				result[k]=list.get(i).getID();
+		}
+	}catch(Exception e){
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import po.courierpo.CourierOrderpo;
 import po.generalmanagepo.Institutionpo;
 import po.otherdatapo.Staffpo;
+import vo.generalmanagervo.Staffvo;
 import dataservice.generalmanagerdataservice.Staffservice;
 
 public class Staff implements Staffservice{
@@ -44,8 +45,7 @@ public class Staff implements Staffservice{
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			@SuppressWarnings("unchecked")
 			List<Staffpo> result = (List<Staffpo>) ois.readObject();
-			for(int i=0;i<result.size();i++){
-				System.out.println(result.get(i).getID());
+			for(int i=0;i<result.size();i++){			
 				if(result.get(i).getID().equals(id)){
 				System.out.println("Find Staff!");
 					return (Staffpo)result.get(i);
@@ -99,7 +99,6 @@ public class Staff implements Staffservice{
 				    result.add(ip);
 				    System.out.println("Modify Staff!");
 				}
-				System.out.println("No find old one");
 			}
 			FileOutputStream fos = 
 					new FileOutputStream("src/main/java/data/save/staff.txt");
@@ -110,6 +109,38 @@ public class Staff implements Staffservice{
 				e.printStackTrace();
 			}	
 	}
+	
+	public Staffpo[] searchbyrole(String role) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/staff.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<Staffpo> result = (List<Staffpo>) ois.readObject();
+			ois.close();
+			
+			int k=0;
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).role.equals(role)){
+	                    k++;
+				}
+			}
+				Staffpo[] sp = new Staffpo[k];
+				int p =0;
+			for(int i=0;i<result.size();i++){
+				if(result.get(i).role.equals(role)){
+					sp[p]=result.get(i);
+					p++;
+				}
+			}
+			return sp;
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+		return null;
+	}
+	
 	
 	public static void write() throws Exception {
 		FileOutputStream fos = 
@@ -128,5 +159,6 @@ public class Staff implements Staffservice{
 		List<Staffpo> list = (List<Staffpo>) ois.readObject();
 		ois.close();
 	}
-	
+
+
 }

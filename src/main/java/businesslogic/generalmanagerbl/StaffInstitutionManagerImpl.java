@@ -86,5 +86,18 @@ public class StaffInstitutionManagerImpl extends UnicastRemoteObject implements 
 	}
 
 
-	
-}
+	@Override
+	public Staffvo[] searchbyrole(String role) throws RemoteException{
+		// TODO Auto-generated method stub
+		Staffservice ss = new Staff();
+		Staffpo[] sp = ss.searchbyrole(role);
+		if(sp==null)  return null;
+		else{
+			Staffvo[] sv = new Staffvo[sp.length];
+			for(int i=0;i<sp.length;i++){
+				Staffvo s = sp[i].getStaff();
+				sv[i]= s;
+			}
+			return sv;
+		}	
+	}}

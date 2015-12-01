@@ -13,7 +13,7 @@ public class Staffpo implements Serializable{
 	String name;
 	String worktime;       //yyyy-mm-dd
 	String workunit;
-	String role;
+	public String role;
 	
 	public Staffpo(Staffvo sv) {
 		// TODO Auto-generated constructor stub

@@ -7,6 +7,9 @@ package presentation.generalmanagerui;
 
 import java.rmi.RemoteException;
 
+import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
+
 import vo.generalmanagervo.Staffvo;
 import blservice.generalmanagerblservice.StaffInstitutionManagerService;
 import RMI.client.RMIClient;
@@ -23,6 +26,7 @@ public class StaffManageui extends javax.swing.JFrame {
      */
 	
 	static StaffInstitutionManagerService sims;
+	
     public StaffManageui() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -31,6 +35,22 @@ public class StaffManageui extends javax.swing.JFrame {
         sims = RMIClient.getStaffInstitutionManagerService();
     }
 
+   private void roleSearch(Staffvo[] sv){
+	   final String s[] = new String [100];
+	   if(sv!=null){	   
+	   for(int i=0;i<sv.length;i++){
+		   s[i]=sv[i].role+"      "+sv[i].name+"     "+sv[i].id+"       "+sv[i].worktime+"    "+sv[i].workunit;
+	   }
+	   jList1.setModel(new javax.swing.AbstractListModel() {
+           String[] strings = s;
+           public int getSize() { return strings.length; }
+           public Object getElementAt(int i) { return strings[i]; }
+       });
+	   jList1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    jScrollPane1.setViewportView(jList1);
+	    }
+	  // Searchresult.setText(s);
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,8 +70,10 @@ public class StaffManageui extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        Searchresult = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
         administrater = new javax.swing.JButton();
         ID = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -77,35 +99,60 @@ public class StaffManageui extends javax.swing.JFrame {
         driver.setText("司机");
         driver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                driverMouseClicked(evt);
+                try {
+					driverMouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
         bushall.setText("营业厅业务员");
         bushall.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bushallMouseClicked(evt);
+                try {
+					bushallMouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
         zhongzhuan.setText("中转中心业务员");
         zhongzhuan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                zhongzhuanMouseClicked(evt);
+                try {
+					zhongzhuanMouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
         stockman.setText("库存管理员");
         stockman.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                stockmanMouseClicked(evt);
+                try {
+					stockmanMouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
         financialman.setText("财务人员");
         financialman.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                financialmanMouseClicked(evt);
+                try {
+					financialmanMouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -117,24 +164,25 @@ public class StaffManageui extends javax.swing.JFrame {
 
         jLabel2.setText("姓名");
 
+        jLabel1.setText("编号");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel3)
-                .addGap(52, 52, 52)
-                .addComponent(jLabel2)
-                .addGap(46, 46, 46)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(jLabel5)
-                .addContainerGap(71, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Searchresult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel3)
+                .addGap(29, 29, 29)
+                .addComponent(jLabel2)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel5)
+                .addContainerGap(79, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,16 +192,22 @@ public class StaffManageui extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Searchresult, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                .addGap(12, 12, 12))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         administrater.setText("管理员");
         administrater.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                administraterMouseClicked(evt);
+                try {
+					administraterMouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -189,9 +243,6 @@ public class StaffManageui extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 try {
 					searchMouseClicked(evt);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -200,6 +251,16 @@ public class StaffManageui extends javax.swing.JFrame {
         });
 
         jButton1.setText("总经理");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                try {
+					jButton1MouseClicked(evt);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -223,7 +284,7 @@ public class StaffManageui extends javax.swing.JFrame {
                         .addComponent(jLabel6)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -295,30 +356,42 @@ public class StaffManageui extends javax.swing.JFrame {
 
     private void courierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_courierMouseClicked
         // TODO add your handling code here:
+    	try {
+			roleSearch(sims.searchbyrole("快递员"));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }//GEN-LAST:event_courierMouseClicked
 
-    private void driverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_driverMouseClicked
+    private void driverMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_driverMouseClicked
         // TODO add your handling code here:
+    	roleSearch(sims.searchbyrole("司机"));
     }//GEN-LAST:event_driverMouseClicked
 
-    private void bushallMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bushallMouseClicked
+    private void bushallMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_bushallMouseClicked
         // TODO add your handling code here:
+    	roleSearch(sims.searchbyrole("营业厅业务员"));
     }//GEN-LAST:event_bushallMouseClicked
 
-    private void zhongzhuanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zhongzhuanMouseClicked
+    private void zhongzhuanMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_zhongzhuanMouseClicked
         // TODO add your handling code here:
+    	roleSearch(sims.searchbyrole("中转中心业务员"));
     }//GEN-LAST:event_zhongzhuanMouseClicked
 
-    private void stockmanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stockmanMouseClicked
+    private void stockmanMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_stockmanMouseClicked
         // TODO add your handling code here:
+    	roleSearch(sims.searchbyrole("仓库管理员"));
     }//GEN-LAST:event_stockmanMouseClicked
 
-    private void financialmanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_financialmanMouseClicked
+    private void financialmanMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_financialmanMouseClicked
         // TODO add your handling code here:
+    	roleSearch(sims.searchbyrole("财务人员"));
     }//GEN-LAST:event_financialmanMouseClicked
 
-    private void administraterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_administraterMouseClicked
+    private void administraterMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_administraterMouseClicked
         // TODO add your handling code here:
+    	roleSearch(sims.searchbyrole("管理员"));
     }//GEN-LAST:event_administraterMouseClicked
 
     private void searchMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_searchMouseClicked
@@ -326,6 +399,11 @@ public class StaffManageui extends javax.swing.JFrame {
     	Staffvo sv = sims.showStaffRole(ID.getText());
     	new Staffsearch(sv).setVisible(true);
     }//GEN-LAST:event_searchMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        roleSearch(sims.searchbyrole("总经理"));
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -372,7 +450,6 @@ public class StaffManageui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ID;
-    private javax.swing.JLabel Searchresult;
     private javax.swing.JButton add;
     private javax.swing.JButton administrater;
     private javax.swing.JButton bushall;
@@ -380,13 +457,16 @@ public class StaffManageui extends javax.swing.JFrame {
     private javax.swing.JButton driver;
     private javax.swing.JButton financialman;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton search;
     private javax.swing.JButton stockman;
     private javax.swing.JButton zhongzhuan;

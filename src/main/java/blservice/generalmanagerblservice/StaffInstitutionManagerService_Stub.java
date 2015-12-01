@@ -67,5 +67,11 @@ public class StaffInstitutionManagerService_Stub implements StaffInstitutionMana
 		
 	}
 
+	@Override
+	public Staffvo[] searchbyrole(String role) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
