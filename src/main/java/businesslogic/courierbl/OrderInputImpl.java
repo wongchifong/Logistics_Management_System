@@ -14,8 +14,11 @@ import vo.couriervo.PriceAndTimevo;
 
 public class OrderInputImpl extends UnicastRemoteObject implements OrderInputService {
 
+	CourierService cs;
+	
 	public OrderInputImpl() throws RemoteException {
 		super();
+		cs = new OrderIO();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -23,7 +26,6 @@ public class OrderInputImpl extends UnicastRemoteObject implements OrderInputSer
 		// TODO Auto-generated method stub
             System.out.println(o.sender.name + o.sender.address + 
             		o.sender.company);
-            CourierService cs = new OrderIO();
             try {
 				if(cs.writeOrder(new CourierOrderpo(o, p)))
 					return true;
@@ -49,5 +51,14 @@ public class OrderInputImpl extends UnicastRemoteObject implements OrderInputSer
 		return false;
 	}
 
+	public boolean writeHistory(String ID , String history){
+		try {
+			return cs.addHistory(ID , history);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 }

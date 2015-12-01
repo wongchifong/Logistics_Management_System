@@ -24,4 +24,5 @@ public interface CourierService {
 
 	public CourierOrderpo search(String id) throws Exception;
 
+	boolean addHistory(String ID , String h) throws Exception;
 }
