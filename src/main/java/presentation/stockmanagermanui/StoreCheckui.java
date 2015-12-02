@@ -46,8 +46,8 @@ public class StoreCheckui extends javax.swing.JFrame {
  	   if(sv!=null){	   
  	   for(int i=0;i<sv.length;i++){
  		   s[i]=sv[i].bianhao+"      "+sv[i].destination+"     		   "+sv[i].year+"-"+sv[i].month
- 				   +"-"+sv[i].day+"     "+sv[i].quhao+"       	          	    "
- 	   +sv[i].paihao+"    	          		      "+sv[i].jiahao+"	  	       				            "+sv[i].weihao;
+ 				   +"-"+sv[i].day+"        "+sv[i].quhao+"       	          	"
+ 	   +sv[i].paihao+"    	          		"+sv[i].jiahao+"	  	       				      "+sv[i].weihao;
  	   }
  	   jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = s;
