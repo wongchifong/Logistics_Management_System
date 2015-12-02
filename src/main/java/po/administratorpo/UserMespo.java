@@ -14,10 +14,12 @@ public class UserMespo implements Serializable{
 	final String name;
 	final String password;
 	final Rolepo role;//这里的role考虑用UserRole类型
+	final int type;
 	public UserMespo(UserAuthorityManagervo user){
 		id=user.ID;
 		name=user.Name;
 		password=user.Mima;
+		type=user.Type;
 		if(user.Type==1) role = Rolepo.kdy;
 		else if(user.Type==2) role=Rolepo.yytywy;
 		else if(user.Type==3) role=Rolepo.zzzxywy;
@@ -44,5 +46,10 @@ public class UserMespo implements Serializable{
 	public Rolepo getRole(){
 		return role;
 		
+	}
+
+	public UserAuthorityManagervo geUser() {
+		// TODO Auto-generated method stub
+		return new UserAuthorityManagervo(name, id, password, type);
 	}
 }

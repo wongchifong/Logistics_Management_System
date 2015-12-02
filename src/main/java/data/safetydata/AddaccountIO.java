@@ -9,6 +9,7 @@ import java.util.List;
 
 import dataservice.administratordataservice.AdministratorService;
 import po.administratorpo.UserMespo;
+import po.otherdatapo.Staffpo;
 import vo.administratorvo.UserAuthorityManagervo;
 
 
@@ -122,6 +123,37 @@ public class AddaccountIO implements AdministratorService {
 				e.printStackTrace();
 			}
 		return true;
+	}
+	@Override
+	public UserMespo[] AllSearch() throws Exception {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = 
+					new FileInputStream("src/main/java/data/save/UserMes.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			@SuppressWarnings("unchecked")
+			List<UserMespo> result = (List<UserMespo>) ois.readObject();
+			ois.close();
+			
+//			int k=0;
+//			for(int i=0;i<result.size();i++){
+//				if(result.get(i).role.equals(role)){
+//	                    k++;
+//				}
+//			}
+			UserMespo[] up = new UserMespo[result.size()];
+//				int p =0;
+			for(int i=0;i<result.size();i++){
+				
+					up[i]=result.get(i);
+					
+				
+			}
+			return up;
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+		return null;
 	}
 	
 	

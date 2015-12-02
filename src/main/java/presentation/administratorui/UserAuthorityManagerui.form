@@ -133,7 +133,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x5458;&#x5de5;&#x804c;&#x4f4d;&#xff1a;"/>
+            <Property name="text" type="java.lang.String" value="&#x5458;&#x5de5;&#x6743;&#x9650;&#xff1a;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="id1">

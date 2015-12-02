@@ -18,4 +18,5 @@ public interface UserAuthorityManagerService extends Remote {
 //	
 //	public boolean changeOrder(UserAuthorityManagervo uavo)throws RemoteException;
 	public boolean changeOrder(UserAuthorityManagervo o, UserAuthorityManagervo n)throws RemoteException;
+	public UserAuthorityManagervo[] searchAll() throws RemoteException;
 }

@@ -10,6 +10,7 @@ import po.administratorpo.UserMespo;
 import vo.administratorvo.QueryMesvo;
 import vo.administratorvo.QueryUservo;
 import vo.administratorvo.UserAuthorityManagervo;
+import vo.generalmanagervo.Staffvo;
 
 public class UserAuthorityManagerImpl extends UnicastRemoteObject implements UserAuthorityManagerService {
 
@@ -113,6 +114,32 @@ public class UserAuthorityManagerImpl extends UnicastRemoteObject implements Use
 		}
         return false;
 	}
+
+	@Override
+	public UserAuthorityManagervo[] searchAll()throws RemoteException {
+		// TODO Auto-generated method stub
+		AdministratorService as=new AddaccountIO();
+		UserMespo[] up;
+		try {
+			up = as.AllSearch();
+			if(up==null)  return null;
+			else{
+				UserAuthorityManagervo[] uv = new UserAuthorityManagervo[up.length];
+				for(int i=0;i<up.length;i++){
+					UserAuthorityManagervo s = up[i].geUser();
+					uv[i]= s;
+				}
+				return uv;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+		}
+		
+	
 
 //	public void deleteUser(UserAuthorityManagervo find) throws RemoteException {
 //		// TODO Auto-generated method stub

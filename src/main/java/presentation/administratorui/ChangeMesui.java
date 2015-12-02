@@ -80,7 +80,7 @@ public class ChangeMesui extends javax.swing.JFrame {
 
         xm.setText("员工姓名：");
 
-        jLabel4.setText("员工职位：");
+        jLabel4.setText("员工权限：");
 
         buttonGroup1.add(kuai);
         kuai.setText("快递员");
@@ -159,7 +159,6 @@ public class ChangeMesui extends javax.swing.JFrame {
                                 .addGap(48, 48, 48)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(zhongywy)
                                     .addComponent(zongjl))
@@ -170,7 +169,7 @@ public class ChangeMesui extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
                                 .addComponent(back)))))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

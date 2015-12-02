@@ -31,5 +31,10 @@ public class UserAuthorityManagerService_Stub implements UserAuthorityManagerSer
 		// TODO Auto-generated method stub
 		return false;
 	}
+	@Override
+	public UserAuthorityManagervo[] searchAll() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

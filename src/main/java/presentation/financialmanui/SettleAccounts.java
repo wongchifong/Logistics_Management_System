@@ -165,7 +165,12 @@ public class SettleAccounts extends javax.swing.JFrame {
         create.setText("新建");
         create.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                createMouseClicked(evt);
+                try {
+					createMouseClicked(evt);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -181,7 +186,7 @@ public class SettleAccounts extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 try {
 					saveMouseClicked(evt);
-				} catch (RemoteException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -224,11 +229,13 @@ public class SettleAccounts extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_exitMouseClicked
 
-    private void createMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createMouseClicked
+    private void createMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_createMouseClicked
         // TODO add your handling code here:
+    	this.dispose();
+    	new SettleAccounts().setVisible(true);
     }//GEN-LAST:event_createMouseClicked
 
-    private void saveMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_saveMouseClicked
+    private void saveMouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_saveMouseClicked
         // TODO add your handling code here:
     	
     	Datevo paydv=new Datevo(year.getText(),month.getText(),day.getText());
@@ -241,7 +248,8 @@ public class SettleAccounts extends javax.swing.JFrame {
              System.out.println("成功！");
              JOptionPane.showMessageDialog(null, "写入成功", "成功", 
              		JOptionPane.INFORMATION_MESSAGE);
-             this.dispose();
+//             this.dispose();
+             new SettleAccounts().setVisible(true);
          }
          else{
              JOptionPane.showMessageDialog(null, "写入失败", "可能存在相同订单！", 

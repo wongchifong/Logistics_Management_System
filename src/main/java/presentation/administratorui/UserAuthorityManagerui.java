@@ -81,7 +81,7 @@ public class UserAuthorityManagerui extends javax.swing.JFrame {
 
         jLabel3.setText("员工姓名：");
 
-        jLabel4.setText("员工职位：");
+        jLabel4.setText("员工权限：");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -197,7 +197,7 @@ public class UserAuthorityManagerui extends javax.swing.JFrame {
         new ChangeMesui(id1.getText(),mima1.getText(),xm1.getText());
     }//GEN-LAST:event_modifyMouseClicked
 
-    private void deleteMouseClicked(java.awt.event.MouseEvent evt)  {//GEN-FIRST:event_deleteMouseClicked
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt)  {                                    
     	
     	System.out.println("asfdrtyn...............");
 //    	System.out.println(quvo.getRole());
