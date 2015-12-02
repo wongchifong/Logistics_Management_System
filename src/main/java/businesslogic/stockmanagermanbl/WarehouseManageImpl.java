@@ -10,7 +10,9 @@ import dataservice.stockmanagermandataservice.StockManagermanService;
 import po.bushallsalmanpo.CarLoadingpo;
 import po.stockmanagermanpo.InStoringpo;
 import po.stockmanagermanpo.OutStoringpo;
+import po.stockmanagermanpo.StoreCheckpo;
 import po.stockmanagermanpo.Warningpo;
+import vo.generalmanagervo.Staffvo;
 import vo.stocmanagermanvo.Instockvo;
 import vo.stocmanagermanvo.Kuaidivo;
 import vo.stocmanagermanvo.Outstockvo;
@@ -83,14 +85,21 @@ public class WarehouseManageImpl extends UnicastRemoteObject implements Warehous
 	}
 
 
-	public StoreCheckvo search() throws RemoteException {
+	public StoreCheckvo[] search() throws RemoteException {
 		// TODO Auto-generated method stub
 		StockManagermanService sms = new Storing();
-		List<InStoringpo> io;
-		try{
-			io=sms.search();
-			return new StoreCheckvo(io);
-		}catch (Exception e) {
+		try {
+			InStoringpo[] sp =sms.search();
+			if(sp==null) return null;
+			else{
+				StoreCheckvo[] sv=new StoreCheckvo[sp.length];
+				for(int i=0;i<sp.length;i++){
+					StoreCheckvo s = sp[i].getHuo();
+					sv[i]= s;
+				}
+				return sv;
+			}
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

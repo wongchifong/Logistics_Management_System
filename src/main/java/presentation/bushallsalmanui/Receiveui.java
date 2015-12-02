@@ -220,7 +220,7 @@ public class Receiveui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void jButton1ActionPerformed(ActionEvent evt) {
     	// TODO Auto-generated method stub
-    	Receivevo1 receive1 = new Receivevo1(year.getText(),month.getText(),day.getText(),zhongzhuan.getText(),chufa.getText());
+    	Receivevo1 receive1 = new Receivevo1(year.getText(),month.getText(),day.getText(),zhongzhuan.getText(),chufa.getText(),tiaoxingma.getText());
     	
     	int zhuangtai=1;
     	 if(jRadioButton1.isSelected()) zhuangtai = 1;

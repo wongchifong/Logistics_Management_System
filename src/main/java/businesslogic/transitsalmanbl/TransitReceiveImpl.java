@@ -3,7 +3,10 @@ package businesslogic.transitsalmanbl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import blservice.courierblservice.ReceiveMesService;
 import blservice.transitsalmanblservice.TransitReceiveService;
+import businesslogic.courierbl.ReceiveMesImpl;
+import vo.queryvo.QueryOrdervo;
 import vo.transitmanvo.TransitReceivevo;
 
 public class TransitReceiveImpl extends UnicastRemoteObject implements TransitReceiveService {
@@ -13,9 +16,16 @@ public class TransitReceiveImpl extends UnicastRemoteObject implements TransitRe
 		// TODO Auto-generated constructor stub
 	}
 
-	public TransitReceivevo getReceive() throws RemoteException {
+	public boolean getReceive(TransitReceivevo t) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
+	}
+
+	public boolean checkDate(TransitReceivevo t, QueryOrdervo qvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		ReceiveMesService rms = new ReceiveMesImpl();
+		
+		return rms.checkDateE(t.date, qvo);
 	}
 
 }

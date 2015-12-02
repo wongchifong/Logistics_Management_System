@@ -60,6 +60,8 @@ public class CashRegisterui extends javax.swing.JFrame {
         tiaoxingma = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        ID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,7 +84,6 @@ public class CashRegisterui extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
-
         });
 
         jButton2.setText("退出");
@@ -91,9 +92,9 @@ public class CashRegisterui extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
 
-
         });
-        
+
+        jLabel8.setText("营业厅编号：");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,20 +118,22 @@ public class CashRegisterui extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
+                        .addGap(50, 50, 50)
                         .addComponent(jButton1)
-                        .addGap(18, 18, 18)
+                        .addGap(42, 42, 42)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(kuaidiyuan)
                             .addComponent(money)
-                            .addComponent(tiaoxingma, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))))
+                            .addComponent(tiaoxingma, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                            .addComponent(ID))))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -157,11 +160,15 @@ public class CashRegisterui extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(tiaoxingma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(51, 51, 51))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addGap(39, 39, 39))
         );
 
         pack();
@@ -173,10 +180,15 @@ public class CashRegisterui extends javax.swing.JFrame {
     }
     private void jButton1ActionPerformed(ActionEvent evt) {
     	// TODO Auto-generated method stub
-    	CashRegistervo cashRegister=new CashRegistervo(year.getText(),month.getText(),day.getText(),money.getText(),kuaidiyuan.getText(),tiaoxingma.getText());
+    	CashRegistervo cashRegister=new CashRegistervo(year.getText(),month.getText(),day.getText(),money.getText(),kuaidiyuan.getText(),tiaoxingma.getText(),ID.getText());
         String tiaoxingmaID="";
         if((tiaoxingmaID=tiaoxingma.getText()).equals("")||tiaoxingmaID.length()!=10){
         	errortiaoxingmaID();
+        	return;
+        }
+        String yID="";
+        if((yID=ID.getText()).equals("")||yID.length()!=6){
+        	erroryID();
         	return;
         }
         try {
@@ -195,7 +207,12 @@ public class CashRegisterui extends javax.swing.JFrame {
                 Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
-    private void errortiaoxingmaID() {
+    private void erroryID() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "营业厅编号输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void errortiaoxingmaID() {
 		// TODO Auto-generated method stub
     	JOptionPane.showMessageDialog(null, "条形码号输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}
@@ -241,6 +258,7 @@ public class CashRegisterui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ID;
     private javax.swing.JTextField day;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -251,6 +269,7 @@ public class CashRegisterui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField kuaidiyuan;
     private javax.swing.JTextField money;
     private javax.swing.JTextField month;

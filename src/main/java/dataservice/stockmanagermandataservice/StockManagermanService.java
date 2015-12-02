@@ -4,6 +4,7 @@ import java.util.List;
 
 import po.stockmanagermanpo.InStoringpo;
 import po.stockmanagermanpo.OutStoringpo;
+import po.stockmanagermanpo.StoreCheckpo;
 import po.stockmanagermanpo.Warningpo;
 
 public interface StockManagermanService {
@@ -16,5 +17,5 @@ public interface StockManagermanService {
 	
 	public boolean initialize() throws Exception;
 	
-	public List<InStoringpo> search() throws Exception;
+	public InStoringpo[] search() throws Exception;
 }

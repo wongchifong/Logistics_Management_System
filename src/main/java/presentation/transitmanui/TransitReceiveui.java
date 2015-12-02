@@ -7,7 +7,15 @@ package presentation.transitmanui;
 
 import RMI.client.RMIClient;
 import blservice.courierblservice.OrderInputService;
+import blservice.queryblservice.QueryService;
 import blservice.transitsalmanblservice.TransitReceiveService;
+import vo.couriervo.Datevo;
+import vo.queryvo.QueryOrdervo;
+import vo.queryvo.Queryvo;
+import vo.transitmanvo.TransitReceivevo;
+
+import java.rmi.RemoteException;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +31,8 @@ public class TransitReceiveui extends javax.swing.JFrame {
     
     static OrderInputService ois;
     
+    static QueryService q;
+    
     public TransitReceiveui() {
         initComponents();
         this.setVisible(true);
@@ -30,6 +40,7 @@ public class TransitReceiveui extends javax.swing.JFrame {
         
         trs = RMIClient.getTransitReceiveService();
         ois = RMIClient.getOrderInputService();
+        q = RMIClient.getQueryService();
     }
 
     /**
@@ -228,11 +239,73 @@ public class TransitReceiveui extends javax.swing.JFrame {
             errorcenID();
             return;
         }
+        try{
+        	Datevo date = new Datevo(Integer.parseInt(jTextField2.getText()), 
+    				Integer.parseInt(jTextField3.getText()),
+    				Integer.parseInt(jTextField4.getText()));
+    		if(date.day < 1 || date.day > 31 || 
+    				date.month < 1 || date.month > 12
+    				|| date.year < 1)
+    			throw new NumberFormatException();
+    		
+    		QueryOrdervo qovo;
+    		
+    		try {
+				if((qovo = q.checkOrder(new Queryvo(ID))) == null){
+					noOrder();
+					return;
+				}
+				int type;
+				if(jRadioButton1.isSelected()) type = 1;
+				else if(jRadioButton2.isSelected()) type = 2;
+				else type = 3;
+				TransitReceivevo trvo = new TransitReceivevo(cenID , date, ID , 
+						jTextField6.getText() , type);
+				if(!trs.checkDate(trvo , qovo)){
+					dateError2();
+					return;
+				}
+				if(trs.getReceive(trvo)){
+					success();
+					return;
+				}
+				else {
+					fail();
+					return;
+				}
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }catch(NumberFormatException e){
+        	dateError();
+        }
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
     
-    private void errorcenID() {
+    private void dateError2() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "日期早于订单输入日期！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void fail() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "该单据还未审批，生成接收单失败！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void success() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "已生成接收单！", "输入有误", JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	private void noOrder() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "查不到该订单！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private void errorcenID() {
 		// TODO Auto-generated method stub
     	JOptionPane.showMessageDialog(null, "中转中心编号输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}
@@ -240,6 +313,11 @@ public class TransitReceiveui extends javax.swing.JFrame {
 	private void errorID(){
         JOptionPane.showMessageDialog(null, "条形码输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
     }
+	
+	private void dateError() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "日期格式输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
     /**
      * @param args the command line arguments
      */

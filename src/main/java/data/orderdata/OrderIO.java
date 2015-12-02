@@ -116,6 +116,13 @@ public class OrderIO implements CourierService, ExpressService,OrderExamineServi
 		p.price = 50;
 		return p;
 	}
+	
+	public boolean addHistory(String ID , String history) throws Exception{
+		CourierOrderpo po = this.search(ID);
+		if(po == null) return false;
+		po.getHistory().add(history);
+		return true;
+	}
 
 	@Override
 	public String[] SearchUnchecked() {

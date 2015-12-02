@@ -15,6 +15,7 @@ public class ReceiveOrderpo1 implements Serializable{
 	public final String day;
 	public final String zhongzhuan;
 	public final String chufa;
+	public final String ID;
 	
 	public ReceiveOrderpo1(Receivevo1 r1){
 		year=r1.year;
@@ -22,5 +23,6 @@ public class ReceiveOrderpo1 implements Serializable{
 		day=r1.day;
 		zhongzhuan=r1.zhongzhuan;
 		chufa=r1.chufa;
+		ID=r1.ID;
 	}
 }
