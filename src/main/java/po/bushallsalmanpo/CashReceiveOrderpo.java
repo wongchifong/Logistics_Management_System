@@ -14,8 +14,10 @@ public class CashReceiveOrderpo implements Serializable{
 	public final String year;
 	public final String month;
 	public final String day;
+	public final String money;
 	public final String kuaidiyuan;
 	public final String tiaoxingma;
+	public final String ID;
 	
 	final CrExamineType cre;
 	
@@ -24,8 +26,10 @@ public class CashReceiveOrderpo implements Serializable{
 		year=cr.year;
 		month=cr.month;
 		day=cr.day;
+		money=cr.money;
 		kuaidiyuan=cr.kuaidiyuan;
 		tiaoxingma=cr.tiaoxingma;
+		ID=cr.ID;
 		
 		cre=CrExamineType.NOApproval;
 		

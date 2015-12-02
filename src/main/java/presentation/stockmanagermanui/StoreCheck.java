@@ -95,8 +95,13 @@ public class StoreCheck extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     	try {
-			StoreCheckvo scvo = wms.search();
-			new StoreCheckui(scvo);
+			StoreCheckvo[] scvo = wms.search();
+			try {
+				new StoreCheckui(scvo);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

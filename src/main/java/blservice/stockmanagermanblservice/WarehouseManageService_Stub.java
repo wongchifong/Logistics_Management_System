@@ -69,7 +69,7 @@ public class WarehouseManageService_Stub implements WarehouseManageService{
 		return false;
 	}
 
-	public StoreCheckvo search() throws RemoteException {
+	public StoreCheckvo[] search() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

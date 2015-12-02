@@ -18,7 +18,7 @@ public interface WarehouseManageService extends Remote {
 	
 	public boolean in(Kuaidivo kd,Weizhivo wz) throws RemoteException;
 	
-	public StoreCheckvo search() throws RemoteException;
+	public StoreCheckvo[] search() throws RemoteException;
 	
 	public boolean set(WarehouseWarningvo warning) throws RemoteException;
 	

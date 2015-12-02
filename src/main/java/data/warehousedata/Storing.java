@@ -14,10 +14,12 @@ import po.bushallsalmanpo.CarLoadingpo;
 import po.bushallsalmanpo.ClExamineType;
 import po.courierpo.CourierOrderpo;
 import po.generalmanagepo.Institutionpo;
+import po.otherdatapo.Staffpo;
 import po.stockmanagermanpo.InStoringpo;
 import po.stockmanagermanpo.IsExamineType;
 import po.stockmanagermanpo.OsExamineType;
 import po.stockmanagermanpo.OutStoringpo;
+import po.stockmanagermanpo.StoreCheckpo;
 import po.stockmanagermanpo.Warningpo;
 
 public class Storing implements StockManagermanService {
@@ -152,18 +154,21 @@ public class Storing implements StockManagermanService {
 		return true;
 	}
 
-	public List<InStoringpo> search() throws Exception {
+	public InStoringpo[] search() throws Exception {
 		// TODO Auto-generated method stub
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/instock.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
 		List<InStoringpo> list = (List<InStoringpo>) ois.readObject();
 		ois.close();
 		System.out.println("find");
-//		for(int i = 0; i < list.size(); i++){
-////			if(list.get(i).getID().equals(ID))
-//				return list.get(i);
-//		}
-		return list;
+		
+		InStoringpo[] sp = new InStoringpo[list.size()];
+		for(int i=0;i<list.size();i++){
+				sp[i]=list.get(i);	
+		}
+		return sp;
+		
 	
 	}
 

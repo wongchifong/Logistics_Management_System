@@ -11,33 +11,50 @@ public class StoreCheckvo implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -5207751139013560124L;
-    private InStoringpo io;
+	public String bianhao;
+	public String destination;
+	public String year;
+	public String month;
+	public String day;
+	public String quhao;
+	public String paihao;
+	public String jiahao;
+	public String weihao;
     
-    public StoreCheckvo(List<InStoringpo> io2){
- //   	this.io=io2;
+    public StoreCheckvo(String b,String dt,String y,String m,String da,String q,String p,String j,String w){
+    	bianhao=b;
+    	destination=dt;
+    	year=y;
+    	month=m;
+    	day=da;
+    	quhao=q;
+    	paihao=p;
+    	jiahao=j;
+    	weihao=w;
+
     }
     
     public String getBianhao(){
-    	return io.getKuaidi().bianhao;
+    	return bianhao;
     }
     
     public String getDestination(){
-    	return io.getKuaidi().destination;
+    	return destination;
     }
     
     public String getQuhao(){
-    	return io.getWeizhi().quhao;
+    	return quhao;
     }
     
     public String getPaihao(){
-    	return io.getWeizhi().paihao;
+    	return paihao;
     }
     
     public String getJiahao(){
-    	return io.getWeizhi().jiahao;
+    	return jiahao;
     }
     
     public String getWeihao(){
-    	return io.getWeizhi().weihao;
+    	return weihao;
     }
 }
