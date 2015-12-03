@@ -287,7 +287,7 @@ public class TransitReceiveui extends javax.swing.JFrame {
     
     private void dateError2() {
 		// TODO Auto-generated method stub
-    	JOptionPane.showMessageDialog(null, "日期早于订单输入日期！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    	JOptionPane.showMessageDialog(null, "日期早于订单输入日期或晚于当前日期！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}
 
 	private void fail() {

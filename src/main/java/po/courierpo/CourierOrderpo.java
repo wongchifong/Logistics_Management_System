@@ -31,7 +31,7 @@ public class CourierOrderpo  implements Serializable{
 	final PackingTypepo pt;
 	final ExpressTypepo et;
 	List<String> history;
-	final ExamineType ext;
+	public ExamineType ext;
 	public final Date date;
 	public Datepo receiveDate;
 	public String receiver;
