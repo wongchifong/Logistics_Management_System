@@ -3,6 +3,7 @@ package po.bushallsalmanpo;
 import java.io.Serializable;
 
 import vo.bushallsalmanvo.CashRegistervo;
+import vo.financialmanvo.RecieveListvo;
 
 public class CashReceiveOrderpo implements Serializable{
 
@@ -38,5 +39,10 @@ public class CashReceiveOrderpo implements Serializable{
 	public CrExamineType getExamineType() {
         return cre;
     }
+
+	public RecieveListvo getRecieveList() {
+		// TODO Auto-generated method stub
+		return (new RecieveListvo(year, month, day, money, kuaidiyuan, tiaoxingma, ID));
+	}
 
 }
