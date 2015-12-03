@@ -15,4 +15,15 @@ public interface OrderExamineService extends Remote {
 
 	public void disapprove(String type,String identifier,Staffvo operator)
 	        throws RemoteException;
+	
+	public String[] showexpressorder() throws RemoteException;
+	public String[] showcarloadingorder() throws RemoteException;
+	public String[] showyingyetingorder() throws RemoteException;
+	public String[] showshoukuanorder() throws RemoteException;
+	public String[] showzhongzhuanorder() throws RemoteException;
+	public String[] showpaijianorder() throws RemoteException;
+	public String[] showzhongzhuanzhongxinorder() throws RemoteException;
+	public String[] showinstockorder() throws RemoteException;
+	public String[] showoutstockorder() throws RemoteException;
+	public String[] showpaymentorder() throws RemoteException;
 }

@@ -1,6 +1,6 @@
 package dataservice.generalmanagerdataservice;
 
-public interface OrderExamineService {
+public interface OrderService {
 
 	String[] SearchUnchecked();
 	

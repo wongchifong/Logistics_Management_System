@@ -1,4 +1,4 @@
-package data.orderdata;
+﻿package data.orderdata;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -146,9 +146,8 @@ public class OrderIO implements TransitManService, CourierService, ExpressServic
 
 	@Override
 	public String[] SearchUnchecked() {
-		// TODO Auto-generated method stub
-		String result [] = null;
-		int k=0;
+		// TODO Auto-generated method stub	
+		int count=0;
 		try{
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
 		ObjectInputStream ois = new ObjectInputStream(fis);
@@ -156,12 +155,19 @@ public class OrderIO implements TransitManService, CourierService, ExpressServic
 		ois.close();
 		for(int i = 0; i < list.size(); i++){
 			if(list.get(i).getExamineType().equals(ExamineType.NOApproval))
-				result[k]=list.get(i).getID();
+				count++;
 		}
+		String result [] = new String[count];
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getExamineType().equals(ExamineType.NOApproval))
+				result[i]=list.get(i).getID();
+		}
+		System.out.println("find unchecked");
+		return result;
 	}catch(Exception e){
 			e.printStackTrace();
 		}
-		return result;
+		return null;
 	}
 
 	@Override
