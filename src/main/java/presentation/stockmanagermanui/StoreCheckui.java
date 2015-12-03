@@ -6,6 +6,8 @@
 package presentation.stockmanagermanui;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,6 +18,18 @@ import RMI.client.RMIClient;
 import blservice.stockmanagermanblservice.WarehouseManageService;
 import vo.generalmanagervo.Staffvo;
 import vo.stocmanagermanvo.StoreCheckvo;
+
+//import jxl.Workbook;
+//import jxl.write.Label;
+//import jxl.write.WritableSheet;
+//import jxl.write.WritableWorkbook;
+//import jxl.write.WriteException;
+//
+//import java.util.List;  
+//import javax.servlet.http.HttpServletResponse;  
+//import org.apache.struts2.ServletActionContext;  
+//import java.lang.reflect.Field; 
+
 
 /**
  *
@@ -41,7 +55,8 @@ public class StoreCheckui extends javax.swing.JFrame {
         wms=RMIClient.getWarehouseManageService();
     }
 
-    private void huoSearch(StoreCheckvo[] sv){
+    @SuppressWarnings("unchecked")
+	private void huoSearch(StoreCheckvo[] sv){
  	   final String s[] = new String [100];
  	   if(sv!=null){	   
  	   for(int i=0;i<sv.length;i++){
@@ -59,6 +74,27 @@ public class StoreCheckui extends javax.swing.JFrame {
  	    }
  	  // Searchresult.setText(s);
     }
+    
+//    public void createExcel(OutputStream os) throws WriteException,IOException{
+//        //创建工作薄
+//        WritableWorkbook workbook = Workbook.createWorkbook(os);
+//        //创建新的一页
+//        WritableSheet sheet = workbook.createSheet("库存盘点",0);
+//        //创建要显示的内容,创建一个单元格，第一个参数为列坐标，第二个参数为行坐标，第三个参数为内容
+//        Label bianhao = new Label(0,0,"快递编号");
+//        sheet.addCell(bianhao);
+//        Label destination = new Label(1,0,"目的地");
+//        sheet.addCell(destination);
+//        Label riqi = new Label(2,0,"入库日期");
+//        sheet.addCell(riqi);
+//        Label quhao = new Label(3,0,"区号");
+//        sheet.addCell(quhao);
+//        workbook.write();
+//        workbook.close();
+//        os.close();
+//
+//    }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,6 +117,7 @@ public class StoreCheckui extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,15 +153,20 @@ public class StoreCheckui extends javax.swing.JFrame {
 
         jLabel8.setText("入库日期");
 
+//        jButton3.setText("导出Excel");
+//        jButton3.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                jButton3ActionPerformed(evt);
+//            }
+//
+//        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(jLabel1)
@@ -135,16 +177,24 @@ public class StoreCheckui extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jLabel3)
                         .addGap(35, 35, 35)
-                        .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(43, 43, 43))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3)
+                        .addGap(14, 14, 14)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jButton1))
                 .addGap(44, 44, 44))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(55, 55, 55)
@@ -163,11 +213,13 @@ public class StoreCheckui extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 342, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addGap(23, 23, 23))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -179,6 +231,29 @@ public class StoreCheckui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton3ActionPerformed(ActionEvent evt) {
+    	// TODO Auto-generated method stub
+//    	try {
+//    		 String fname = "库存盘点";
+//    		 OutputStream os = response.getOutputStream();//取得输出流
+//    		    response.reset();//清空输出流
+//    		    
+//    		    //下面是对中文文件名的处理
+//    		    response.setCharacterEncoding("UTF-8");//设置相应内容的编码格式
+//    		    fname = java.net.URLEncoder.encode(fname,"UTF-8");
+//    		    response.setHeader("Content-Disposition","attachment;filename="+new String(fname.getBytes("UTF-8"),"GBK")+".xls");
+//    		    response.setContentType("application/msexcel");//定义输出类型
+//
+//    		createExcel(null);
+//		} catch (WriteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     	try {
@@ -231,6 +306,7 @@ public class StoreCheckui extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -283,9 +283,26 @@ public class DriverMesManageui extends javax.swing.JFrame {
         
         Othervo2 other = new Othervo2(xingbie);
         DriverMesManagevo drivermesmanage = new DriverMesManagevo(common, other);
+        
+        boolean a=errorID(driverbianhao.getText());
+        if(a)return;
+        boolean b=errorID(chushengyear.getText());
+        if(b)return;
+        boolean c=errorID(chushengmonth.getText());
+        if(c)return;
+        boolean d=errorID(chushengday.getText());
+        if(d)return;
+        boolean e=errorID(phone.getText());
+        if(e)return;
+        boolean f=errorID(xingshiyear.getText());
+        if(f)return;
+        boolean g=errorID(xingshimonth.getText());
+        if(g)return;
+        boolean h=errorID(xingshiday.getText());
+        if(h)return;
         try {
-            boolean a = dms.inputdriver(drivermesmanage);
-            if(a){
+            boolean a1 = dms.inputdriver(drivermesmanage);
+            if(a1){
                 System.out.println("成功！");
                 JOptionPane.showMessageDialog(null, "写入成功", "成功", 
                 		JOptionPane.INFORMATION_MESSAGE);
@@ -300,7 +317,19 @@ public class DriverMesManageui extends javax.swing.JFrame {
             Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private void errordriverID() {
+    private boolean errorID(String id) {
+		// TODO Auto-generated method stub
+    	for(int i = 0 ; i < id.length(); i++){
+        	if(!(id.charAt(i) >= '0' && id.charAt(i) <= '9')){
+        		
+        		JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+        		return true;
+        	}
+        }
+    	return false;
+	}
+
+	private void errordriverID() {
 		// TODO Auto-generated method stub
     	JOptionPane.showMessageDialog(null, "司机编号输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}

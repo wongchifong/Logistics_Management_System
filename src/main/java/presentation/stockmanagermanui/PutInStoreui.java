@@ -268,9 +268,24 @@ public class PutInStoreui extends javax.swing.JFrame {
     	Kuaidivo kuaidi=new Kuaidivo(year.getText(),month.getText(),day.getText(),bianhao.getText(),destination.getText());
         Weizhivo weizhi=new Weizhivo(quhao.getText(),paihao.getText(),jiahao.getText(),weihao.getText());
         Instockvo instock=new Instockvo(kuaidi,weizhi);
+       
+        boolean a=errorID(year.getText());
+        if(a)return;
+        boolean b=errorID(month.getText());
+        if(b)return;
+        boolean c=errorID(day.getText());
+        if(c)return;
+        boolean d=errorID(bianhao.getText());
+        if(d)return;
+        boolean e=errorID(paihao.getText());
+        if(e)return;
+        boolean f=errorID(jiahao.getText());
+        if(f)return;
+        boolean g=errorID(weihao.getText());
+        if(g)return;
         try{
-        boolean b = wms.in(kuaidi,weizhi);
-        if(b){
+        boolean b1 = wms.in(kuaidi,weizhi);
+        if(b1){
             System.out.println("成功！");
             JOptionPane.showMessageDialog(null, "写入成功", "成功", 
             		JOptionPane.INFORMATION_MESSAGE);
@@ -287,6 +302,18 @@ public class PutInStoreui extends javax.swing.JFrame {
     private void jButton2ActionPerformed(ActionEvent evt) {
     	// TODO Auto-generated method stub
     	this.dispose();
+    }
+    
+    private boolean errorID(String id){
+    	
+        for(int i = 0 ; i < id.length(); i++){
+        	if(!(id.charAt(i) >= '0' && id.charAt(i) <= '9')){
+        		
+        		JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+        		return true;
+        	}
+        }
+        return false;
     }
     /**
      * @param args the command line arguments

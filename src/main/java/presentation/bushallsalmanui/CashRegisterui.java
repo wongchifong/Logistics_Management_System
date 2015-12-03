@@ -191,9 +191,21 @@ public class CashRegisterui extends javax.swing.JFrame {
         	erroryID();
         	return;
         }
+        boolean a=errorID(year.getText());
+        if(a)return;
+        boolean b=errorID(month.getText());
+        if(b)return;
+        boolean c=errorID(day.getText());
+        if(c)return;
+        boolean d=errorID(money.getText());
+        if(d)return;
+        boolean e=errorID(tiaoxingma.getText());
+        if(e)return;
+        boolean f=errorID(ID.getText());
+        if(f)return;
         try {
-            boolean a = crs.inputcash(cashRegister);
-            if(a){
+            boolean a1 = crs.inputcash(cashRegister);
+            if(a1){
                 System.out.println("成功！");
                 JOptionPane.showMessageDialog(null, "写入成功", "成功", 
                 		JOptionPane.INFORMATION_MESSAGE);
@@ -217,6 +229,17 @@ public class CashRegisterui extends javax.swing.JFrame {
     	JOptionPane.showMessageDialog(null, "条形码号输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}
 
+    private boolean errorID(String id){
+    	
+        for(int i = 0 ; i < id.length(); i++){
+        	if(!(id.charAt(i) >= '0' && id.charAt(i) <= '9')){
+        		
+        		JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+        		return true;
+        	}
+        }
+        return false;
+    }
 	/**
      * @param args the command line arguments
      */

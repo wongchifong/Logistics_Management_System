@@ -234,9 +234,17 @@ public class OutFromStockui extends javax.swing.JFrame {
         else if(jRadioButton3.isSelected()) zhuangyun = 3;
         Zhuangyunvo zy = new Zhuangyunvo(zhuangyun);
         Outstockvo out = new Outstockvo(out1,zy);
+        boolean a=errorID(year.getText());
+        if(a)return;
+        boolean b=errorID(month.getText());
+        if(b)return;
+        boolean c=errorID(day.getText());
+        if(c)return;
+        boolean d=errorID(bianhao.getText());
+        if(d)return;
         try {
-            boolean a = wms.out(out1,zy);
-            if(a){
+            boolean a1 = wms.out(out1,zy);
+            if(a1){
                 System.out.println("成功！");
                 JOptionPane.showMessageDialog(null, "写入成功", "成功", 
                 		JOptionPane.INFORMATION_MESSAGE);
@@ -253,6 +261,18 @@ public class OutFromStockui extends javax.swing.JFrame {
     private void jButton2ActionPerformed(ActionEvent evt) {
     	// TODO Auto-generated method stub
     	this.dispose();
+    }
+    
+    private boolean errorID(String id){
+    	
+        for(int i = 0 ; i < id.length(); i++){
+        	if(!(id.charAt(i) >= '0' && id.charAt(i) <= '9')){
+        		
+        		JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+        		return true;
+        	}
+        }
+        return false;
     }
     /**
      * @param args the command line arguments
