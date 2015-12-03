@@ -15,14 +15,18 @@ public class CostOrderpo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -6035340333141173086L;
-    final Datepo dvo;
-	final String ID;
-	final Paypo pay;
-	final Tiaomupo tiaomu;
-	final Beizhupo beizhu;
-	final ExamineType ext;
+   public final Datepo dvo;
+   public final String ID;
+   public final Paypo pay;
+   public final Tiaomupo tiaomu;
+   public final Beizhupo beizhu;
+   public final ExamineType ext;
+   public final Datevo d;
+   public final Payvo p;
+   public final Tiaomuvo t;
+   public final Beizhuvo b;
 	public CostOrderpo(PaymentInputvo order){
-		System.out.println(order.pay.name+"jdkhfdgf");
+//		System.out.println(order.pay.name+"jdkhfdgf");
 		dvo=new Datepo(order.date.year,order.date.mouth,order.date.day);
 		ID=order.beizhu.number;
 		pay=new Paypo(order.pay.money, order.pay.name, order.pay.account);
@@ -30,6 +34,10 @@ public class CostOrderpo implements Serializable {
 				order.tiaomu.bonus);
 		beizhu=new Beizhupo(order.beizhu.moneyyear, order.beizhu.number, order.beizhu.moneymouth);
 		ext = ExamineType.NOApproval;
+		d=order.date;
+		p=order.pay;
+		t=order.tiaomu;
+		b=order.beizhu;
 		
 	}
 	public Datepo getDate(){
@@ -50,5 +58,11 @@ public class CostOrderpo implements Serializable {
 	public ExamineType getExamineType() {
 	        return ext;
 	    }
+	public PaymentInputvo getPaymentList() {
+		// TODO Auto-generated method stub
+		return (new PaymentInputvo(d, p, t, b));
+		
+	}
+	
 
 }
