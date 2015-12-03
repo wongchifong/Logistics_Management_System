@@ -11,12 +11,14 @@ import java.util.List;
 import dataservice.courierdataservice.CourierService;
 import dataservice.generalmanagerdataservice.OrderExamineService;
 import dataservice.otherdataservice.ExpressService;
+import dataservice.transitmandataservice.TransitManService;
 import po.courierpo.CourierOrderpo;
 import po.courierpo.ExamineType;
 import po.courierpo.PriceAndTimepo;
 import po.courierpo.ReceiveOrderpo;
+import po.transitmanpo.TransitReceiveOrderpo;
 
-public class OrderIO implements CourierService, ExpressService,OrderExamineService {
+public class OrderIO implements TransitManService, CourierService, ExpressService,OrderExamineService {
 	
 	public boolean writeOrder(CourierOrderpo cpo) throws Exception {
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
@@ -118,9 +120,27 @@ public class OrderIO implements CourierService, ExpressService,OrderExamineServi
 	}
 	
 	public boolean addHistory(String ID , String history) throws Exception{
-		CourierOrderpo po = this.search(ID);
-		if(po == null) return false;
-		po.getHistory().add(history);
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		@SuppressWarnings("unchecked")
+		List<CourierOrderpo> list = (List<CourierOrderpo>) ois.readObject();
+		CourierOrderpo cpo = null;
+		
+		for(int i = 0 ; i < list.size() ; i++){
+			if(list.get(i).getID().equals(ID)){
+				cpo = list.get(i);
+				break;
+			}
+		}
+		if(cpo == null) return false;
+		
+		cpo.getHistory().add(history);
+		FileOutputStream fos = 
+				new FileOutputStream("src/main/java/data/save/courierOrder.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(list);
+		oos.close();
+		
 		return true;
 	}
 
@@ -142,5 +162,32 @@ public class OrderIO implements CourierService, ExpressService,OrderExamineServi
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public boolean receiveOrderWrite(TransitReceiveOrderpo po) throws Exception {
+		// TODO Auto-generated method stub
+		CourierOrderpo cpo = search(po.ID);
+		if(cpo.getExamineType() != ExamineType.Approve) return false;
+		
+		FileInputStream fis = new FileInputStream
+				("src/main/java/data/save/transitReceiveOrder.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		List<TransitReceiveOrderpo> list = 
+				(List<TransitReceiveOrderpo>) ois.readObject();
+		
+		ois.close();
+		
+		list.add(po);
+		System.out.println("success");
+		
+		FileOutputStream fos = 
+				new FileOutputStream
+				("src/main/java/data/save/transitReceiveOrder.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(list);
+		oos.close();
+		
+		return true;
 	}
 }
