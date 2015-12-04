@@ -172,4 +172,105 @@ public class Storing implements StockManagermanService {
 	
 	}
 
+	public String[] SearchUncheckedoutstock() {
+		// TODO Auto-generated method stub
+		int count=0;
+		try{
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/outstock.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		List<OutStoringpo> list = (List<OutStoringpo>) ois.readObject();
+		ois.close();
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getExamineType().equals(OsExamineType.NOApproval))
+				count++;
+		}
+		int k=0;
+		String result [] = new String[count];
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getExamineType().equals(OsExamineType.NOApproval)){
+				result[k]=list.get(i).getID();
+				k++;
+			}
+		}
+		System.out.println("find unchecked");
+		return result;
+	}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String[] SearchUncheckedinstock() {
+		// TODO Auto-generated method stub
+		int count=0;
+		try{
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/instock.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		List<InStoringpo> list = (List<InStoringpo>) ois.readObject();
+		ois.close();
+		
+		for(int i = 0; i < list.size(); i++){
+			System.out.println(list.get(i).getID());
+            if(list.get(i).getExamineType().equals(IsExamineType.NOApproval))
+				count++;
+		}
+		 int k=0;
+		String result [] = new String[count];
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getExamineType().equals(IsExamineType.NOApproval)){
+				result[k]=list.get(i).getID();
+		             k++;
+			}
+		}
+		System.out.println("find unchecked");
+		return result;
+	}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void approveinstock(String iD) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = new FileInputStream("src/main/java/data/save/instock.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			List<InStoringpo> list = (List<InStoringpo>) ois.readObject();
+			ois.close();
+			for(int i = 0; i < list.size(); i++){
+				System.out.println(list.get(i).getID());
+	            if(list.get(i).getID().equals(iD))
+	            		list.get(i).ise=IsExamineType.Approve;
+			}
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/instock.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(list);
+			oos.close();
+		}catch(Exception e){
+				e.printStackTrace();
+			}
+	}
+
+	public void approveoutstock(String iD) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = new FileInputStream("src/main/java/data/save/outstock.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			List<OutStoringpo> list = (List<OutStoringpo>) ois.readObject();
+			ois.close();
+			for(int i = 0; i < list.size(); i++){
+				if(list.get(i).getID().equals(iD))
+                 list.get(i).ose=OsExamineType.Approve;
+			}
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/outstock.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(list);
+			oos.close();
+		}catch(Exception e){
+				e.printStackTrace();
+			}
+	}
+
 }

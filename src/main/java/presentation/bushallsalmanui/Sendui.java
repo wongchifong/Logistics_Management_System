@@ -186,15 +186,6 @@ public class Sendui extends javax.swing.JFrame {
    			 return;
    		 }
    	 }
-        boolean a=errorID(year.getText());
-        if(a)return;
-        boolean b=errorID(month.getText());
-        if(b)return;
-        boolean c=errorID(day.getText());
-        if(c)return;
-        boolean d=errorID(tiaoxingma.getText());
-        if(d)return;
-        
         ExpressService es = new OrderIO();
         CourierOrderpo co;
 			try {
@@ -209,8 +200,8 @@ public class Sendui extends javax.swing.JFrame {
 			}
 
         try {
-            boolean a1 = rss.inputsend(send);
-            if(a1){
+            boolean a = rss.inputsend(send);
+            if(a){
                 System.out.println("成功！");
                 JOptionPane.showMessageDialog(null, "写入成功", "成功", 
                 		JOptionPane.INFORMATION_MESSAGE);
@@ -225,18 +216,6 @@ public class Sendui extends javax.swing.JFrame {
             Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-	private boolean errorID(String id) {
-		// TODO Auto-generated method stub
-		 for(int i = 0 ; i < id.length(); i++){
-	        	if(!(id.charAt(i) >= '0' && id.charAt(i) <= '9')){
-	        		
-	        		JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
-	        		return true;
-	        	}
-	        }
-		return false;
-	}
 
 	private void errorID2() {
 		// TODO Auto-generated method stub

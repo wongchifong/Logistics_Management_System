@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import vo.financialmanvo.CostManagevo;
 import vo.financialmanvo.Moneyvo;
 import vo.financialmanvo.PaymentInputvo;
-import vo.financialmanvo.RecieveListvo;
 
 public class CostManageService_Stub implements CostManageService {
 
@@ -47,26 +46,6 @@ public class CostManageService_Stub implements CostManageService {
 	public boolean hasNegative(Moneyvo g) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public RecieveListvo[] SearchByMes(String text, String text2, String text3, String text4) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public RecieveListvo[] SearchReceive(String text, String text2, String text3, String text4, String text5,
-			String text6) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public PaymentInputvo[] SearchPay(String text, String text2, String text3, String text4, String text5, String text6)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

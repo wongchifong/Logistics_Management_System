@@ -237,17 +237,6 @@ public class Receiveui extends javax.swing.JFrame {
     			 return;
     		 }
     	 }
-    	 
-    	 boolean a=errorID(year.getText());
-         if(a)return;
-         boolean b=errorID(month.getText());
-         if(b)return;
-         boolean c=errorID(day.getText());
-         if(c)return;
-         boolean d=errorID(zhongzhuan.getText());
-         if(d)return;
-         boolean e1=errorID(tiaoxingma.getText());
-         if(e1)return;
     	 ExpressService es = new OrderIO();
          CourierOrderpo co;
  			try {
@@ -264,8 +253,8 @@ public class Receiveui extends javax.swing.JFrame {
     	 Receivevo2 receive2 = new Receivevo2(zhuangtai);
     	 Receivevo receive = new Receivevo(receive1,receive2);
     	try {
-            boolean a1 = rss.inputreceive(receive);
-            if(a1){
+            boolean a = rss.inputreceive(receive);
+            if(a){
                 System.out.println("成功！");
                 JOptionPane.showMessageDialog(null, "写入成功", "成功", 
                 		JOptionPane.INFORMATION_MESSAGE);
@@ -280,19 +269,7 @@ public class Receiveui extends javax.swing.JFrame {
             }
     }
 
-    private boolean errorID(String id) {
-		// TODO Auto-generated method stub
-    	for(int i = 0 ; i < id.length(); i++){
-        	if(!(id.charAt(i) >= '0' && id.charAt(i) <= '9')){
-        		
-        		JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
-        		return true;
-        	}
-        }
-    	return false;
-	}
-
-	private void errorID2() {
+    private void errorID2() {
 		// TODO Auto-generated method stub
     	JOptionPane.showMessageDialog(null, "条形码号应全为数字！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}

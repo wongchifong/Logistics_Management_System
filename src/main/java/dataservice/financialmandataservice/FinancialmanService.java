@@ -2,7 +2,6 @@ package dataservice.financialmandataservice;
 
 
 
-import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.IncomeInputpo;
@@ -16,10 +15,5 @@ public interface FinancialmanService {
 //	public boolean writeOrder2(IncomeInputpo incomeInputpo);
 //	public boolean writeOrder2(IncomeInputpo incomeInputpo);
 	public boolean addAccount(Accountpo accountpo)throws Exception;
-	public CashReceiveOrderpo[] SearchByMes(String y,String m,String d,String id)throws Exception;
-	public CashReceiveOrderpo[] SearchReceive(String text, String text2, String text3, String text4, String text5,
-			String text6)throws Exception;
-	public CostOrderpo[] SearchPay(String text, String text2, String text3, String text4, String text5, String text6)
-			throws Exception;
 
 }
