@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataservice.courierdataservice.CourierService;
-import dataservice.generalmanagerdataservice.OrderExamineService;
 import dataservice.generalmanagerdataservice.OrderService;
 import dataservice.otherdataservice.ExpressService;
 import dataservice.transitmandataservice.TransitManService;
@@ -19,7 +18,7 @@ import po.courierpo.PriceAndTimepo;
 import po.courierpo.ReceiveOrderpo;
 import po.transitmanpo.TransitReceiveOrderpo;
 
-public class OrderIO implements TransitManService, CourierService, ExpressService,OrderExamineService, OrderService {
+public class OrderIO implements TransitManService, CourierService, ExpressService, OrderService {
 	
 	public boolean writeOrder(CourierOrderpo cpo) throws Exception {
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
