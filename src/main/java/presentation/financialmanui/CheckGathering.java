@@ -5,11 +5,14 @@
  */
 package presentation.financialmanui;
 
+import java.rmi.RemoteException;
+
 import javax.swing.ListSelectionModel;
 
 import RMI.client.RMIClient;
 import blservice.financialmanblservice.CostManageService;
-import vo.administratorvo.UserAuthorityManagervo;
+import vo.financialmanvo.PaymentInputvo;
+import vo.financialmanvo.RecieveListvo;
 
 /**
  *
@@ -23,26 +26,56 @@ public class CheckGathering extends javax.swing.JFrame {
      */
     public CheckGathering() throws Exception {
         initComponents();
+        receive.setVisible(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         RMIClient.init();
         cm = RMIClient.getCostManageService();
     }
-    private void SearchAll(UserAuthorityManagervo[] uv){
-  	   final String s[] = new String [100];
-  	   if(uv!=null){	   
+//    static final String s[] = new String [100];
+    static final String ss[] = new String [100];//计算合计收款单
+    static final String sp[] = new String [100];//计算合计付款单
+    static  int count=0;
+    static  int chu=0;
+//    static final RecieveListvo[] v=new String [100];
+    private void SearchAll(RecieveListvo[] uv){
+    	
+    	int j=0;
+//  	   final String s[] = new String [100];
+  	   if(uv!=null){	
+  		final String s[] = new String [100];
   	   for(int i=0;i<uv.length;i++){
-  		   s[i]=uv[i].ID+"                     "+uv[i].Mima+"                     "+uv[i].Name+"                     "+uv[i].Type;
+  		   s[i]=uv[i].yearq+"-"+uv[i].monthq+"-"+uv[i].dayq+"                     "+uv[i].moneyq+"                         "
+  				   +uv[i].tiaoxingmaq+"                 "+uv[i].kuaidiyuanq;
+  		   ss[i]=uv[i].moneyq;
+  		   j++;
   	   }
-  	   jList1.setModel(new javax.swing.AbstractListModel() {
-             String[] strings = s;
-             public int getSize() { return strings.length; }
-             public Object getElementAt(int i) { return strings[i]; }
-         });
-  	   jList1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-  	    jScrollPane1.setViewportView(jList1);
-  	    }}
+  	   count=j;
+  	 jList1.setModel(new javax.swing.AbstractListModel() {
+         String[] strings = s;
+         public int getSize() { return strings.length; }
+         public Object getElementAt(int i) { return strings[i]; }
+     });
+	   jList1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    jScrollPane1.setViewportView(jList1);
+ }}
     
+    
+    
+    
+    
+//    private void SearchAll2(PaymentInputvo[] pv){
+////    	int z=0;
+//    	   final String s1[] = new String [100];
+//    	   if(pv!=null){	   
+//    	   for(int i=0;i<pv.length;i++){
+//    		   s1[i]=pv[i].date.year+"-"+pv[i].date.mouth+"-"+pv[i].date.day+"                 "+pv[i].pay.money+"元"+"                    "
+//    				   +pv[i].pay.account;
+//    		   sp[i]=pv[i].pay.money;
+//    		   chu++;
+//    	   }
+//    	  
+//    	    }}
     
     
    
@@ -57,14 +90,14 @@ public class CheckGathering extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        year = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        month = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        day = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        yytID = new javax.swing.JTextField();
         OK = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -74,6 +107,8 @@ public class CheckGathering extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        heji = new javax.swing.JButton();
+        receive = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,9 +118,9 @@ public class CheckGathering extends javax.swing.JFrame {
 
         jLabel3.setText("月");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        day.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                dayActionPerformed(evt);
             }
         });
 
@@ -96,7 +131,12 @@ public class CheckGathering extends javax.swing.JFrame {
         OK.setText("确定");
         OK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                OKMouseClicked(evt);
+                try {
+					OKMouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -124,11 +164,30 @@ public class CheckGathering extends javax.swing.JFrame {
 
         jLabel10.setText("订单条形码号");
 
+        heji.setText("合计");
+        heji.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                try {
+					hejiMouseClicked(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        });
+        heji.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hejiActionPerformed(evt);
+            }
+        });
+
+        receive.setText("jLabel11");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(76, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -138,19 +197,19 @@ public class CheckGathering extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(yytID, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(OK)))
                         .addGap(123, 123, 123))
@@ -167,15 +226,20 @@ public class CheckGathering extends javax.swing.JFrame {
                             .addContainerGap())
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(80, 80, 80)))))
+                            .addGap(80, 80, 80)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(heji)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton2)
+                        .addGap(210, 210, 210))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(171, 171, 171)
-                        .addComponent(jLabel6)))
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(216, 216, 216)
+                        .addComponent(receive, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -184,17 +248,18 @@ public class CheckGathering extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(OK)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(OK)
+                        .addComponent(yytID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addGap(37, 37, 37)
@@ -204,27 +269,61 @@ public class CheckGathering extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jButton2)
-                .addGap(19, 19, 19))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(receive, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(heji))
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void dayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_dayActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKMouseClicked
+    private void OKMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException{//GEN-FIRST:event_OKMouseClicked
         // TODO add your handling code here:
+    	SearchAll(cm.SearchByMes(year.getText(),month.getText(),day.getText(),yytID.getText()));
+//    	chu++;
+//    	System.out.println(count+"上");
+  	  
+	    
     }//GEN-LAST:event_OKMouseClicked
+
+    private void hejiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hejiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hejiActionPerformed
+
+    private void hejiMouseClicked(java.awt.event.MouseEvent evt) throws RemoteException {//GEN-FIRST:event_hejiMouseClicked
+        // TODO add your handling code here:
+//    	heji.setText(s[0].yearq);
+//    	SearchAll(cm.SearchByMes(year.getText(),month.getText(),day.getText(),yytID.getText()));
+//    	System.out.println(count+"下");
+//    	chu++;
+//    	receive.setText(ss[0]);
+    	//算合计的时候在UI层直接算还是到logic里面算好再传回来！！！！！！！！！！！！！！！！！！！！！！！
+    	int sum=0;
+//    	System.out.println(count);
+//    	count/=chu;
+    	int q=count;
+    	System.out.println(count+"sssdd");
+    	for(int i=0;i<q;i++){
+    		sum+=Integer.parseInt(ss[i]);
+    	}
+//    	System.out.println(sum);
+    	receive.setText(sum+" 元");
+    	receive.setVisible(true);
+    }//GEN-LAST:event_hejiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -268,6 +367,8 @@ public class CheckGathering extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton OK;
+    private javax.swing.JTextField day;
+    private javax.swing.JButton heji;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -281,9 +382,9 @@ public class CheckGathering extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField month;
+    private javax.swing.JLabel receive;
+    private javax.swing.JTextField year;
+    private javax.swing.JTextField yytID;
     // End of variables declaration//GEN-END:variables
 }

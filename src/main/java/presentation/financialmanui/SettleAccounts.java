@@ -248,7 +248,7 @@ public class SettleAccounts extends javax.swing.JFrame {
              System.out.println("成功！");
              JOptionPane.showMessageDialog(null, "写入成功", "成功", 
              		JOptionPane.INFORMATION_MESSAGE);
-//             this.dispose();
+             this.dispose();
              new SettleAccounts().setVisible(true);
          }
          else{

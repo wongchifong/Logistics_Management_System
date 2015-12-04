@@ -9,17 +9,18 @@ package presentation.financialmanui;
  *
  * @author user
  */
-public class FinancialmanMainui extends javax.swing.JFrame {
+public class LowFinancialmanMainui extends javax.swing.JFrame {
 
     /**
      * Creates new form GeneralManagerMainui
      */
-    public FinancialmanMainui() {
+    public LowFinancialmanMainui() {
         initComponents();
     }
     
-    public FinancialmanMainui(String name , String ID) {
+    public LowFinancialmanMainui(String name , String ID) {
         initComponents();
+        jButton3.setVisible(false);
         jLabel2.setText("姓名：" + name);
         jLabel3.setText("账号：" + ID);
     }
@@ -78,12 +79,7 @@ public class FinancialmanMainui extends javax.swing.JFrame {
         jButton4.setText("统计报表");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                try {
-					jButton4MouseClicked(evt);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                jButton4MouseClicked(evt);
             }
         });
 
@@ -167,7 +163,8 @@ public class FinancialmanMainui extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-        new AccountManageui().setVisible(true);
+//        new AccountManageui().setVisible(true);
+    	System.out.println("sss");
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -175,9 +172,14 @@ public class FinancialmanMainui extends javax.swing.JFrame {
         new CostManageui().setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) throws Exception {//GEN-FIRST:event_jButton4MouseClicked
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-        new StatisticsListui().setVisible(true);
+        try {
+			new StatisticsListui().setVisible(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -221,7 +223,7 @@ public class FinancialmanMainui extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FinancialmanMainui("fjj" , "141250034").setVisible(true);
+                new LowFinancialmanMainui("fjj" , "141250034").setVisible(true);
             }
         });
     }

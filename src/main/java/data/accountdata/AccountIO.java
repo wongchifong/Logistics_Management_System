@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataservice.financialmandataservice.FinancialmanService;
+import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.IncomeInputpo;
@@ -66,5 +67,22 @@ public class AccountIO implements FinancialmanService{
 	public boolean writeOrder2(IncomeInputpo incomeInputpo) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	@Override
+	public CashReceiveOrderpo[] SearchByMes(String y, String m, String d, String id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public CashReceiveOrderpo[] SearchReceive(String text, String text2, String text3, String text4, String text5,
+			String text6) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public CostOrderpo[] SearchPay(String text, String text2, String text3, String text4, String text5, String text6)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
