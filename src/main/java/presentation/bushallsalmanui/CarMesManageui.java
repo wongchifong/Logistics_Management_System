@@ -186,9 +186,20 @@ public class CarMesManageui extends javax.swing.JFrame {
         	errorcphID();
         	return;
         }
+        
+        boolean a=errorID(year.getText());
+        if(a)return;
+        boolean b=errorID(month.getText());
+        if(b)return;
+        boolean c=errorID(day.getText());
+        if(c)return;
+        boolean d=errorID(cardaihao.getText());
+        if(d)return;
+        boolean e1=errorID(chepaihao.getText());
+        if(e1)return;
         try {
-            boolean a = cms.inputVehicle(carMesManage);
-            if(a){
+            boolean a1 = cms.inputVehicle(carMesManage);
+            if(a1){
                 System.out.println("成功！");
                 JOptionPane.showMessageDialog(null, "写入成功", "成功", 
                 		JOptionPane.INFORMATION_MESSAGE);
@@ -204,6 +215,17 @@ public class CarMesManageui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+
+	private boolean errorID(String text) {
+		// TODO Auto-generated method stub
+		for(int i=0;i<text.length();i++){
+    		if(!(text.charAt(i)>='0'&&text.charAt(i)<='9')){
+    			JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    			return true;
+    		}
+    	}
+		return false;
+	}
 
 	private void errorcdhID() {
     	// TODO Auto-generated method stub

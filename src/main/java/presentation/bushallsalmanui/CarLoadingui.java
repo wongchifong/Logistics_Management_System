@@ -261,6 +261,19 @@ public class CarLoadingui extends javax.swing.JFrame {
         	return;
         }
         
+        boolean a=errorID(year.getText());
+        if(a)return;
+        boolean b=errorID(month.getText());
+        if(b)return;
+        boolean c=errorID(day.getText());
+        if(c)return;
+        boolean d=errorID(yingYeTing.getText());
+        if(d)return;
+        boolean e1=errorID(car.getText());
+        if(e1)return;
+        boolean f=errorID(yunFei.getText());
+        if(f)return;
+        
         int i=0;
         int row=0;
         while(tiaoxingma.getText().charAt(i)!=' '){
@@ -311,8 +324,8 @@ public class CarLoadingui extends javax.swing.JFrame {
 
         }
         try {
-            boolean a = cls.inputLoad(carLoading);
-            if(a){
+            boolean a1 = cls.inputLoad(carLoading);
+            if(a1){
                 System.out.println("成功！");
                 JOptionPane.showMessageDialog(null, "写入成功", "成功", 
                 		JOptionPane.INFORMATION_MESSAGE);
@@ -328,6 +341,17 @@ public class CarLoadingui extends javax.swing.JFrame {
         }
         }
     
+
+	private boolean errorID(String text) {
+		// TODO Auto-generated method stub
+		for(int i=0;i<text.length();i++){
+    		if(!(text.charAt(i)>='0'&&text.charAt(i)<='9')){
+    			JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    			return true;
+    		}
+    	}
+		return false;
+	}
 
 	private void errorID2() {
 		// TODO Auto-generated method stub

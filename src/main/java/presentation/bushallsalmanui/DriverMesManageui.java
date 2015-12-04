@@ -283,9 +283,34 @@ public class DriverMesManageui extends javax.swing.JFrame {
         
         Othervo2 other = new Othervo2(xingbie);
         DriverMesManagevo drivermesmanage = new DriverMesManagevo(common, other);
+        
+        boolean a=errorID(driverbianhao.getText());
+        if(a)return;
+        boolean b=errorID(chushengyear.getText());
+        if(b)return;
+        boolean c=errorID(chushengmonth.getText());
+        if(c)return;
+        boolean d=errorID(chushengday.getText());
+        if(d)return;
+        boolean e1=errorID(shengfenID.getText());
+        if(e1)return;
+        boolean f=errorID(phone.getText());
+        if(f)return;
+        boolean g=errorID(xingshiyear.getText());
+        if(g)return;
+        boolean h=errorID(xingshimonth.getText());
+        if(h)return;
+        boolean k=errorID(xingshiday.getText());
+        if(k)return;
+        
+        String phoneID="";
+        if((phoneID=phone.getText()).equals("")||phoneID.length()!=11){
+        	errorphoneID();
+        	return;
+        }
         try {
-            boolean a = dms.inputdriver(drivermesmanage);
-            if(a){
+            boolean a1 = dms.inputdriver(drivermesmanage);
+            if(a1){
                 System.out.println("成功！");
                 JOptionPane.showMessageDialog(null, "写入成功", "成功", 
                 		JOptionPane.INFORMATION_MESSAGE);
@@ -300,7 +325,23 @@ public class DriverMesManageui extends javax.swing.JFrame {
             Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private void errordriverID() {
+    private void errorphoneID() {
+		// TODO Auto-generated method stub
+    	JOptionPane.showMessageDialog(null, "手机号应为11位！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private boolean errorID(String text) {
+		// TODO Auto-generated method stub
+    	for(int i=0;i<text.length();i++){
+    		if(!(text.charAt(i)>='0'&&text.charAt(i)<='9')){
+    			JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    			return true;
+    		}
+    	}
+		return false;
+	}
+
+	private void errordriverID() {
 		// TODO Auto-generated method stub
     	JOptionPane.showMessageDialog(null, "司机编号输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}
