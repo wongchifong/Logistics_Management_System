@@ -25,6 +25,66 @@ public class OrderExamineService_Stub implements OrderExamineService {
 		
 	}
 
+	@Override
+	public String[] showexpressorder() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String[] showcarloadingorder() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String[] showyingyetingorder() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String[] showshoukuanorder() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String[] showzhongzhuanorder() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String[] showpaijianorder() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String[] showzhongzhuanzhongxinorder() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String[] showinstockorder() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String[] showoutstockorder() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String[] showpaymentorder() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	
 
