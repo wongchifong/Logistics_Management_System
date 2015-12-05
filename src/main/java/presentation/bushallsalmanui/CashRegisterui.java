@@ -191,6 +191,7 @@ public class CashRegisterui extends javax.swing.JFrame {
         	erroryID();
         	return;
         }
+        
         boolean a=errorID(year.getText());
         if(a)return;
         boolean b=errorID(month.getText());
@@ -199,8 +200,8 @@ public class CashRegisterui extends javax.swing.JFrame {
         if(c)return;
         boolean d=errorID(money.getText());
         if(d)return;
-        boolean e=errorID(tiaoxingma.getText());
-        if(e)return;
+        boolean e1=errorID(tiaoxingma.getText());
+        if(e1)return;
         boolean f=errorID(ID.getText());
         if(f)return;
         try {
@@ -219,7 +220,18 @@ public class CashRegisterui extends javax.swing.JFrame {
                 Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
-    private void erroryID() {
+    private boolean errorID(String text) {
+		// TODO Auto-generated method stub
+    	for(int i=0;i<text.length();i++){
+    		if(!(text.charAt(i)>='0'&&text.charAt(i)<='9')){
+    			JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    			return true;
+    		}
+    	}
+		return false;
+	}
+
+	private void erroryID() {
 		// TODO Auto-generated method stub
     	JOptionPane.showMessageDialog(null, "营业厅编号输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}
@@ -229,17 +241,6 @@ public class CashRegisterui extends javax.swing.JFrame {
     	JOptionPane.showMessageDialog(null, "条形码号输入错误！", "输入有误", JOptionPane.ERROR_MESSAGE);
 	}
 
-    private boolean errorID(String id){
-    	
-        for(int i = 0 ; i < id.length(); i++){
-        	if(!(id.charAt(i) >= '0' && id.charAt(i) <= '9')){
-        		
-        		JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
-        		return true;
-        	}
-        }
-        return false;
-    }
 	/**
      * @param args the command line arguments
      */

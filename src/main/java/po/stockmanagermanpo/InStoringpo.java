@@ -15,7 +15,7 @@ public class InStoringpo implements Serializable{
 	private static final long serialVersionUID = 3668577120125954843L;
     final Kuaidipo kuaidi;
     final Weizhipo weizhi;
-    final IsExamineType ise;
+    public IsExamineType ise;
     public String bianhao;
 	public String destination;
 	public String year;
@@ -50,7 +50,7 @@ public class InStoringpo implements Serializable{
 		return weizhi;
 	}
 
-	public Object getID() {
+	public String getID() {
 		// TODO Auto-generated method stub
 		return kuaidi.bianhao;
 		

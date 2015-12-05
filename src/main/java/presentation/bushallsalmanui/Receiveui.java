@@ -237,7 +237,6 @@ public class Receiveui extends javax.swing.JFrame {
     			 return;
     		 }
     	 }
-    	 
     	 boolean a=errorID(year.getText());
          if(a)return;
          boolean b=errorID(month.getText());
@@ -248,6 +247,7 @@ public class Receiveui extends javax.swing.JFrame {
          if(d)return;
          boolean e1=errorID(tiaoxingma.getText());
          if(e1)return;
+         
     	 ExpressService es = new OrderIO();
          CourierOrderpo co;
  			try {
@@ -280,16 +280,15 @@ public class Receiveui extends javax.swing.JFrame {
             }
     }
 
-    private boolean errorID(String id) {
+    private boolean errorID(String text) {
 		// TODO Auto-generated method stub
-    	for(int i = 0 ; i < id.length(); i++){
-        	if(!(id.charAt(i) >= '0' && id.charAt(i) <= '9')){
-        		
-        		JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
-        		return true;
-        	}
-        }
-    	return false;
+    	for(int i=0;i<text.length();i++){
+    		if(!(text.charAt(i)>='0'&&text.charAt(i)<='9')){
+    			JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    			return true;
+    		}
+    	}
+		return false;
 	}
 
 	private void errorID2() {

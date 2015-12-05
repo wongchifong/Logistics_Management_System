@@ -1,4 +1,4 @@
-﻿package data.orderdata;
+package data.orderdata;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dataservice.courierdataservice.CourierService;
-import dataservice.generalmanagerdataservice.OrderExamineService;
+import dataservice.generalmanagerdataservice.OrderService;
 import dataservice.otherdataservice.ExpressService;
 import dataservice.transitmandataservice.TransitManService;
 import po.courierpo.CourierOrderpo;
@@ -18,7 +18,7 @@ import po.courierpo.PriceAndTimepo;
 import po.courierpo.ReceiveOrderpo;
 import po.transitmanpo.TransitReceiveOrderpo;
 
-public class OrderIO implements TransitManService, CourierService, ExpressService,OrderExamineService {
+public class OrderIO implements TransitManService, CourierService, ExpressService, OrderService {
 	
 	public boolean writeOrder(CourierOrderpo cpo) throws Exception {
 		FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
@@ -157,10 +157,13 @@ public class OrderIO implements TransitManService, CourierService, ExpressServic
 			if(list.get(i).getExamineType().equals(ExamineType.NOApproval))
 				count++;
 		}
+		int k=0;
 		String result [] = new String[count];
 		for(int i = 0; i < list.size(); i++){
-			if(list.get(i).getExamineType().equals(ExamineType.NOApproval))
-				result[i]=list.get(i).getID();
+			if(list.get(i).getExamineType().equals(ExamineType.NOApproval)){
+				result[k]=list.get(i).getID();
+				k++;
+			}
 		}
 		System.out.println("find unchecked");
 		return result;
@@ -195,5 +198,28 @@ public class OrderIO implements TransitManService, CourierService, ExpressServic
 		oos.close();
 		
 		return true;
+	}
+
+	@Override
+	public void approve(String s) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = new FileInputStream("src/main/java/data/save/courierOrder.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			List<CourierOrderpo> list = (List<CourierOrderpo>) ois.readObject();
+			ois.close();
+			for(int i = 0; i < list.size(); i++){
+				if(list.get(i).getID().equals(s))
+					list.get(i).ext=ExamineType.Approve;
+			}
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/courierOrder.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(list);
+			oos.close();
+			System.out.println("Approve");
+		}catch(Exception e){
+				e.printStackTrace();
+			}
 	}
 }

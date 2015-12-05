@@ -15,7 +15,8 @@ public class OutStoringpo implements Serializable{
 
 	final OutStoringpo1 out1;
 	final Zhuangyunpo zy;
-	final OsExamineType ose;
+	public OsExamineType ose;
+
 	
 	public OutStoringpo(Outstockvo1 o1, Zhuangyunvo z) {
 		// TODO Auto-generated constructor stub
@@ -30,7 +31,7 @@ public class OutStoringpo implements Serializable{
 		ose=OsExamineType.NOApproval;
 	}
 
-	public Object getID() {
+	public String getID() {
 		// TODO Auto-generated method stub
 		
 		return out1.bianhao;

@@ -11,9 +11,10 @@ public class ReceiveOrderpo implements Serializable{
 	 */
 	private static final long serialVersionUID = -1174406908055977378L;
 
-	final ReceiveOrderpo1 r1;
+	public final ReceiveOrderpo1 r1;
 	final Zhuangtaipo zt;
-	final RoExamineType roe;
+	public RoExamineType roe;
+
 	public ReceiveOrderpo(Receivevo re) {
 		// TODO Auto-generated constructor stub
 		r1=new ReceiveOrderpo1(re.receive1);

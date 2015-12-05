@@ -69,6 +69,8 @@ public class PutInStoreui extends javax.swing.JFrame {
         jiahao = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         weihao = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -154,13 +156,22 @@ public class PutInStoreui extends javax.swing.JFrame {
 
         jLabel10.setText("位号：");
 
+        jLabel11.setText("中转中心编号：");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(93, 93, 93)
+                .addGap(45, 45, 45)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel11)
                     .addComponent(jLabel10)
                     .addComponent(jLabel9)
                     .addComponent(jLabel8)
@@ -170,13 +181,20 @@ public class PutInStoreui extends javax.swing.JFrame {
                     .addComponent(quhao, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                     .addComponent(paihao)
                     .addComponent(jiahao)
-                    .addComponent(weihao))
+                    .addComponent(weihao)
+                    .addComponent(jTextField1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(2, 2, 2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(quhao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -215,28 +233,14 @@ public class PutInStoreui extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
-
-
-
-
-
-
         });
 
-        jButton2.setText("退出");
+        jButton2.setText("返回");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
-
-
-
-
-
-
-
         });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -253,7 +257,7 @@ public class PutInStoreui extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -263,12 +267,16 @@ public class PutInStoreui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     private void jButton1ActionPerformed(ActionEvent evt) {
     	// TODO Auto-generated method stub
     	Kuaidivo kuaidi=new Kuaidivo(year.getText(),month.getText(),day.getText(),bianhao.getText(),destination.getText());
         Weizhivo weizhi=new Weizhivo(quhao.getText(),paihao.getText(),jiahao.getText(),weihao.getText());
         Instockvo instock=new Instockvo(kuaidi,weizhi);
-       
+        try{
         boolean a=errorID(year.getText());
         if(a)return;
         boolean b=errorID(month.getText());
@@ -283,7 +291,7 @@ public class PutInStoreui extends javax.swing.JFrame {
         if(f)return;
         boolean g=errorID(weihao.getText());
         if(g)return;
-        try{
+        
         boolean b1 = wms.in(kuaidi,weizhi);
         if(b1){
             System.out.println("成功！");
@@ -299,21 +307,20 @@ public class PutInStoreui extends javax.swing.JFrame {
         Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
-    private void jButton2ActionPerformed(ActionEvent evt) {
+    private boolean errorID(String text) {
+		// TODO Auto-generated method stub
+    	for(int i=0;i<text.length();i++){
+    		if(!(text.charAt(i)>='0'&&text.charAt(i)<='9')){
+    			JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    			return true;
+    		}
+    	}
+		return false;
+	}
+
+	private void jButton2ActionPerformed(ActionEvent evt) {
     	// TODO Auto-generated method stub
     	this.dispose();
-    }
-    
-    private boolean errorID(String id){
-    	
-        for(int i = 0 ; i < id.length(); i++){
-        	if(!(id.charAt(i) >= '0' && id.charAt(i) <= '9')){
-        		
-        		JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
-        		return true;
-        	}
-        }
-        return false;
     }
     /**
      * @param args the command line arguments
@@ -363,6 +370,7 @@ public class PutInStoreui extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -374,6 +382,7 @@ public class PutInStoreui extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jiahao;
     private javax.swing.JTextField month;
     private javax.swing.JTextField paihao;

@@ -197,4 +197,149 @@ public class BusinessHall implements BushallsalmanService {
 		oos.close();
 		return true;
 	}
+
+	public String[] SearchUncheckedcar() {
+		// TODO Auto-generated method stub
+		int count=0;
+		try{
+		FileInputStream fis = new FileInputStream("src/main/java/data/save/carLoading.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		List<CarLoadingpo> list = (List<CarLoadingpo>) ois.readObject();
+		ois.close();
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getExamineType().equals(ClExamineType.NOApproval))
+				count++;
+		}
+		String result [] = new String[count];
+		int k=0;
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getExamineType().equals(ClExamineType.NOApproval)){
+				result[k]=list.get(i).getID();
+			       k++;
+			}
+		}
+		System.out.println("find unchecked");
+		return result;
+	}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+		public String[] SearchUncheckedcash(){
+			int count=0;
+			try{
+			FileInputStream fis = new FileInputStream("src/main/java/data/save/cashReceive.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			List<CashReceiveOrderpo> list = (List<CashReceiveOrderpo>) ois.readObject();
+			ois.close();
+			for(int i = 0; i < list.size(); i++){
+				if(list.get(i).getExamineType().equals(CrExamineType.NOApproval))
+					count++;
+			}
+			int k=0;
+			String result [] = new String[count];
+			for(int i = 0; i < list.size(); i++){
+				if(list.get(i).getExamineType().equals(CrExamineType.NOApproval))
+					result[k]=list.get(i).getID();{
+				k++;
+					}
+			}
+			System.out.println("find unchecked");
+			return result;
+		}catch(Exception e){
+				e.printStackTrace();
+			}
+			return null;
+		}
+	
+	public String[] SearchUncheckedbushall(){
+	int count=0;
+	try{
+	FileInputStream fis = new FileInputStream("src/main/java/data/save/receiveOrder.txt");
+	ObjectInputStream ois = new ObjectInputStream(fis);
+	List<ReceiveOrderpo> list = (List<ReceiveOrderpo>) ois.readObject();
+	ois.close();
+	for(int i = 0; i < list.size(); i++){
+		if(list.get(i).getExamineType().equals(RoExamineType.NOApproval))
+			count++;
+	}
+   int k=0;
+	String result [] = new String[count];
+	for(int i = 0; i < list.size(); i++){
+		if(list.get(i).getExamineType().equals(RoExamineType.NOApproval)){
+			result[i]=list.get(i).r1.ID;
+               k++;
+        }
+}
+	System.out.println("find unchecked");
+	return result;
+}catch(Exception e){
+		e.printStackTrace();
+	}
+	return null;
+}
+
+	public void approveshoukuanorder(String iD) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = new FileInputStream("src/main/java/data/save/cashReceive.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			List<CashReceiveOrderpo> list = (List<CashReceiveOrderpo>) ois.readObject();
+			ois.close();
+			for(int i = 0; i < list.size(); i++){
+				if(list.get(i).getID().equals(iD))
+					list.get(i).cre=CrExamineType.Approve;
+			}
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/cashReceive.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(list);
+			oos.close();
+		}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+
+	public void approveyingyetingorder(String iD) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = new FileInputStream("src/main/java/data/save/receiveOrder.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			List<ReceiveOrderpo> list = (List<ReceiveOrderpo>) ois.readObject();
+			ois.close();
+			for(int i = 0; i < list.size(); i++){
+				if(list.get(i).r1.ID.equals(iD))
+					list.get(i).roe=RoExamineType.Approve;
+			}
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/receiveOrder.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(list);
+			oos.close();
+		}catch(Exception e){
+				e.printStackTrace();
+			}
+	}
+
+	public void approvecar(String iD) {
+		// TODO Auto-generated method stub
+		try{
+			FileInputStream fis = new FileInputStream("src/main/java/data/save/carLoading.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			List<CarLoadingpo> list = (List<CarLoadingpo>) ois.readObject();
+			ois.close();
+			for(int i = 0; i < list.size(); i++){
+				if(list.get(i).getID().equals(iD))
+					list.get(i).cle=ClExamineType.Approve;
+			}
+			FileOutputStream fos = 
+					new FileOutputStream("src/main/java/data/save/carLoading.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(list);
+			oos.close();
+		}catch(Exception e){
+				e.printStackTrace();
+			}
+	}
 }

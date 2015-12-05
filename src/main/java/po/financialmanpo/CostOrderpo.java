@@ -2,7 +2,6 @@ package po.financialmanpo;
 
 import java.io.Serializable;
 
-import po.courierpo.ExamineType;
 import vo.financialmanvo.Beizhuvo;
 import vo.financialmanvo.Datevo;
 import vo.financialmanvo.PaymentInputvo;
@@ -15,18 +14,18 @@ public class CostOrderpo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -6035340333141173086L;
-   public final Datepo dvo;
-   public final String ID;
-   public final Paypo pay;
-   public final Tiaomupo tiaomu;
-   public final Beizhupo beizhu;
-   public final ExamineType ext;
-   public final Datevo d;
-   public final Payvo p;
-   public final Tiaomuvo t;
-   public final Beizhuvo b;
+    public final Datepo dvo;
+    public final String ID;
+    public final Paypo pay;
+    public final Tiaomupo tiaomu;
+    public final Beizhupo beizhu;
+	public ExamineType ext;
+	public final Datevo d;
+    public final Payvo p;
+	public final Tiaomuvo t;
+	public final Beizhuvo b;
 	public CostOrderpo(PaymentInputvo order){
-//		System.out.println(order.pay.name+"jdkhfdgf");
+		System.out.println(order.pay.name+"jdkhfdgf");
 		dvo=new Datepo(order.date.year,order.date.mouth,order.date.day);
 		ID=order.beizhu.number;
 		pay=new Paypo(order.pay.money, order.pay.name, order.pay.account);
@@ -63,6 +62,5 @@ public class CostOrderpo implements Serializable {
 		return (new PaymentInputvo(d, p, t, b));
 		
 	}
-	
 
 }

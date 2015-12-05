@@ -12,7 +12,6 @@ import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.Accountpo;
 import po.financialmanpo.CostOrderpo;
 import po.financialmanpo.IncomeInputpo;
-import po.financialmanpo.RecieveListpo;
 
 public class AccountIO implements FinancialmanService{
 	public boolean addAccount(Accountpo apo) throws Exception {

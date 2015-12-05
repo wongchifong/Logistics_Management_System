@@ -24,7 +24,6 @@ import businesslogic.financialmanbl.SettlementManageImpl;
 import businesslogic.financialmanbl.StatisticsListImpl;
 import businesslogic.generalmanagerbl.AccountQueryImpl;
 import businesslogic.generalmanagerbl.ConstantFormulateImpl;
-import businesslogic.generalmanagerbl.OrderExamineImpl;
 import businesslogic.generalmanagerbl.SalaryFormulateImpl;
 import businesslogic.generalmanagerbl.StaffInstitutionManagerImpl;
 import businesslogic.stockmanagermanbl.WarehouseManageImpl;
@@ -84,8 +83,8 @@ public class RMIHost {
         		AccountQueryImpl.class);
         NAMING_MAP.put("constant-formulate-service", 
         		ConstantFormulateImpl.class);
-        NAMING_MAP.put("order-examine-service", 
-        		OrderExamineImpl.class);
+//        NAMING_MAP.put("order-examine-service", 
+//        		OrderExamineImpl.class);
         NAMING_MAP.put("salary-formulate-service", 
         		SalaryFormulateImpl.class);
         NAMING_MAP.put("staff-institution-service", 

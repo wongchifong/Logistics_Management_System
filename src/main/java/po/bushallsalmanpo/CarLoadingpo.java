@@ -23,7 +23,7 @@ public class CarLoadingpo implements Serializable{
 	public final String yunFei;
 	public final String tuoYunDan;
 	
-	final ClExamineType cle;
+	public ClExamineType cle;
 	
 	public CarLoadingpo(CarLoadingvo cl) {
 		// TODO Auto-generated constructor stub
@@ -46,4 +46,10 @@ public class CarLoadingpo implements Serializable{
 	public ClExamineType getExamineType() {
         return cle;
     }
+
+
+	public String getID() {
+		// TODO Auto-generated method stub
+		return car;
+	}
 }

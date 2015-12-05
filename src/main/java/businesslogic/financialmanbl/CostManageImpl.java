@@ -9,12 +9,10 @@ import data.reformdata.RecieveListIO;
 import dataservice.financialmandataservice.FinancialmanService;
 import po.bushallsalmanpo.CashReceiveOrderpo;
 import po.financialmanpo.CostOrderpo;
-import po.financialmanpo.RecieveListpo;
 import vo.financialmanvo.CostManagevo;
 import vo.financialmanvo.Moneyvo;
 import vo.financialmanvo.PaymentInputvo;
 import vo.financialmanvo.RecieveListvo;
-import vo.generalmanagervo.Staffvo;
 
 public class CostManageImpl extends UnicastRemoteObject implements CostManageService {
 
@@ -74,7 +72,6 @@ public class CostManageImpl extends UnicastRemoteObject implements CostManageSer
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 	@Override
 	public RecieveListvo[] SearchByMes(String text, String text2, String text3, String text4)  {
 		// TODO Auto-generated method stub

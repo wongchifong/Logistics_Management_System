@@ -292,14 +292,22 @@ public class DriverMesManageui extends javax.swing.JFrame {
         if(c)return;
         boolean d=errorID(chushengday.getText());
         if(d)return;
-        boolean e=errorID(phone.getText());
-        if(e)return;
-        boolean f=errorID(xingshiyear.getText());
+        boolean e1=errorID(shengfenID.getText());
+        if(e1)return;
+        boolean f=errorID(phone.getText());
         if(f)return;
-        boolean g=errorID(xingshimonth.getText());
+        boolean g=errorID(xingshiyear.getText());
         if(g)return;
-        boolean h=errorID(xingshiday.getText());
+        boolean h=errorID(xingshimonth.getText());
         if(h)return;
+        boolean k=errorID(xingshiday.getText());
+        if(k)return;
+        
+        String phoneID="";
+        if((phoneID=phone.getText()).equals("")||phoneID.length()!=11){
+        	errorphoneID();
+        	return;
+        }
         try {
             boolean a1 = dms.inputdriver(drivermesmanage);
             if(a1){
@@ -317,16 +325,20 @@ public class DriverMesManageui extends javax.swing.JFrame {
             Logger.getLogger(PriceAndTimeui.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private boolean errorID(String id) {
+    private void errorphoneID() {
 		// TODO Auto-generated method stub
-    	for(int i = 0 ; i < id.length(); i++){
-        	if(!(id.charAt(i) >= '0' && id.charAt(i) <= '9')){
-        		
-        		JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
-        		return true;
-        	}
-        }
-    	return false;
+    	JOptionPane.showMessageDialog(null, "手机号应为11位！", "输入有误", JOptionPane.ERROR_MESSAGE);
+	}
+
+	private boolean errorID(String text) {
+		// TODO Auto-generated method stub
+    	for(int i=0;i<text.length();i++){
+    		if(!(text.charAt(i)>='0'&&text.charAt(i)<='9')){
+    			JOptionPane.showMessageDialog(null, "包含非法字符！", "输入有误", JOptionPane.ERROR_MESSAGE);
+    			return true;
+    		}
+    	}
+		return false;
 	}
 
 	private void errordriverID() {
