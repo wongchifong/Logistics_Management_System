@@ -1,5 +1,12 @@
 package blservice.transitsalmanblservice;
 
-public interface TrafficMesManageService {
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+import vo.transitmanvo.TrafficMesManagevo;
+
+public interface TrafficMesManageService extends Remote {
+	
+	TrafficMesManagevo getMes() throws RemoteException;
 
 }

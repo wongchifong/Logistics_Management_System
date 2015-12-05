@@ -1,5 +1,11 @@
 package dataservice.transitmandataservice;
 
-public class TransitManService {
+import po.transitmanpo.TransitReceiveOrderpo;
+
+public interface TransitManService {
+	
+	boolean receiveOrderWrite (TransitReceiveOrderpo po) throws Exception;
+	
+	boolean addHistory(String ID , String h) throws Exception;
 
 }
