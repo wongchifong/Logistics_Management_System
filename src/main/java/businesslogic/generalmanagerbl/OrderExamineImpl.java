@@ -67,7 +67,6 @@ public class OrderExamineImpl extends UnicastRemoteObject implements OrderExamin
 	@Override
 	public String[] showzhongzhuanzhongxinorder() throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println();
 		return null;
 	}
 
